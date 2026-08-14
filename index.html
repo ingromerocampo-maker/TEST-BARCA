@@ -1,2908 +1,819 @@
 <!doctype html>
 <html lang="es">
-
 <head>
-
 <meta charset="utf-8">
-
-<meta
- name="viewport"
- content="width=device-width,initial-scale=1,viewport-fit=cover">
-
-<meta
- name="theme-color"
- content="#07111f">
-
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#07111f">
 <title>Familia ARH</title>
 
-
 <style>
-
-/* =========================================================
-   GENERAL
-========================================================= */
-
 :root{
-
- --bg:#07111f;
- --card:#0f1b2d;
- --card2:#0b1626;
- --text:#f7f9fc;
- --muted:#9aabc1;
- --line:#23334c;
- --accent:#2f80ed;
- --ok:#20c997;
- --danger:#ff6b76;
- --warn:#f3c969;
-
+  --navy:#07111f; --navy2:#0e1b2d; --card:#111f33; --line:#263a55;
+  --text:#f7f9fc; --muted:#9fb0c7; --blue:#3488f0; --green:#21c997;
+  --paper:#fffdf5; --paperLine:#d9e3ec; --ink:#2f2c27; --paperBorder:#d7caa9;
+  --danger:#d36d6d;
 }
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
+button,input,select,textarea{font:inherit}
+button{cursor:pointer}
+.screen{display:none;min-height:100vh}
+.screen.active{display:block}
 
-
-*{
- box-sizing:border-box;
-}
-
-
-body{
-
- margin:0;
-
- font-family:
- system-ui,
- -apple-system,
- Segoe UI,
- Roboto,
- Arial,
- sans-serif;
-
- background:#07111f;
-
- color:white;
-
- min-height:100vh;
-
-}
-
-
-button,
-input,
-select,
-textarea{
-
- font:inherit;
-
-}
-
-
-button{
-
- cursor:pointer;
-
-}
-
-
-.screen{
-
- display:none;
-
- min-height:100vh;
-
-}
-
-
-.screen.active{
-
- display:block;
-
-}
-
-
-
-/* =========================================================
-   MENU PRINCIPAL
-========================================================= */
-
+/* MENU */
 #mainMenu{
-
- background:
- linear-gradient(
-  180deg,
-  #07111f,
-  #0b1728
- );
-
- padding:
-
- max(
-  22px,
-  env(safe-area-inset-top)
- )
-
- 18px 40px;
-
-}
-
-
-.main-wrap{
-
- max-width:800px;
-
- margin:auto;
-
-}
-
-
-.main-logo{
-
- font-size:34px;
-
- font-weight:950;
-
- letter-spacing:-1px;
-
- margin-top:20px;
-
-}
-
-
-.main-subtitle{
-
- color:#9aabc1;
-
- margin-top:5px;
-
- margin-bottom:32px;
-
-}
-
-
-.app-cards{
-
- display:grid;
-
- grid-template-columns:
- repeat(
-  2,
-  minmax(0,1fr)
- );
-
- gap:16px;
-
-}
-
-
-.app-card{
-
- border:1px solid #243651;
-
- border-radius:24px;
-
- padding:22px;
-
- min-height:215px;
-
- background:
- linear-gradient(
-  145deg,
-  #101f35,
-  #0c1727
- );
-
+ background:linear-gradient(180deg,#07111f,#0b1728);
  color:white;
-
- text-align:left;
-
- box-shadow:
- 0 18px 40px
- rgba(0,0,0,.2);
-
+ padding:max(24px,env(safe-area-inset-top)) 18px 40px
 }
-
-
-.app-card.market-card{
-
- background:
- linear-gradient(
-  145deg,
-  #fffef6,
-  #f2ead6
- );
-
- color:#342d22;
-
- border-color:#d8caaa;
-
+.mainWrap{max-width:760px;margin:auto}
+.brand{font-size:34px;font-weight:900;margin-top:20px}
+.brandSub{color:var(--muted);margin:5px 0 30px}
+.appGrid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.appCard{
+ border:1px solid var(--line);border-radius:24px;padding:22px;
+ min-height:190px;background:linear-gradient(145deg,#10213a,#0c1727);
+ color:white;text-align:left
 }
-
-
-.app-icon{
-
- font-size:48px;
-
- margin-bottom:25px;
-
+.appCard.market{
+ background:linear-gradient(145deg,#fffef7,#f3ecd9);
+ color:#352f26;border-color:#d8caaa
 }
+.appIcon{font-size:44px;margin-bottom:22px}
+.appName{font-size:22px;font-weight:900}
+.appDesc{font-size:13px;line-height:1.45;color:var(--muted);margin-top:7px}
+.market .appDesc{color:#766b58}
+.footer{text-align:center;font-size:11px;color:#71839d;margin-top:25px}
 
-
-.app-name{
-
- font-size:22px;
-
- font-weight:900;
-
-}
-
-
-.app-description{
-
- margin-top:7px;
-
- font-size:13px;
-
- color:#9aabc1;
-
- line-height:1.45;
-
-}
-
-
-.market-card
-.app-description{
-
- color:#776c58;
-
-}
-
-
-.family-footer{
-
- color:#6f819b;
-
- text-align:center;
-
- font-size:11px;
-
- margin-top:30px;
-
-}
-
-
-
-/* =========================================================
-   BACLA GENERAL
-========================================================= */
-
+/* BACLA */
 #baclaApp{
-
- background:
- linear-gradient(
-  180deg,
-  #06101d,
-  #0a1525 40%,
-  #07111f
- );
-
- color:#f7f9fc;
-
+ background:linear-gradient(180deg,#06101d,#0a1525 40%,#07111f);
+ color:var(--text)
 }
-
-
-.bacla-app{
-
- max-width:980px;
-
- margin:auto;
-
- padding:
- 16px 14px 42px;
-
+.baclaWrap{max-width:900px;margin:auto;padding:16px 14px 42px}
+.top{display:flex;gap:12px;align-items:center;margin-bottom:14px}
+.back{
+ flex:none;width:44px;height:44px;border-radius:13px;
+ border:1px solid var(--line);background:#0b1626;color:white;font-size:20px
 }
-
-
-.topbar{
-
- display:flex;
-
- align-items:center;
-
- gap:10px;
-
- margin-bottom:12px;
-
-}
-
-
-.back-button{
-
- border:1px solid #23334c;
-
- background:#0b1626;
-
- color:white;
-
- border-radius:12px;
-
- width:42px;
-
- height:42px;
-
- font-size:18px;
-
-}
-
-
-.hero{
-
- flex:1;
-
- display:flex;
-
- justify-content:space-between;
-
- gap:12px;
-
- align-items:center;
-
-}
-
-
-.title{
-
- font-size:27px;
-
- font-weight:900;
-
-}
-
-
-.subtitle{
-
- font-size:13px;
-
- color:#9aabc1;
-
- margin-top:4px;
-
-}
-
-
-.badge{
-
- padding:8px 10px;
-
- border:1px solid #23334c;
-
- border-radius:999px;
-
- background:#0b1626;
-
- font-size:12px;
-
-}
-
-
+.headTitle{font-size:26px;font-weight:900}
+.headSub{font-size:13px;color:var(--muted);margin-top:2px}
 .sync{
-
- display:flex;
-
- align-items:center;
-
- gap:7px;
-
- font-size:11px;
-
- color:#9aabc1;
-
- margin-top:5px;
-
+ display:flex;align-items:center;gap:6px;color:var(--muted);
+ font-size:11px;margin-top:4px
 }
-
-
-.dot{
-
- width:8px;
-
- height:8px;
-
- border-radius:50%;
-
- background:#f3c969;
-
- display:inline-block;
-
-}
-
-
-.dot.ok{
-
- background:#20c997;
-
-}
-
-
-.dot.err{
-
- background:#ff6b76;
-
-}
-
-
-.card{
-
- background:#0f1b2d;
-
- border:1px solid #23334c;
-
- border-radius:18px;
-
- padding:14px;
-
- margin-bottom:13px;
-
-}
-
-
-.card h2{
-
- font-size:16px;
-
- margin:0 0 10px;
-
-}
-
-
-.small{
-
- font-size:12px;
-
- color:#9aabc1;
-
-}
-
-
-
-/* =========================================================
-   BACLA TABS
-========================================================= */
+.dot{width:8px;height:8px;border-radius:50%;background:#e1bf61}
+.dot.ok{background:var(--green)}
+.dot.err{background:#ff6b76}
 
 .tabs{
-
- display:flex;
-
- gap:6px;
-
- position:sticky;
-
- top:0;
-
- z-index:8;
-
- padding:7px 0 11px;
-
- background:#07111f;
-
- overflow:auto;
-
+ display:flex;gap:7px;overflow:auto;position:sticky;top:0;
+ z-index:10;background:var(--navy);padding:8px 0 11px
 }
-
-
 .tab{
-
- flex:1;
-
- min-width:72px;
-
- border:1px solid #23334c;
-
- background:#0b1626;
-
- color:#aebbd0;
-
- padding:10px 6px;
-
- border-radius:12px;
-
- font-weight:800;
-
- font-size:11px;
-
+ flex:0 0 auto;min-width:76px;border:1px solid var(--line);
+ border-radius:12px;background:#0b1626;color:#b4c1d3;
+ padding:11px 12px;font-weight:800;font-size:12px
 }
+.tab.active{background:#1b3d68;color:white;border-color:var(--blue)}
+.pane{display:none}
+.pane.active{display:block}
 
-
-.tab.active{
-
- background:#18365f;
-
- color:white;
-
- border-color:#2f80ed;
-
+.card{
+ background:var(--card);border:1px solid var(--line);
+ border-radius:18px;padding:15px;margin-bottom:13px
 }
+.card h2{font-size:17px;margin:0 0 10px}
+.small{font-size:12px;color:var(--muted)}
 
-
-.pane{
-
- display:none;
-
+.tripFacts{
+ display:grid;grid-template-columns:repeat(3,1fr);gap:8px
 }
-
-
-.pane.active{
-
- display:block;
-
+.fact{
+ background:#0b1626;border:1px solid var(--line);
+ border-radius:13px;padding:11px
 }
+.factLabel{font-size:10px;color:var(--muted)}
+.factValue{font-size:15px;font-weight:900;margin-top:3px}
 
-
-
-/* =========================================================
-   BACLA KPIs
-========================================================= */
-
-.grid3{
-
- display:grid;
-
- grid-template-columns:
- repeat(3,1fr);
-
- gap:10px;
-
-}
-
-
-.kpi{
-
- background:#0b1626;
-
- border:1px solid #23334c;
-
- border-radius:14px;
-
- padding:12px;
-
-}
-
-
-.kpi-label{
-
- font-size:11px;
-
- color:#9aabc1;
-
-}
-
-
-.kpi-value{
-
- font-size:20px;
-
- font-weight:900;
-
- margin-top:4px;
-
-}
-
-
-
-/* =========================================================
-   PAGOS
-========================================================= */
-
+/* PAGOS */
 .progress{
-
- height:10px;
-
- border-radius:999px;
-
- background:#1a2940;
-
- overflow:hidden;
-
- margin:10px 0;
-
+ height:10px;border-radius:999px;background:#1a2940;
+ overflow:hidden;margin:10px 0
 }
-
-
-.progress > div{
-
+.progress>div{
  height:100%;
-
- background:
- linear-gradient(
-  90deg,
-  #2f80ed,
-  #20c997
- );
-
+ background:linear-gradient(90deg,var(--blue),var(--green))
 }
-
-
 .milestones{
-
- display:grid;
-
- grid-template-columns:
- repeat(5,1fr);
-
- gap:6px;
-
+ display:grid;grid-template-columns:repeat(5,1fr);gap:6px
 }
-
-
 .milestone{
-
- border:1px solid #23334c;
-
- background:#0b1626;
-
- color:white;
-
- border-radius:12px;
-
- padding:8px 4px;
-
- text-align:center;
-
+ border:1px solid var(--line);background:#0b1626;color:white;
+ border-radius:11px;padding:8px 4px;text-align:center
 }
-
-
-.milestone.done{
-
- border-color:#239b71;
-
- background:#0d2a25;
-
-}
-
-
+.milestone.done{background:#0d2a25;border-color:#278d6b}
 .circle{
-
- width:24px;
-
- height:24px;
-
- border-radius:50%;
-
- display:grid;
-
- place-items:center;
-
- border:1px solid #415069;
-
- margin:auto;
-
+ width:24px;height:24px;margin:auto;border-radius:50%;
+ border:1px solid #485a74;display:grid;place-items:center
 }
-
-
-.milestone.done
-.circle{
-
- background:#20c997;
-
- border-color:#20c997;
-
- color:#062217;
-
- font-weight:900;
-
+.milestone.done .circle{
+ background:var(--green);border-color:var(--green);
+ color:#062217;font-weight:900
 }
-
-
 .milestone small{
-
- display:block;
-
- font-size:9px;
-
- color:#9aabc1;
-
- margin-top:5px;
-
+ display:block;margin-top:4px;color:var(--muted);font-size:9px
 }
 
-
-
-/* =========================================================
-   LISTAS GENERALES
-========================================================= */
-
-.list{
-
- display:flex;
-
- flex-direction:column;
-
- gap:8px;
-
+/* AGENDA SIMPLE */
+.dayCard{
+ background:#0b1626;border:1px solid var(--line);
+ border-radius:16px;margin-bottom:12px;overflow:hidden
 }
-
-
-.item{
-
- display:flex;
-
- align-items:center;
-
- gap:8px;
-
- background:#091423;
-
- border:1px solid #23334c;
-
- border-radius:12px;
-
- padding:9px 10px;
-
+.dayHeader{
+ padding:13px 14px;border-bottom:1px solid var(--line);
+ display:flex;gap:10px;align-items:center
 }
-
-
-.item.done
-.txt{
-
- text-decoration:line-through;
-
- color:#718099;
-
+.dayDateBox{
+ width:54px;min-width:54px;text-align:center;
+ background:#142943;border-radius:11px;padding:7px 4px
 }
-
-
-.item
-input[type=checkbox]{
-
- width:20px;
-
- height:20px;
-
- accent-color:#20c997;
-
+.dayNum{font-size:22px;font-weight:900;line-height:1}
+.dayMon{
+ font-size:10px;color:#b7c5d8;margin-top:3px;text-transform:uppercase
 }
-
-
-.txt{
-
- flex:1;
-
- border:none;
-
- outline:none;
-
- background:transparent;
-
- color:white;
-
- font-size:14px;
-
- min-width:0;
-
+.dayInfo{flex:1;min-width:0}
+.dayTitleInput{
+ width:100%;border:none;background:transparent;color:white;
+ font-size:16px;font-weight:900;outline:none
 }
-
-
+.dayDateInput{
+ border:none;background:transparent;color:var(--muted);
+ font-size:11px;outline:none;margin-top:4px
+}
+.checkRows{padding:8px 10px}
+.checkRow{
+ display:flex;align-items:center;gap:10px;min-height:48px;
+ border-bottom:1px solid rgba(38,58,85,.65)
+}
+.checkRow:last-child{border-bottom:none}
+.checkRow input[type=checkbox]{
+ width:22px;height:22px;accent-color:var(--green);flex:none
+}
+.checkText{
+ flex:1;border:none;background:transparent;color:white;
+ outline:none;font-size:15px;min-width:0
+}
+.checkRow.done .checkText{
+ text-decoration:line-through;color:#718099
+}
 .delete{
-
- border:none;
-
- background:transparent;
-
- color:#8292a9;
-
- font-size:20px;
-
+ border:none;background:transparent;color:#7f91a9;
+ font-size:21px;padding:6px
 }
-
-
-.addrow{
-
- display:flex;
-
- gap:8px;
-
- margin-top:9px;
-
+.dayAdd{
+ display:flex;gap:8px;padding:10px;border-top:1px solid var(--line)
 }
-
-
-.addrow input{
-
- flex:1;
-
- background:#091423;
-
- border:1px solid #23334c;
-
- color:white;
-
- padding:11px;
-
- border-radius:11px;
-
- outline:none;
-
- min-width:0;
-
+.dayAdd input{
+ flex:1;min-width:0;background:#091423;border:1px solid var(--line);
+ border-radius:10px;padding:11px;color:white;outline:none
 }
-
-
 .primary{
-
- border:none;
-
- background:#2f80ed;
-
- color:white;
-
- border-radius:11px;
-
- padding:10px 13px;
-
- font-weight:800;
-
+ border:none;border-radius:10px;background:var(--blue);
+ color:white;font-weight:800;padding:10px 14px
+}
+.dangerBtn{
+ margin:0 10px 10px;border:1px solid var(--line);
+ background:#0c192a;color:#ff9ca4;border-radius:9px;
+ padding:8px 10px;font-size:12px;font-weight:700
+}
+.addDayBtn{
+ width:100%;padding:12px;border:1px dashed #496582;
+ border-radius:12px;background:#0b1626;color:#bcd0e7;font-weight:800
 }
 
-
-.ghost{
-
- border:1px solid #23334c;
-
- background:#0c1a2c;
-
- color:#ff9ba3;
-
- border-radius:10px;
-
- padding:8px 10px;
-
- font-weight:700;
-
+/* LISTAS */
+.subtabs,.people{
+ display:flex;gap:7px;overflow:auto;margin-bottom:10px
 }
-
-
-
-/* =========================================================
-   SUBTABS
-========================================================= */
-
-.subtabs{
-
- display:flex;
-
- gap:7px;
-
- overflow:auto;
-
- margin-bottom:10px;
-
+.subtab,.person{
+ border:1px solid var(--line);background:#0b1626;
+ color:#b2c0d1;border-radius:999px;padding:8px 12px;white-space:nowrap
 }
-
-
-.subtab,
-.person{
-
- border:1px solid #23334c;
-
- background:#0b1626;
-
- color:#aebbd0;
-
- border-radius:999px;
-
- padding:8px 12px;
-
- white-space:nowrap;
-
+.subtab.active,.person.active{
+ background:#213958;color:white;border-color:#4b7098
 }
-
-
-.subtab.active,
-.person.active{
-
- background:#213958;
-
- color:white;
-
- border-color:#456b94;
-
+.section{display:none}
+.section.active{display:block}
+.list{display:flex;flex-direction:column;gap:8px}
+.item{
+ display:flex;align-items:center;gap:9px;background:#091423;
+ border:1px solid var(--line);border-radius:11px;padding:9px 10px
 }
-
-
-.section{
-
- display:none;
-
+.item input[type=checkbox]{
+ width:21px;height:21px;accent-color:var(--green)
 }
-
-
-.section.active{
-
- display:block;
-
+.txt{
+ flex:1;border:none;background:transparent;color:white;
+ outline:none;min-width:0;font-size:14px
 }
-
-
-.people{
-
- display:grid;
-
- grid-template-columns:
- repeat(2,1fr);
-
- gap:8px;
-
+.item.done .txt{text-decoration:line-through;color:#718099}
+.addrow{display:flex;gap:8px;margin-top:9px}
+.addrow input{
+ flex:1;min-width:0;background:#091423;border:1px solid var(--line);
+ border-radius:10px;padding:11px;color:white;outline:none
 }
-
-
-
-/* =========================================================
-   AGENDA
-========================================================= */
-
-.day{
-
- border:1px solid #23334c;
-
- background:#0b1626;
-
- border-radius:15px;
-
- padding:12px;
-
- margin-bottom:10px;
-
-}
-
-
-.dayhead{
-
- display:grid;
-
- grid-template-columns:
- 1fr 140px;
-
- gap:8px;
-
- margin-bottom:10px;
-
-}
-
-
-.dayhead input{
-
- background:transparent;
-
- border:none;
-
- color:white;
-
- outline:none;
-
-}
-
-
-.day-title{
-
- font-weight:900;
-
- font-size:15px;
-
-}
-
-
-.day-date{
-
- font-size:12px;
-
- color:#9aabc1;
-
-}
-
-
-.activity{
-
- display:grid;
-
- grid-template-columns:
- 72px
- 1fr
- 105px
- 90px
- 34px;
-
- gap:8px;
-
- align-items:center;
-
- background:#091423;
-
- border:1px solid #23334c;
-
- border-radius:12px;
-
- padding:9px;
-
- margin-bottom:8px;
-
-}
-
-
-.activity input,
-.activity select{
-
- width:100%;
-
- background:transparent;
-
- border:none;
-
- outline:none;
-
- color:white;
-
- min-width:0;
-
-}
-
-
-.activity-add{
-
- display:grid;
-
- grid-template-columns:
- 70px
- 1fr
- 105px
- 90px
- 48px;
-
- gap:8px;
-
- margin-top:10px;
-
-}
-
-
-.activity-add input,
-.activity-add select{
-
- background:#091423;
-
- border:1px solid #23334c;
-
- color:white;
-
- padding:10px;
-
- border-radius:10px;
-
- min-width:0;
-
-}
-
-
-
-/* =========================================================
-   GASTOS
-========================================================= */
-
-.expense-total{
-
- background:
- linear-gradient(
-  135deg,
-  #102849,
-  #0c1c31
- );
-
- border:1px solid #28486f;
-
- border-radius:16px;
-
- padding:16px;
-
- margin-bottom:15px;
-
-}
-
-
-.expense-total-value{
-
- font-size:30px;
-
- font-weight:900;
-
- margin-top:4px;
-
-}
-
-
-.expense-row{
-
- display:grid;
-
- grid-template-columns:
- 1fr
- 115px
- 100px
- 90px
- 34px;
-
- gap:8px;
-
- background:#091423;
-
- border:1px solid #23334c;
-
- border-radius:12px;
-
- padding:9px;
-
- margin-bottom:8px;
-
-}
-
-
-.expense-row input,
-.expense-row select{
-
- width:100%;
-
- background:transparent;
-
- border:none;
-
- color:white;
-
- outline:none;
-
- min-width:0;
-
-}
-
-
-.expense-add{
-
- display:grid;
-
- grid-template-columns:
- 1fr
- 115px
- 100px
- 90px
- 48px;
-
- gap:8px;
-
- margin-top:12px;
-
-}
-
-
-.expense-add input,
-.expense-add select{
-
- background:#091423;
-
- border:1px solid #23334c;
-
- color:white;
-
- padding:10px;
-
- border-radius:10px;
-
- min-width:0;
-
-}
-
-
-.budget-row{
-
- display:flex;
-
- gap:8px;
-
-}
-
-
-.budget-row input{
-
- flex:1;
-
- background:#091423;
-
- border:1px solid #23334c;
-
- color:white;
-
- border-radius:10px;
-
- padding:10px;
-
-}
-
-
 textarea{
-
- width:100%;
-
- min-height:160px;
-
- background:#091423;
-
- border:1px solid #23334c;
-
- border-radius:12px;
-
- color:white;
-
- padding:11px;
-
+ width:100%;min-height:150px;background:#091423;
+ border:1px solid var(--line);border-radius:11px;
+ color:white;padding:11px;outline:none
 }
 
-
-
-/* =========================================================
-   MERCADO FAMILIAR
-========================================================= */
-
-#marketApp{
-
- min-height:100vh;
-
- background:#f7f1df;
-
- color:#352f27;
-
+/* GASTOS */
+.expenseTotal{
+ background:#102849;border:1px solid #2a4b73;
+ border-radius:15px;padding:15px;margin-bottom:12px
+}
+.expenseTotal .v{font-size:28px;font-weight:900;margin-top:3px}
+.budgetRow{display:flex;gap:8px}
+.budgetRow input{
+ flex:1;min-width:0;background:#091423;border:1px solid var(--line);
+ border-radius:10px;color:white;padding:11px
+}
+.expenseRow{
+ display:grid;grid-template-columns:1fr 120px 34px;gap:7px;
+ background:#091423;border:1px solid var(--line);
+ border-radius:11px;padding:9px;margin-bottom:8px
+}
+.expenseRow input{
+ width:100%;min-width:0;background:transparent;
+ border:none;color:white;outline:none
+}
+.expenseMeta{
+ grid-column:1/3;display:flex;gap:8px
+}
+.expenseMeta select{
+ flex:1;min-width:0;background:#101f33;border:1px solid var(--line);
+ color:white;border-radius:8px;padding:8px
+}
+.expenseAdd{
+ display:grid;grid-template-columns:1fr 120px 48px;
+ gap:7px;margin-top:10px
+}
+.expenseAdd input{
+ width:100%;min-width:0;background:#091423;border:1px solid var(--line);
+ border-radius:10px;color:white;padding:10px
+}
+.expenseAdd select{
+ background:#091423;border:1px solid var(--line);
+ border-radius:10px;color:white;padding:10px
+}
+.expenseAdd .meta{
+ grid-column:1/3;display:flex;gap:7px
 }
 
-
-.market-wrapper{
-
- max-width:760px;
-
- margin:auto;
-
- padding:
- max(
-  15px,
-  env(safe-area-inset-top)
- )
- 14px 40px;
-
+/* MERCADO */
+#marketApp{background:#f4eedc;color:var(--ink)}
+.marketWrap{
+ max-width:760px;margin:auto;
+ padding:max(15px,env(safe-area-inset-top)) 14px 36px
 }
-
-
-.market-topbar{
-
- display:flex;
-
- align-items:center;
-
- gap:12px;
-
- margin-bottom:12px;
-
+.marketTop{
+ display:flex;align-items:center;gap:10px;margin-bottom:13px
 }
-
-
-.market-back{
-
- width:42px;
-
- height:42px;
-
- border-radius:50%;
-
- border:1px solid #d8cbaa;
-
- background:#fffdf4;
-
- color:#544a39;
-
- font-size:18px;
-
+.marketBack{
+ width:44px;height:44px;border-radius:50%;
+ border:1px solid var(--paperBorder);background:#fffdf5;
+ color:#4f473b;font-size:20px
 }
-
-
-.market-title{
-
- font-family:
- Georgia,
- "Times New Roman",
- serif;
-
- font-size:27px;
-
- font-weight:900;
-
+.marketHeading{flex:1;min-width:0}
+.marketTitle{font-size:27px;font-weight:900;line-height:1}
+.marketSub{font-size:12px;color:#7f735f;margin-top:4px}
+.clearBtn{
+ border:1px solid var(--paperBorder);background:#fffaf0;
+ color:#705f50;border-radius:10px;padding:9px 10px;font-size:12px
 }
-
-
-.market-subtitle{
-
- color:#837660;
-
- font-size:12px;
-
- margin-top:2px;
-
-}
-
-
 .notebook{
-
- position:relative;
-
- overflow:hidden;
-
- border-radius:18px;
-
- padding:
- 25px
- 18px
- 30px
- 53px;
-
- border:1px solid #d5c8a8;
-
- box-shadow:
- 0 12px 30px
- rgba(83,68,43,.13);
-
- background-color:#fffdf5;
-
- background-image:
-
- repeating-linear-gradient(
-
+ position:relative;background-color:var(--paper);
+ background-image:repeating-linear-gradient(
   to bottom,
-
   transparent 0,
-
-  transparent 31px,
-
-  #b7c9d8 32px
-
+  transparent 41px,
+  var(--paperLine) 42px
  );
-
- min-height:650px;
-
+ border:1px solid var(--paperBorder);border-radius:18px;
+ padding:20px 14px 26px 42px;overflow:hidden;
+ box-shadow:0 10px 25px rgba(91,76,48,.12)
 }
-
-
 .notebook:before{
+ content:"";position:absolute;left:28px;top:0;bottom:0;
+ width:2px;background:rgba(214,104,104,.40)
+}
+.marketSummary{
+ display:flex;gap:8px;margin-bottom:18px;position:relative;z-index:1
+}
+.summaryBox{
+ background:#fffdf5;border:1px solid var(--paperBorder);
+ border-radius:10px;padding:8px 11px
+}
+.summaryBox .l{font-size:10px;color:#837660}
+.summaryBox .v{font-size:17px;font-weight:900}
 
- content:"";
-
- position:absolute;
-
- left:38px;
-
- top:0;
-
- bottom:0;
-
- width:2px;
-
- background:
- rgba(
-  220,
-  100,
-  100,
-  .48
- );
-
+.marketCategory{
+ position:relative;z-index:1;margin-bottom:22px
+}
+.categoryHead{
+ display:flex;align-items:center;gap:8px;min-height:42px
+}
+.categoryName{
+ flex:1;min-width:0;border:none;background:rgba(255,253,245,.94);
+ color:#332e27;font-size:19px;font-weight:900;
+ padding:5px 7px;border-radius:6px;outline:none
+}
+.categoryDelete{
+ border:none;background:transparent;color:#aa7671;font-size:18px
+}
+.marketItem{
+ display:flex;align-items:center;gap:10px;
+ min-height:42px;padding:0 5px
+}
+.marketItem input[type=checkbox]{
+ width:23px;height:23px;accent-color:#5e8869;flex:none
+}
+.marketItemText{
+ flex:1;min-width:0;border:none;background:rgba(255,253,245,.82);
+ color:#302b25;padding:7px 5px;outline:none;
+ font-size:16px;font-weight:600
+}
+.marketItem.checked .marketItemText{
+ text-decoration:line-through;color:#999286
+}
+.marketDelete{
+ border:none;background:transparent;color:#ad8982;font-size:20px
+}
+.marketAdd{
+ display:flex;gap:8px;align-items:center;
+ min-height:42px;padding:0 5px
+}
+.marketAdd input{
+ flex:1;min-width:0;border:none;border-bottom:1px dashed #a99b80;
+ background:rgba(255,253,245,.82);color:#3b352c;
+ padding:8px 6px;outline:none;font-size:16px
+}
+.marketPlus{
+ width:36px;height:36px;border:none;border-radius:50%;
+ background:#678d6d;color:white;font-size:22px;font-weight:800
+}
+.addCategory{
+ position:relative;z-index:1;margin-top:8px;
+ padding-top:16px;border-top:1px dashed #b9aa8d
+}
+.addCategory input{
+ width:100%;border:1px solid var(--paperBorder);
+ background:#fffdf5;border-radius:10px;
+ padding:12px;color:#40382d;outline:none;font-size:16px
+}
+.addCategory button{
+ width:100%;margin-top:8px;border:none;border-radius:10px;
+ background:#5f594b;color:white;font-weight:800;
+ padding:12px;font-size:15px
 }
 
-
-.market-summary{
-
- display:flex;
-
- justify-content:space-between;
-
- gap:10px;
-
- margin-bottom:20px;
-
- position:relative;
-
- z-index:1;
-
-}
-
-
-.market-summary-box{
-
- background:
- rgba(
-  255,
-  253,
-  245,
-  .92
- );
-
- border:1px solid #dfd4b9;
-
- border-radius:12px;
-
- padding:9px 12px;
-
-}
-
-
-.market-summary-label{
-
- font-size:10px;
-
- color:#8a7b63;
-
-}
-
-
-.market-summary-value{
-
- font-size:17px;
-
- font-weight:900;
-
-}
-
-
-.market-category{
-
- position:relative;
-
- z-index:1;
-
- margin-bottom:26px;
-
-}
-
-
-.market-category-head{
-
- display:flex;
-
- align-items:center;
-
- gap:8px;
-
- min-height:32px;
-
-}
-
-
-.category-name{
-
- flex:1;
-
- border:none;
-
- outline:none;
-
- background:
- rgba(
-  255,
-  253,
-  245,
-  .9
- );
-
- color:#433a2d;
-
- font-family:
- Georgia,
- serif;
-
- font-size:18px;
-
- font-weight:900;
-
- padding:
- 2px 5px;
-
- border-radius:5px;
-
-}
-
-
-.category-delete{
-
- border:none;
-
- background:transparent;
-
- color:#b16a6a;
-
- font-size:17px;
-
-}
-
-
-.market-item{
-
- display:flex;
-
- align-items:center;
-
- gap:8px;
-
- min-height:32px;
-
- padding:0 4px;
-
-}
-
-
-.market-item
-input[type=checkbox]{
-
- width:19px;
-
- height:19px;
-
- accent-color:#5c8060;
-
-}
-
-
-.market-item-text{
-
- flex:1;
-
- border:none;
-
- outline:none;
-
- background:transparent;
-
- color:#443d32;
-
- font-family:
- "Segoe Print",
- "Comic Sans MS",
- cursive;
-
- font-size:15px;
-
- min-width:0;
-
-}
-
-
-.market-item.checked
-.market-item-text{
-
- text-decoration:
- line-through;
-
- color:#9b9488;
-
-}
-
-
-.market-delete{
-
- border:none;
-
- background:transparent;
-
- color:#b18d85;
-
- font-size:18px;
-
-}
-
-
-.market-add{
-
- display:flex;
-
- gap:8px;
-
- min-height:32px;
-
- align-items:center;
-
- padding:0 4px;
-
-}
-
-
-.market-add input{
-
- flex:1;
-
- border:none;
-
- border-bottom:
- 1px dashed #b9aa8b;
-
- outline:none;
-
- background:
- rgba(
-  255,
-  253,
-  245,
-  .72
- );
-
- color:#443d32;
-
- font-family:
- "Segoe Print",
- cursive;
-
- padding:5px;
-
-}
-
-
-.market-plus{
-
- border:none;
-
- background:#708d70;
-
- color:white;
-
- width:28px;
-
- height:28px;
-
- border-radius:50%;
-
- font-weight:900;
-
-}
-
-
-.add-category-box{
-
- position:relative;
-
- z-index:1;
-
- border-top:
- 1px dashed #c8b998;
-
- padding-top:18px;
-
- margin-top:10px;
-
-}
-
-
-.add-category-row{
-
- display:flex;
-
- gap:8px;
-
-}
-
-
-.add-category-row input{
-
- flex:1;
-
- padding:10px;
-
- border-radius:10px;
-
- border:1px solid #d5c7a8;
-
- background:#fffdf5;
-
- color:#463d30;
-
- outline:none;
-
-}
-
-
-.add-category-button{
-
- border:none;
-
- background:#605849;
-
- color:white;
-
- border-radius:10px;
-
- padding:10px 14px;
-
- font-weight:800;
-
-}
-
-
-.market-clear{
-
- border:1px solid #d5c7a8;
-
- background:#fffaf0;
-
- color:#866b5c;
-
- border-radius:10px;
-
- padding:8px 12px;
-
- font-size:12px;
-
-}
-
-
-
-/* =========================================================
-   RESPONSIVE
-========================================================= */
-
-@media(
- max-width:700px
-){
-
- .app-cards{
-
-  grid-template-columns:1fr;
-
+@media(max-width:650px){
+ .appGrid{grid-template-columns:1fr}
+ .tripFacts{grid-template-columns:1fr 1fr}
+ .milestones{
+  grid-template-columns:repeat(5,minmax(55px,1fr));
+  overflow:auto
  }
-
- .app-card{
-
-  min-height:175px;
-
- }
-
- .grid3{
-
-  grid-template-columns:1fr;
-
- }
-
- .dayhead{
-
-  grid-template-columns:1fr;
-
- }
-
- .activity,
- .activity-add{
-
-  grid-template-columns:
-  65px
-  1fr
-  34px;
-
- }
-
- .activity
- .activity-location,
- .activity
- .activity-category{
-
-  grid-column:2/4;
-
- }
-
- .activity-add
- .activity-location,
- .activity-add
- .activity-category{
-
-  grid-column:2/4;
-
- }
-
- .expense-row{
-
-  grid-template-columns:
-  1fr
-  105px
-  32px;
-
- }
-
- .expense-row
- .category-field,
- .expense-row
- .payer-field{
-
-  grid-column:1/2;
-
- }
-
- .expense-add{
-
-  grid-template-columns:
-  1fr
-  105px
-  46px;
-
- }
-
- .expense-add
- .category-field,
- .expense-add
- .payer-field{
-
-  grid-column:1/2;
-
- }
-
+ .expenseRow{grid-template-columns:1fr 105px 32px}
+ .expenseAdd{grid-template-columns:1fr 105px 46px}
 }
-
 </style>
-
 </head>
-
 
 <body>
 
+<!-- MENU PRINCIPAL -->
+<div id="mainMenu" class="screen active">
+ <div class="mainWrap">
 
-<!-- =====================================================
-     MENU PRINCIPAL
-===================================================== -->
+  <div class="brand">Familia ARH</div>
+  <div class="brandSub">Nuestro espacio familiar</div>
 
-<div
- id="mainMenu"
- class="screen active">
+  <div class="appGrid">
 
- <div class="main-wrap">
-
-  <div class="main-logo">
-   Familia ARH
-  </div>
-
-  <div class="main-subtitle">
-   Nuestro espacio familiar
-  </div>
-
-
-  <div class="app-cards">
-
-
-   <button
-    class="app-card"
-    onclick="openScreen('baclaApp')">
-
-    <div class="app-icon">
-     ⚽
+   <button class="appCard" onclick="openScreen('baclaApp')">
+    <div class="appIcon">⚽</div>
+    <div class="appName">BACLA ARH</div>
+    <div class="appDesc">
+     Viaje, torneo, pendientes, maletas, reservas y gastos.
     </div>
-
-    <div class="app-name">
-     BACLA ARH
-    </div>
-
-    <div class="app-description">
-     Agenda del viaje, torneo, maletas,
-     pendientes, reservas, gastos y notas.
-    </div>
-
    </button>
 
-
-   <button
-    class="app-card market-card"
-    onclick="openScreen('marketApp')">
-
-    <div class="app-icon">
-     🛒
+   <button class="appCard market" onclick="openScreen('marketApp')">
+    <div class="appIcon">🛒</div>
+    <div class="appName">Mercado Familiar</div>
+    <div class="appDesc">
+     Lista compartida, clara y rápida para usar mientras hacen mercado.
     </div>
-
-    <div class="app-name">
-     Mercado Familiar
-    </div>
-
-    <div class="app-description">
-     Nuestra lista compartida para organizar
-     el mercado de la casa.
-    </div>
-
    </button>
 
-
   </div>
 
-
-  <div class="family-footer">
-   Familia ARH · Sincronizado con Firebase
+  <div class="footer">
+   Familia ARH · Datos compartidos con Firebase
   </div>
 
  </div>
-
 </div>
 
+<!-- BACLA -->
+<div id="baclaApp" class="screen">
 
+ <div class="baclaWrap">
 
-<!-- =====================================================
-     BACLA APP
-===================================================== -->
+  <div class="top">
 
-<div
- id="baclaApp"
- class="screen">
+   <button class="back" onclick="openScreen('mainMenu')">←</button>
 
-<div class="bacla-app">
+   <div style="flex:1">
+    <div class="headTitle">BACLA ARH</div>
+    <div class="headSub">
+     Cap Cana · República Dominicana · 2026
+    </div>
 
-
-<div class="topbar">
-
- <button
-  class="back-button"
-  onclick="openScreen('mainMenu')">
-  ←
- </button>
-
-
- <div class="hero">
-
-  <div>
-
-   <div class="title">
-    BACLA ARH
-   </div>
-
-   <div class="subtitle">
-    Barça Academy Cup Las Américas 2026
-   </div>
-
-   <div class="sync">
-
-    <span
-     id="syncDot"
-     class="dot">
-    </span>
-
-    <span id="syncText">
-     Conectando...
-    </span>
-
+    <div class="sync">
+     <span id="syncDot" class="dot"></span>
+     <span id="syncText">Conectando...</span>
+    </div>
    </div>
 
   </div>
 
-
-  <div class="badge">
-   ⚽ Viaje familiar
+  <div class="tabs">
+   <button class="tab active" data-pane="agenda">Agenda</button>
+   <button class="tab" data-pane="previo">Previo</button>
+   <button class="tab" data-pane="maleta">Maleta</button>
+   <button class="tab" data-pane="viaje">Viaje</button>
+   <button class="tab" data-pane="gastos">Gastos</button>
+   <button class="tab" data-pane="notas">Notas</button>
   </div>
 
- </div>
+  <!-- AGENDA -->
+  <div id="agenda" class="pane active">
 
-</div>
+   <div class="card">
 
+    <h2>Información clave</h2>
 
-<div class="tabs">
+    <div class="tripFacts">
 
- <button
-  class="tab active"
-  data-pane="inicio">
-  Inicio
- </button>
+     <div class="fact">
+      <div class="factLabel">LLEGADA</div>
+      <div class="factValue">9 Dic</div>
+     </div>
 
- <button
-  class="tab"
-  data-pane="hoy">
-  Hoy
- </button>
+     <div class="fact">
+      <div class="factLabel">TORNEO</div>
+      <div class="factValue">10–13 Dic</div>
+     </div>
 
- <button
-  class="tab"
-  data-pane="agenda">
-  Agenda
- </button>
+     <div class="fact">
+      <div class="factLabel">SEDE</div>
+      <div class="factValue">The Fields</div>
+     </div>
 
- <button
-  class="tab"
-  data-pane="previo">
-  Previo
- </button>
+    </div>
 
- <button
-  class="tab"
-  data-pane="maleta">
-  Maleta
- </button>
+    <div class="small" style="margin-top:10px">
+     Partidos previstos entre 9:00 a. m. y 2:00 p. m.
+     según programación oficial.
+    </div>
 
- <button
-  class="tab"
-  data-pane="viaje">
-  Viaje
- </button>
-
- <button
-  class="tab"
-  data-pane="gastos">
-  Gastos
- </button>
-
- <button
-  class="tab"
-  data-pane="notas">
-  Notas
- </button>
-
-</div>
-
-
-
-<!-- =====================================================
-     INICIO
-===================================================== -->
-
-<div
- id="inicio"
- class="pane active">
-
-
-<div class="card">
-
- <div class="grid3">
-
-
-  <div class="kpi">
-
-   <div class="kpi-label">
-    Cuenta regresiva
    </div>
 
-   <div
-    class="kpi-value"
-    id="countdownValue">
-    —
+   <div class="card">
+
+    <div style="display:flex;justify-content:space-between;align-items:center;gap:8px">
+
+     <div>
+      <h2 style="margin-bottom:3px">Pagos</h2>
+      <div class="small">5 hitos × $2.500.000 COP</div>
+     </div>
+
+     <strong id="paySummary"></strong>
+
+    </div>
+
+    <div class="progress">
+     <div id="progressBar"></div>
+    </div>
+
+    <div class="milestones" id="milestones"></div>
+
    </div>
 
-   <div
-    class="small"
-    id="countdownLabel">
-    hasta el viaje
+   <div class="card">
+
+    <h2>Itinerario</h2>
+
+    <div class="small" style="margin-bottom:10px">
+     Marca, edita, agrega o elimina actividades.
+    </div>
+
+    <div id="days"></div>
+
+    <button id="addDay" class="addDayBtn">
+     + Agregar día
+    </button>
+
    </div>
 
   </div>
 
+  <!-- PREVIO -->
+  <div id="previo" class="pane">
 
-  <div class="kpi">
+   <div class="card">
 
-   <div class="kpi-label">
-    Próxima actividad
+    <div class="subtabs">
+     <button class="subtab active" data-section="familia">Familia</button>
+     <button class="subtab" data-section="salomon">Salomón</button>
+     <button class="subtab" data-section="antonio">Antonio</button>
+    </div>
+
+    <div id="familia" class="section active">
+
+     <h2>Previo · Familia</h2>
+
+     <div class="list" data-list="previo_familia"></div>
+
+     <div class="addrow">
+      <input data-input="previo_familia" placeholder="Agregar pendiente...">
+      <button class="primary" data-add="previo_familia">+</button>
+     </div>
+
+    </div>
+
+    <div id="salomon" class="section">
+
+     <h2>Previo · Salomón</h2>
+
+     <div class="list" data-list="previo_salomon"></div>
+
+     <div class="addrow">
+      <input data-input="previo_salomon" placeholder="Agregar pendiente...">
+      <button class="primary" data-add="previo_salomon">+</button>
+     </div>
+
+    </div>
+
+    <div id="antonio" class="section">
+
+     <h2>Previo · Antonio</h2>
+
+     <div class="list" data-list="previo_antonio"></div>
+
+     <div class="addrow">
+      <input data-input="previo_antonio" placeholder="Agregar pendiente...">
+      <button class="primary" data-add="previo_antonio">+</button>
+     </div>
+
+    </div>
+
    </div>
 
-   <div
-    class="kpi-value"
-    style="font-size:15px"
-    id="nextActivity">
-    Sin programar
+  </div>
+
+  <!-- MALETA -->
+  <div id="maleta" class="pane">
+
+   <div class="card">
+
+    <h2>Maleta</h2>
+
+    <div class="people">
+     <button class="person active" data-person="john">John</button>
+     <button class="person" data-person="esposa">Ani</button>
+     <button class="person" data-person="salomon">Salomón</button>
+     <button class="person" data-person="antonio">Antonio</button>
+    </div>
+
    </div>
 
-   <div
-    class="small"
-    id="nextActivityMeta">
+   <div class="card" id="packingCard">
+
+    <h2 id="packingTitle">Maleta · John</h2>
+
+    <div class="list" data-list="maleta_john"></div>
+
+    <div class="addrow">
+     <input data-input="maleta_john" placeholder="Agregar artículo...">
+     <button class="primary" data-add="maleta_john">+</button>
+    </div>
+
    </div>
 
   </div>
 
+  <!-- VIAJE -->
+  <div id="viaje" class="pane">
 
-  <div class="kpi">
-
-   <div class="kpi-label">
-    Gasto acumulado
+   <div class="card">
+    <h2>✈️ Vuelos</h2>
+    <div class="list" data-list="vuelos"></div>
+    <div class="addrow">
+     <input data-input="vuelos" placeholder="Vuelo, horario, reserva...">
+     <button class="primary" data-add="vuelos">+</button>
+    </div>
    </div>
 
-   <div
-    class="kpi-value"
-    id="homeExpenseTotal">
-    $0
+   <div class="card">
+    <h2>🏨 Hotel</h2>
+    <div class="list" data-list="hotel"></div>
+    <div class="addrow">
+     <input data-input="hotel" placeholder="Hotel, dirección, reserva...">
+     <button class="primary" data-add="hotel">+</button>
+    </div>
    </div>
 
-   <div
-    class="small"
-    id="homeBudgetStatus">
-    Sin presupuesto
+   <div class="card">
+    <h2>🚐 Traslados</h2>
+    <div class="list" data-list="traslados"></div>
+    <div class="addrow">
+     <input data-input="traslados" placeholder="Traslado, horario, contacto...">
+     <button class="primary" data-add="traslados">+</button>
+    </div>
+   </div>
+
+   <div class="card">
+    <h2>☎️ Contactos</h2>
+    <div class="list" data-list="contactos"></div>
+    <div class="addrow">
+     <input data-input="contactos" placeholder="Nombre, teléfono...">
+     <button class="primary" data-add="contactos">+</button>
+    </div>
+   </div>
+
+   <div class="card">
+    <h2>📄 Documentos</h2>
+    <div class="list" data-list="documentos"></div>
+    <div class="addrow">
+     <input data-input="documentos" placeholder="Documento o reserva...">
+     <button class="primary" data-add="documentos">+</button>
+    </div>
    </div>
 
   </div>
 
+  <!-- GASTOS -->
+  <div id="gastos" class="pane">
 
- </div>
+   <div class="card">
 
-</div>
+    <div class="expenseTotal">
+     <div class="small">Total de gastos del viaje</div>
+     <div class="v" id="expenseTotal">$0</div>
+    </div>
 
+    <div class="budgetRow">
+     <input id="budgetInput" type="number" placeholder="Presupuesto total">
+     <button id="saveBudget" class="primary">Guardar</button>
+    </div>
 
-<div class="card">
+    <div class="progress">
+     <div id="budgetBar"></div>
+    </div>
 
- <div style="
- display:flex;
- justify-content:space-between;
- align-items:center">
+    <div class="small" id="budgetText"></div>
 
-  <h2>
-   Pagos
-  </h2>
+   </div>
 
-  <span class="small">
-   5 × $2.500.000
-  </span>
+   <div class="card">
 
- </div>
+    <h2>Control de gastos</h2>
 
+    <div id="expenseList"></div>
 
- <div style="
- display:flex;
- justify-content:space-between">
+    <div class="expenseAdd">
 
-  <strong id="paySummary">
-  </strong>
+     <input id="expenseDescription" placeholder="Descripción">
 
-  <span
-   class="small"
-   id="nextPaymentText">
-  </span>
+     <input
+      id="expenseValue"
+      type="number"
+      inputmode="numeric"
+      placeholder="Valor">
 
- </div>
+     <button id="addExpense" class="primary">+</button>
 
+     <div class="meta">
 
- <div class="progress">
-  <div id="progressBar"></div>
- </div>
+      <select id="expenseCategory">
+       <option>Comida</option>
+       <option>Transporte</option>
+       <option>Hotel</option>
+       <option>Torneo</option>
+       <option>Compras</option>
+       <option>Niños</option>
+       <option>Otros</option>
+      </select>
 
+      <select id="expensePayer">
+       <option>John</option>
+       <option>Ani</option>
+      </select>
 
- <div
-  class="milestones"
-  id="milestones">
- </div>
+     </div>
 
-</div>
+    </div>
 
+   </div>
 
-<div class="card">
-
- <h2>
-  Pendientes importantes
- </h2>
-
- <div id="importantList">
- </div>
-
-</div>
-
-
-</div>
-
-
-
-<!-- =====================================================
-     HOY
-===================================================== -->
-
-<div
- id="hoy"
- class="pane">
-
-<div class="card">
-
- <div style="
- display:flex;
- justify-content:space-between">
-
-  <h2>
-   Hoy
-  </h2>
-
-  <span
-   id="todayDateLabel"
-   class="small">
-  </span>
-
- </div>
-
- <div id="todayList">
- </div>
-
-</div>
-
-</div>
-
-
-
-<!-- =====================================================
-     AGENDA
-===================================================== -->
-
-<div
- id="agenda"
- class="pane">
-
-<div class="card">
-
- <div style="
- display:flex;
- justify-content:space-between;
- align-items:center">
-
-  <h2>
-   Agenda día por día
-  </h2>
-
-  <button
-   id="addDay"
-   class="primary">
-   + Día
-  </button>
-
- </div>
-
-
- <div
-  class="small"
-  style="margin-bottom:10px">
-
-  Hora · actividad · ubicación · categoría.
-
- </div>
-
-
- <div id="days">
- </div>
-
-</div>
-
-</div>
-
-
-
-<!-- =====================================================
-     PREVIO
-===================================================== -->
-
-<div
- id="previo"
- class="pane">
-
-<div class="card">
-
-
-<div class="subtabs">
-
- <button
-  class="subtab active"
-  data-section="familia">
-  Familia
- </button>
-
- <button
-  class="subtab"
-  data-section="salomon">
-  Salomón
- </button>
-
- <button
-  class="subtab"
-  data-section="antonio">
-  Antonio
- </button>
-
-</div>
-
-
-
-<div
- id="familia"
- class="section active">
-
- <h2>
-  Previo · Familia
- </h2>
-
- <div
-  class="list"
-  data-list="previo_familia">
- </div>
-
- <div class="addrow">
-
-  <input
-   data-input="previo_familia"
-   placeholder="Agregar pendiente...">
-
-  <button
-   class="primary"
-   data-add="previo_familia">
-   +
-  </button>
-
- </div>
-
-</div>
-
-
-
-<div
- id="salomon"
- class="section">
-
- <h2>
-  Previo · Salomón
- </h2>
-
- <div
-  class="list"
-  data-list="previo_salomon">
- </div>
-
- <div class="addrow">
-
-  <input
-   data-input="previo_salomon"
-   placeholder="Agregar pendiente...">
-
-  <button
-   class="primary"
-   data-add="previo_salomon">
-   +
-  </button>
-
- </div>
-
-</div>
-
-
-
-<div
- id="antonio"
- class="section">
-
- <h2>
-  Previo · Antonio
- </h2>
-
- <div
-  class="list"
-  data-list="previo_antonio">
- </div>
-
- <div class="addrow">
-
-  <input
-   data-input="previo_antonio"
-   placeholder="Agregar pendiente...">
-
-  <button
-   class="primary"
-   data-add="previo_antonio">
-   +
-  </button>
-
- </div>
-
-</div>
-
-
-</div>
-
-</div>
-
-
-
-<!-- =====================================================
-     MALETA
-===================================================== -->
-
-<div
- id="maleta"
- class="pane">
-
-
-<div class="card">
-
- <h2>
-  Maleta por integrante
- </h2>
-
-
- <div class="people">
-
-  <button
-   class="person active"
-   data-person="john">
-   John
-  </button>
-
-  <button
-   class="person"
-   data-person="esposa">
-   Ani
-  </button>
-
-  <button
-   class="person"
-   data-person="salomon">
-   Salomón
-  </button>
-
-  <button
-   class="person"
-   data-person="antonio">
-   Antonio
-  </button>
-
- </div>
-
-</div>
-
-
-
-<div
- id="packingCard"
- class="card">
-
- <h2 id="packingTitle">
-  Maleta · John
- </h2>
-
- <div
-  class="list"
-  data-list="maleta_john">
- </div>
-
- <div class="addrow">
-
-  <input
-   data-input="maleta_john"
-   placeholder="Agregar artículo...">
-
-  <button
-   class="primary"
-   data-add="maleta_john">
-   +
-  </button>
-
- </div>
-
-</div>
-
-
-</div>
-
-
-
-<!-- =====================================================
-     VIAJE
-===================================================== -->
-
-<div
- id="viaje"
- class="pane">
-
-
-<div class="card">
-
- <h2>
-  ✈️ Vuelos
- </h2>
-
- <div
-  class="list"
-  data-list="vuelos">
- </div>
-
- <div class="addrow">
-
-  <input
-   data-input="vuelos"
-   placeholder="Vuelo, horario, reserva...">
-
-  <button
-   class="primary"
-   data-add="vuelos">
-   +
-  </button>
-
- </div>
-
-</div>
-
-
-
-<div class="card">
-
- <h2>
-  🏨 Hotel
- </h2>
-
- <div
-  class="list"
-  data-list="hotel">
- </div>
-
- <div class="addrow">
-
-  <input
-   data-input="hotel"
-   placeholder="Hotel, dirección, reserva...">
-
-  <button
-   class="primary"
-   data-add="hotel">
-   +
-  </button>
-
- </div>
-
-</div>
-
-
-
-<div class="card">
-
- <h2>
-  🚐 Traslados
- </h2>
-
- <div
-  class="list"
-  data-list="traslados">
- </div>
-
- <div class="addrow">
-
-  <input
-   data-input="traslados"
-   placeholder="Traslado, horario, contacto...">
-
-  <button
-   class="primary"
-   data-add="traslados">
-   +
-  </button>
-
- </div>
-
-</div>
-
-
-
-<div class="card">
-
- <h2>
-  ☎️ Contactos
- </h2>
-
- <div
-  class="list"
-  data-list="contactos">
- </div>
-
- <div class="addrow">
-
-  <input
-   data-input="contactos"
-   placeholder="Nombre, teléfono...">
-
-  <button
-   class="primary"
-   data-add="contactos">
-   +
-  </button>
-
- </div>
-
-</div>
-
-
-
-<div class="card">
-
- <h2>
-  📄 Documentos
- </h2>
-
- <div
-  class="list"
-  data-list="documentos">
- </div>
-
- <div class="addrow">
-
-  <input
-   data-input="documentos"
-   placeholder="Documento o reserva...">
-
-  <button
-   class="primary"
-   data-add="documentos">
-   +
-  </button>
-
- </div>
-
-</div>
-
-
-</div>
-
-
-
-<!-- =====================================================
-     GASTOS
-===================================================== -->
-
-<div
- id="gastos"
- class="pane">
-
-
-<div class="card">
-
- <div class="expense-total">
-
-  <div class="small">
-   Total de gastos del viaje
   </div>
 
-  <div
-   class="expense-total-value"
-   id="expenseTotal">
-   $0
+  <!-- NOTAS -->
+  <div id="notas" class="pane">
+
+   <div class="card">
+
+    <h2>Notas</h2>
+
+    <textarea
+     id="notes"
+     placeholder="Horarios, cambios, restaurantes, teléfonos..."></textarea>
+
+   </div>
+
   </div>
 
  </div>
-
-
- <div class="budget-row">
-
-  <input
-   id="budgetInput"
-   type="number"
-   placeholder="Presupuesto total">
-
-  <button
-   id="saveBudget"
-   class="primary">
-   Guardar
-  </button>
-
- </div>
-
-
- <div class="progress">
-  <div id="budgetBar"></div>
- </div>
-
-
- <div
-  class="small"
-  id="budgetText">
- </div>
-
 </div>
 
+<!-- MERCADO -->
+<div id="marketApp" class="screen">
 
+ <div class="marketWrap">
 
-<div class="card">
+  <div class="marketTop">
 
- <h2>
-  Control de gastos
- </h2>
+   <button
+    class="marketBack"
+    onclick="openScreen('mainMenu')">←</button>
 
+   <div class="marketHeading">
+    <div class="marketTitle">Mercado Familiar</div>
+    <div class="marketSub">Lista compartida de la casa 🏡</div>
+   </div>
 
- <div id="expenseList">
- </div>
+   <button
+    class="clearBtn"
+    onclick="clearCheckedMarketItems()">
+    Limpiar ✓
+   </button>
 
-
- <div class="expense-add">
-
-  <input
-   id="expenseDescription"
-   placeholder="Descripción">
-
-
-  <input
-   id="expenseValue"
-   type="number"
-   placeholder="Valor">
-
-
-  <select
-   id="expenseCategory"
-   class="category-field">
-
-   <option>Comida</option>
-   <option>Transporte</option>
-   <option>Hotel</option>
-   <option>Torneo</option>
-   <option>Compras</option>
-   <option>Niños</option>
-   <option>Otros</option>
-
-  </select>
-
-
-  <select
-   id="expensePayer"
-   class="payer-field">
-
-   <option>John</option>
-   <option>Ani</option>
-
-  </select>
-
-
-  <button
-   id="addExpense"
-   class="primary">
-   +
-  </button>
-
- </div>
-
-</div>
-
-
-</div>
-
-
-
-<!-- =====================================================
-     NOTAS
-===================================================== -->
-
-<div
- id="notas"
- class="pane">
-
-<div class="card">
-
- <h2>
-  Notas
- </h2>
-
- <textarea
-  id="notes"
-  placeholder="Horarios, cambios, restaurantes, teléfonos...">
- </textarea>
-
-</div>
-
-</div>
-
-
-</div>
-</div>
-
-
-
-<!-- =====================================================
-     MERCADO APP
-===================================================== -->
-
-<div
- id="marketApp"
- class="screen">
-
-
-<div class="market-wrapper">
-
-
-<div class="market-topbar">
-
- <button
-  class="market-back"
-  onclick="openScreen('mainMenu')">
-  ←
- </button>
-
-
- <div>
-
-  <div class="market-title">
-   Mercado Familiar
   </div>
 
-  <div class="market-subtitle">
-   Nuestra lista de la casa 🏡
+  <div class="notebook">
+
+   <div class="marketSummary">
+
+    <div class="summaryBox">
+     <div class="l">Pendientes</div>
+     <div class="v" id="marketPending">0</div>
+    </div>
+
+    <div class="summaryBox">
+     <div class="l">Comprados</div>
+     <div class="v" id="marketDone">0</div>
+    </div>
+
+   </div>
+
+   <div id="marketCategories"></div>
+
+   <div class="addCategory">
+
+    <input
+     id="newCategoryName"
+     placeholder="Nombre de nueva categoría...">
+
+    <button id="addMarketCategory">
+     + Crear categoría
+    </button>
+
+   </div>
+
   </div>
 
  </div>
-
-
- <button
-  class="market-clear"
-  onclick="clearCheckedMarketItems()">
-
-  Limpiar ✓
-
- </button>
-
 </div>
-
-
-
-<div class="notebook">
-
-
-<div class="market-summary">
-
- <div class="market-summary-box">
-
-  <div class="market-summary-label">
-   Pendientes
-  </div>
-
-  <div
-   id="marketPending"
-   class="market-summary-value">
-   0
-  </div>
-
- </div>
-
-
- <div class="market-summary-box">
-
-  <div class="market-summary-label">
-   Comprados
-  </div>
-
-  <div
-   id="marketDone"
-   class="market-summary-value">
-   0
-  </div>
-
- </div>
-
-</div>
-
-
-
-<div id="marketCategories">
-</div>
-
-
-
-<div class="add-category-box">
-
- <div class="add-category-row">
-
-  <input
-   id="newCategoryName"
-   placeholder="Nueva categoría...">
-
-  <button
-   id="addMarketCategory"
-   class="add-category-button">
-   + Categoría
-  </button>
-
- </div>
-
-</div>
-
-
-</div>
-
-</div>
-
-</div>
-
-
 
 <script type="module">
 
-
-/* =========================================================
-   FIREBASE
-========================================================= */
-
-import {
- initializeApp
-}
-from
-"https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
-
+import { initializeApp }
+from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
 
 import {
  getFirestore,
@@ -2911,3229 +822,19 @@ import {
  setDoc,
  onSnapshot
 }
-from
-"https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
-
-
-const firebaseConfig = {
-
- apiKey:
- "AIzaSyDxmawunxCVe7KI_dS-VHSxGlJk3Td5FFg",
-
- authDomain:
- "bacla-arh.firebaseapp.com",
-
- projectId:
- "bacla-arh",
-
- storageBucket:
- "bacla-arh.firebasestorage.app",
-
- messagingSenderId:
- "874707622741",
-
- appId:
- "1:874707622741:web:20688eea06d47751b7addc",
-
- measurementId:
- "G-XRFQ5QN58E"
-
-};
-
-
-const app =
-initializeApp(
- firebaseConfig
-);
-
-
-const db =
-getFirestore(
- app
-);
-
-
-const sharedRef =
-doc(
- db,
- "bacla",
- "agenda"
-);
-
-
-
-/* =========================================================
-   DATOS INICIALES
-========================================================= */
-
-const defaults = {
-
-
-tripStart:
-"2026-12-09",
-
-
-payments:[
- true,
- false,
- false,
- false,
- false
-],
-
-
-days:[
-
- {
-  title:"Llegada / aclimatación",
-  date:"2026-12-09",
-  items:[
-   {
-    t:"Llegada y traslado al alojamiento",
-    d:false,
-    time:"",
-    location:"",
-    category:"Traslado"
-   },
-   {
-    t:"Check-in",
-    d:false,
-    time:"",
-    location:"Hotel",
-    category:"Familia"
-   }
-  ]
- },
-
- {
-  title:"Inicio oficial",
-  date:"2026-12-10",
-  items:[
-   {
-    t:"Registro / actividades oficiales",
-    d:false,
-    time:"",
-    location:"",
-    category:"Torneo"
-   }
-  ]
- },
-
- {
-  title:"Competencia",
-  date:"2026-12-11",
-  items:[
-   {
-    t:"Partidos según programación",
-    d:false,
-    time:"",
-    location:"",
-    category:"Torneo"
-   }
-  ]
- },
-
- {
-  title:"Competencia",
-  date:"2026-12-12",
-  items:[
-   {
-    t:"Partidos según programación",
-    d:false,
-    time:"",
-    location:"",
-    category:"Torneo"
-   }
-  ]
- },
-
- {
-  title:"Cierre del torneo",
-  date:"2026-12-13",
-  items:[
-   {
-    t:"Últimos partidos / finales",
-    d:false,
-    time:"",
-    location:"",
-    category:"Torneo"
-   }
-  ]
- },
-
- {
-  title:"Regreso",
-  date:"2026-12-14",
-  items:[
-   {
-    t:"Traslado al aeropuerto",
-    d:false,
-    time:"",
-    location:"",
-    category:"Traslado"
-   }
-  ]
- }
-
-],
-
-
-previo_familia:[
- {t:"Verificar pasaportes y vigencia",d:false},
- {t:"Confirmar vuelos",d:false},
- {t:"Confirmar hotel",d:false},
- {t:"Seguro de viaje",d:false},
- {t:"Confirmar traslados",d:false}
-],
-
-
-previo_salomon:[
- {t:"Documentos",d:false},
- {t:"Coche YOYO",d:false},
- {t:"Silla de auto",d:false},
- {t:"Medicamentos",d:false},
- {t:"Snacks para el vuelo",d:false}
-],
-
-
-previo_antonio:[
- {t:"Documentación del torneo",d:false},
- {t:"Cronograma oficial",d:false},
- {t:"Uniformes",d:false},
- {t:"Guayos",d:false},
- {t:"Canilleras",d:false}
-],
-
-
-maleta_john:[
- {t:"Pasaporte",d:false},
- {t:"Ropa",d:false},
- {t:"Cargadores",d:false}
-],
-
-
-maleta_esposa:[
- {t:"Pasaporte",d:false},
- {t:"Ropa",d:false},
- {t:"Cargadores",d:false}
-],
-
-
-maleta_salomon:[
- {t:"Documentos",d:false},
- {t:"Ropa",d:false},
- {t:"Pañales / higiene",d:false},
- {t:"Coche YOYO",d:false}
-],
-
-
-maleta_antonio:[
- {t:"Pasaporte",d:false},
- {t:"Uniforme oficial",d:false},
- {t:"Guayos",d:false},
- {t:"Canilleras",d:false}
-],
-
-
-vuelos:[
- {t:"Reserva de vuelos",d:false}
-],
-
-
-hotel:[
- {t:"Hotel / alojamiento",d:false}
-],
-
-
-traslados:[
- {t:"Traslado aeropuerto",d:false}
-],
-
-
-contactos:[
- {t:"Contacto Barça Academy",d:false}
-],
-
-
-documentos:[
- {t:"Pasaportes",d:false}
-],
-
-
-gastos:[],
-
-
-budget:0,
-
-
-notes:"",
-
-
-
-/* =========================================================
-   MERCADO
-========================================================= */
-
-mercado:{
-
- categories:[
-
-
-  {
-
-   id:"aseo",
-
-   name:"Aseo",
-
-   items:[
-    {name:"Detergente",checked:false},
-    {name:"Bolsas de basura",checked:false}
-   ]
-
-  },
-
-
-  {
-
-   id:"aseo_personal",
-
-   name:"Aseo personal",
-
-   items:[
-    {name:"Shampoo",checked:false},
-    {name:"Crema dental",checked:false}
-   ]
-
-  },
-
-
-  {
-
-   id:"vegetales_frutas",
-
-   name:"Vegetales y frutas",
-
-   items:[
-    {name:"Tomate",checked:false},
-    {name:"Cebolla",checked:false},
-    {name:"Banano",checked:false}
-   ]
-
-  },
-
-
-  {
-
-   id:"carnes",
-
-   name:"Carnes",
-
-   items:[
-    {name:"Pollo",checked:false},
-    {name:"Carne",checked:false}
-   ]
-
-  },
-
-
-  {
-
-   id:"despensa",
-
-   name:"Despensa",
-
-   items:[
-    {name:"Arroz",checked:false},
-    {name:"Pasta",checked:false},
-    {name:"Aceite",checked:false}
-   ]
-
-  },
-
-
-  {
-
-   id:"snacks",
-
-   name:"Snacks",
-
-   items:[
-    {name:"Galletas",checked:false}
-   ]
-
-  }
-
-
- ]
-
-}
-
-};
-
-
-
-/* =========================================================
-   ESTADO
-========================================================= */
-
-let state =
-structuredClone(
- defaults
-);
-
-
-let firebaseReady =
-false;
-
-
-let remoteUpdate =
-false;
-
-
-let saveTimer =
-null;
-
-
-
-/* =========================================================
-   NAVEGACIÓN PRINCIPAL
-========================================================= */
-
-window.openScreen =
-function(id){
-
- document
- .querySelectorAll(
-  ".screen"
- )
- .forEach(
-  screen=>
-  screen.classList.remove(
-   "active"
-  )
- );
-
-
- document
- .getElementById(
-  id
- )
- .classList.add(
-  "active"
- );
-
-
- window.scrollTo(
-  0,
-  0
- );
-
-};
-
-
-
-/* =========================================================
-   MIGRACIÓN
-========================================================= */
-
-function migrate(){
-
- if(
-  !state.mercado
- ){
-
-  state.mercado =
-  structuredClone(
-   defaults.mercado
-  );
-
- }
-
-
- if(
-  !Array.isArray(
-   state.mercado.categories
-  )
- ){
-
-  state.mercado.categories =
-  structuredClone(
-   defaults.mercado.categories
-  );
-
- }
-
-
- if(
-  !Array.isArray(
-   state.vuelos
-  )
- ){
-
-  state.vuelos = [];
-
- }
-
-
- if(
-  !Array.isArray(
-   state.hotel
-  )
- ){
-
-  state.hotel = [];
-
- }
-
-
- if(
-  !Array.isArray(
-   state.traslados
-  )
- ){
-
-  state.traslados = [];
-
- }
-
-
- if(
-  !Array.isArray(
-   state.contactos
-  )
- ){
-
-  state.contactos = [];
-
- }
-
-
- if(
-  !Array.isArray(
-   state.documentos
-  )
- ){
-
-  state.documentos = [];
-
- }
-
-
- if(
-  !Array.isArray(
-   state.gastos
-  )
- ){
-
-  state.gastos = [];
-
- }
-
-}
-
-
-
-/* =========================================================
-   FIREBASE STATUS
-========================================================= */
-
-function setSync(
- status,
- text
-){
-
- const dot =
- document.getElementById(
-  "syncDot"
- );
-
-
- const label =
- document.getElementById(
-  "syncText"
- );
-
-
- dot.className =
- "dot";
-
-
- if(
-  status==="ok"
- ){
-
-  dot.classList.add(
-   "ok"
-  );
-
- }
-
-
- if(
-  status==="err"
- ){
-
-  dot.classList.add(
-   "err"
-  );
-
- }
-
-
- label.textContent =
- text;
-
-}
-
-
-
-/* =========================================================
-   GUARDAR
-========================================================= */
-
-async function save(){
-
- if(
-  !firebaseReady ||
-  remoteUpdate
- ){
-
-  return;
-
- }
-
-
- clearTimeout(
-  saveTimer
- );
-
-
- setSync(
-  "",
-  "Guardando..."
- );
-
-
- saveTimer =
- setTimeout(
-
- async()=>{
-
-  try{
-
-   await setDoc(
-    sharedRef,
-    state
-   );
-
-
-   setSync(
-    "ok",
-    "Sincronizado"
-   );
-
-  }
-
-  catch(error){
-
-   console.error(
-    error
-   );
-
-
-   setSync(
-    "err",
-    "Error de sincronización"
-   );
-
-  }
-
- },
-
- 300
-
- );
-
-}
-
-
-
-/* =========================================================
-   FORMATO
-========================================================= */
-
-function money(value){
-
- return new Intl.NumberFormat(
-
-  "es-CO",
-
-  {
-   style:"currency",
-   currency:"COP",
-   maximumFractionDigits:0
-  }
-
- ).format(
-  Number(value)||0
- );
-
-}
-
-
-
-/* =========================================================
-   PAGOS
-========================================================= */
-
-function renderPayments(){
-
- const box =
- document.getElementById(
-  "milestones"
- );
-
-
- box.innerHTML =
- "";
-
-
- state.payments.forEach(
-  (done,index)=>{
-
-   const button =
-   document.createElement(
-    "button"
-   );
-
-
-   button.className =
-   "milestone"
-   +(done?" done":"");
-
-
-   button.innerHTML =
-   `
-   <div class="circle">
-    ${done?"✓":index+1}
-   </div>
-
-   <small>
-    ${index===0
-      ?"Julio"
-      :"Pago "+(index+1)}
-   </small>
-   `;
-
-
-   button.onclick =
-   ()=>{
-
-    state.payments[index] =
-    !state.payments[index];
-
-
-    save();
-
-
-    renderPayments();
-
-   };
-
-
-   box.appendChild(
-    button
-   );
-
-  }
- );
-
-
- const completed =
- state.payments
- .filter(Boolean)
- .length;
-
-
- document
- .getElementById(
-  "progressBar"
- )
- .style.width =
- (completed*20)+"%";
-
-
- document
- .getElementById(
-  "paySummary"
- )
- .textContent =
- money(
-  completed*2500000
- )
- +" / "
- +money(
-  12500000
- );
-
-
- document
- .getElementById(
-  "nextPaymentText"
- )
- .textContent =
- completed<5
- ? "Próximo: Pago "+(completed+1)
- : "Pagos completos";
-
-}
-
-
-
-/* =========================================================
-   LISTAS BACLA
-========================================================= */
-
-function createItem(
- item,
- onRender,
- onDelete
-){
-
- const row =
- document.createElement(
-  "div"
- );
-
-
- row.className =
- "item"
- +(item.d?" done":"");
-
-
- const check =
- document.createElement(
-  "input"
- );
-
-
- check.type =
- "checkbox";
-
-
- check.checked =
- !!item.d;
-
-
- check.onchange =
- ()=>{
-
-  item.d =
-  check.checked;
-
-
-  save();
-
-
-  onRender();
-
- };
-
-
- const text =
- document.createElement(
-  "input"
- );
-
-
- text.className =
- "txt";
-
-
- text.value =
- item.t||"";
-
-
- text.oninput =
- ()=>{
-
-  item.t =
-  text.value;
-
-
-  save();
-
- };
-
-
- const remove =
- document.createElement(
-  "button"
- );
-
-
- remove.className =
- "delete";
-
-
- remove.textContent =
- "×";
-
-
- remove.onclick =
- onDelete;
-
-
- row.append(
-  check,
-  text,
-  remove
- );
-
-
- return row;
-
-}
-
-
-
-function renderList(key){
-
- const container =
- document.querySelector(
-  `[data-list="${key}"]`
- );
-
-
- if(
-  !container
- ){
-
-  return;
-
- }
-
-
- container.innerHTML =
- "";
-
-
- (state[key]||[])
- .forEach(
-  (item,index)=>{
-
-   container.appendChild(
-
-    createItem(
-
-     item,
-
-     ()=>renderList(key),
-
-     ()=>{
-
-      state[key].splice(
-       index,
-       1
-      );
-
-
-      save();
-
-
-      renderList(
-       key
-      );
-
-     }
-
-    )
-
-   );
-
-  }
- );
-
-}
-
-
-
-function addGeneric(key){
-
- const input =
- document.querySelector(
-  `[data-input="${key}"]`
- );
-
-
- if(
-  !input
- ){
-
-  return;
-
- }
-
-
- const value =
- input.value.trim();
-
-
- if(
-  !value
- ){
-
-  return;
-
- }
-
-
- state[key].push({
-
-  t:value,
-
-  d:false
-
- });
-
-
- input.value =
- "";
-
-
- save();
-
-
- renderList(
-  key
- );
-
-}
-
-
-
-/* =========================================================
-   AGENDA
-========================================================= */
-
-function renderDays(){
-
- const root =
- document.getElementById(
-  "days"
- );
-
-
- root.innerHTML =
- "";
-
-
- (state.days||[])
- .forEach(
-  (day,dayIndex)=>{
-
-
-   const card =
-   document.createElement(
-    "div"
-   );
-
-
-   card.className =
-   "day";
-
-
-   const head =
-   document.createElement(
-    "div"
-   );
-
-
-   head.className =
-   "dayhead";
-
-
-   const title =
-   document.createElement(
-    "input"
-   );
-
-
-   title.className =
-   "day-title";
-
-
-   title.value =
-   day.title||"";
-
-
-   title.oninput =
-   ()=>{
-
-    day.title =
-    title.value;
-
-
-    save();
-
-   };
-
-
-   const date =
-   document.createElement(
-    "input"
-   );
-
-
-   date.type =
-   "date";
-
-
-   date.className =
-   "day-date";
-
-
-   date.value =
-   day.date||"";
-
-
-   date.onchange =
-   ()=>{
-
-    day.date =
-    date.value;
-
-
-    save();
-
-   };
-
-
-   head.append(
-    title,
-    date
-   );
-
-
-   card.appendChild(
-    head
-   );
-
-
-   (day.items||[])
-   .forEach(
-    (item,itemIndex)=>{
-
-
-     const row =
-     document.createElement(
-      "div"
-     );
-
-
-     row.className =
-     "activity";
-
-
-     const time =
-     document.createElement(
-      "input"
-     );
-
-
-     time.type =
-     "time";
-
-
-     time.value =
-     item.time||"";
-
-
-     time.onchange =
-     ()=>{
-
-      item.time =
-      time.value;
-
-
-      save();
-
-     };
-
-
-     const text =
-     document.createElement(
-      "input"
-     );
-
-
-     text.value =
-     item.t||"";
-
-
-     text.oninput =
-     ()=>{
-
-      item.t =
-      text.value;
-
-
-      save();
-
-     };
-
-
-     const location =
-     document.createElement(
-      "input"
-     );
-
-
-     location.className =
-     "activity-location";
-
-
-     location.placeholder =
-     "Ubicación";
-
-
-     location.value =
-     item.location||"";
-
-
-     location.oninput =
-     ()=>{
-
-      item.location =
-      location.value;
-
-
-      save();
-
-     };
-
-
-     const category =
-     document.createElement(
-      "select"
-     );
-
-
-     category.className =
-     "activity-category";
-
-
-     [
-      "General",
-      "Familia",
-      "Antonio",
-      "Salomón",
-      "Torneo",
-      "Traslado"
-     ]
-     .forEach(
-      value=>{
-
-       const option =
-       document.createElement(
-        "option"
-       );
-
-
-       option.textContent =
-       value;
-
-
-       option.value =
-       value;
-
-
-       if(
-        item.category===value
-       ){
-
-        option.selected =
-        true;
-
-       }
-
-
-       category.appendChild(
-        option
-       );
-
-      }
-     );
-
-
-     category.onchange =
-     ()=>{
-
-      item.category =
-      category.value;
-
-
-      save();
-
-     };
-
-
-     const remove =
-     document.createElement(
-      "button"
-     );
-
-
-     remove.className =
-     "delete";
-
-
-     remove.textContent =
-     "×";
-
-
-     remove.onclick =
-     ()=>{
-
-      day.items.splice(
-       itemIndex,
-       1
-      );
-
-
-      save();
-
-
-      renderDays();
-
-     };
-
-
-     row.append(
-      time,
-      text,
-      location,
-      category,
-      remove
-     );
-
-
-     card.appendChild(
-      row
-     );
-
-    }
-   );
-
-
-   const add =
-   document.createElement(
-    "div"
-   );
-
-
-   add.className =
-   "activity-add";
-
-
-   const newTime =
-   document.createElement(
-    "input"
-   );
-
-
-   newTime.type =
-   "time";
-
-
-   const newText =
-   document.createElement(
-    "input"
-   );
-
-
-   newText.placeholder =
-   "Nueva actividad...";
-
-
-   const newLocation =
-   document.createElement(
-    "input"
-   );
-
-
-   newLocation.className =
-   "activity-location";
-
-
-   newLocation.placeholder =
-   "Ubicación";
-
-
-   const newCategory =
-   document.createElement(
-    "select"
-   );
-
-
-   newCategory.className =
-   "activity-category";
-
-
-   [
-    "General",
-    "Familia",
-    "Antonio",
-    "Salomón",
-    "Torneo",
-    "Traslado"
-   ]
-   .forEach(
-    value=>{
-
-     const option =
-     document.createElement(
-      "option"
-     );
-
-
-     option.textContent =
-     value;
-
-
-     newCategory.appendChild(
-      option
-     );
-
-    }
-   );
-
-
-   const plus =
-   document.createElement(
-    "button"
-   );
-
-
-   plus.className =
-   "primary";
-
-
-   plus.textContent =
-   "+";
-
-
-   plus.onclick =
-   ()=>{
-
-    const value =
-    newText.value.trim();
-
-
-    if(
-     !value
-    ){
-
-     return;
-
-    }
-
-
-    day.items.push({
-
-     t:value,
-
-     d:false,
-
-     time:newTime.value,
-
-     location:
-     newLocation.value.trim(),
-
-     category:
-     newCategory.value
-
-    });
-
-
-    save();
-
-
-    renderDays();
-
-   };
-
-
-   add.append(
-    newTime,
-    newText,
-    newLocation,
-    newCategory,
-    plus
-   );
-
-
-   card.appendChild(
-    add
-   );
-
-
-   const removeDay =
-   document.createElement(
-    "button"
-   );
-
-
-   removeDay.className =
-   "ghost";
-
-
-   removeDay.textContent =
-   "Eliminar día";
-
-
-   removeDay.style.marginTop =
-   "10px";
-
-
-   removeDay.onclick =
-   ()=>{
-
-    if(
-     confirm(
-      "¿Eliminar este día?"
-     )
-    ){
-
-     state.days.splice(
-      dayIndex,
-      1
-     );
-
-
-     save();
-
-
-     renderDays();
-
-    }
-
-   };
-
-
-   card.appendChild(
-    removeDay
-   );
-
-
-   root.appendChild(
-    card
-   );
-
-  }
- );
-
-}
-
-
-
-/* =========================================================
-   RESUMEN INICIO
-========================================================= */
-
-function renderHome(){
-
- const trip =
- new Date(
-  (state.tripStart||"2026-12-09")
-  +"T00:00:00"
- );
-
-
- const today =
- new Date();
-
-
- today.setHours(
-  0,0,0,0
- );
-
-
- const diff =
- Math.ceil(
-  (trip-today)
-  /86400000
- );
-
-
- document
- .getElementById(
-  "countdownValue"
- )
- .textContent =
- diff>0
- ? diff
- : diff===0
- ? "Hoy"
- : "En curso";
-
-
- document
- .getElementById(
-  "countdownLabel"
- )
- .textContent =
- diff>0
- ? "días para el viaje"
- : "viaje iniciado";
-
-
- const total =
- (state.gastos||[])
- .reduce(
-  (sum,item)=>
-  sum+(Number(item.value)||0),
-  0
- );
-
-
- document
- .getElementById(
-  "homeExpenseTotal"
- )
- .textContent =
- money(total);
-
-
- document
- .getElementById(
-  "homeBudgetStatus"
- )
- .textContent =
- state.budget
- ? money(total)
-   +" de "
-   +money(state.budget)
- : "Sin presupuesto";
-
-
- const upcoming =
- [];
-
-
- (state.days||[])
- .forEach(
-  day=>{
-
-   (day.items||[])
-   .forEach(
-    item=>{
-
-     if(
-      day.date
-     ){
-
-      upcoming.push({
-
-       date:
-       day.date,
-
-       item:item
-
-      });
-
-     }
-
-    }
-   );
-
-  }
- );
-
-
- upcoming.sort(
-  (a,b)=>
-  a.date.localeCompare(
-   b.date
-  )
- );
-
-
- const next =
- upcoming.find(
-  x=>
-  x.date>=
-  new Date()
-  .toISOString()
-  .slice(0,10)
- );
-
-
- document
- .getElementById(
-  "nextActivity"
- )
- .textContent =
- next
- ? next.item.t
- : "Sin programar";
-
-
- document
- .getElementById(
-  "nextActivityMeta"
- )
- .textContent =
- next
- ? next.date
- : "";
-
-}
-
-
-
-/* =========================================================
-   HOY
-========================================================= */
-
-function renderToday(){
-
- const key =
- new Date()
- .toISOString()
- .slice(0,10);
-
-
- const root =
- document.getElementById(
-  "todayList"
- );
-
-
- root.innerHTML =
- "";
-
-
- document
- .getElementById(
-  "todayDateLabel"
- )
- .textContent =
- new Date()
- .toLocaleDateString(
-  "es-CO",
-  {
-   weekday:"long",
-   day:"numeric",
-   month:"long"
-  }
- );
-
-
- const day =
- (state.days||[])
- .find(
-  item=>
-  item.date===key
- );
-
-
- if(
-  !day
- ){
-
-  root.innerHTML =
-  '<div class="small">No hay actividades para hoy.</div>';
-
-  return;
-
- }
-
-
- (day.items||[])
- .forEach(
-  item=>{
-
-   const row =
-   document.createElement(
-    "div"
-   );
-
-
-   row.className =
-   "item";
-
-
-   row.innerHTML =
-   `
-   <strong>
-    ${item.time||"—"}
-   </strong>
-
-   <span>
-    ${item.t}
-   </span>
-   `;
-
-
-   root.appendChild(
-    row
-   );
-
-  }
- );
-
-}
-
-
-
-/* =========================================================
-   GASTOS
-========================================================= */
-
-function renderExpenses(){
-
- const root =
- document.getElementById(
-  "expenseList"
- );
-
-
- root.innerHTML =
- "";
-
-
- let total =
- 0;
-
-
- (state.gastos||[])
- .forEach(
-  (expense,index)=>{
-
-
-   total +=
-   Number(
-    expense.value
-   )||0;
-
-
-   const row =
-   document.createElement(
-    "div"
-   );
-
-
-   row.className =
-   "expense-row";
-
-
-   const description =
-   document.createElement(
-    "input"
-   );
-
-
-   description.value =
-   expense.description||"";
-
-
-   description.oninput =
-   ()=>{
-
-    expense.description =
-    description.value;
-
-    save();
-
-   };
-
-
-   const value =
-   document.createElement(
-    "input"
-   );
-
-
-   value.type =
-   "number";
-
-
-   value.value =
-   expense.value||"";
-
-
-   value.oninput =
-   ()=>{
-
-    expense.value =
-    Number(value.value)||0;
-
-
-    save();
-
-
-    renderExpenseSummary();
-
-   };
-
-
-   const category =
-   document.createElement(
-    "select"
-   );
-
-
-   category.className =
-   "category-field";
-
-
-   [
-    "Comida",
-    "Transporte",
-    "Hotel",
-    "Torneo",
-    "Compras",
-    "Niños",
-    "Otros"
-   ]
-   .forEach(
-    optionValue=>{
-
-     const option =
-     document.createElement(
-      "option"
-     );
-
-
-     option.textContent =
-     optionValue;
-
-
-     if(
-      expense.category===
-      optionValue
-     ){
-
-      option.selected =
-      true;
-
-     }
-
-
-     category.appendChild(
-      option
-     );
-
-    }
-   );
-
-
-   category.onchange =
-   ()=>{
-
-    expense.category =
-    category.value;
-
-
-    save();
-
-   };
-
-
-   const payer =
-   document.createElement(
-    "select"
-   );
-
-
-   payer.className =
-   "payer-field";
-
-
-   [
-    "John",
-    "Ani"
-   ]
-   .forEach(
-    optionValue=>{
-
-     const option =
-     document.createElement(
-      "option"
-     );
-
-
-     option.textContent =
-     optionValue;
-
-
-     if(
-      expense.payer===
-      optionValue
-     ){
-
-      option.selected =
-      true;
-
-     }
-
-
-     payer.appendChild(
-      option
-     );
-
-    }
-   );
-
-
-   payer.onchange =
-   ()=>{
-
-    expense.payer =
-    payer.value;
-
-
-    save();
-
-   };
-
-
-   const remove =
-   document.createElement(
-    "button"
-   );
-
-
-   remove.className =
-   "delete";
-
-
-   remove.textContent =
-   "×";
-
-
-   remove.onclick =
-   ()=>{
-
-    state.gastos.splice(
-     index,
-     1
-    );
-
-
-    save();
-
-
-    renderExpenses();
-
-   };
-
-
-   row.append(
-    description,
-    value,
-    category,
-    payer,
-    remove
-   );
-
-
-   root.appendChild(
-    row
-   );
-
-  }
- );
-
-
- renderExpenseSummary();
-
-}
-
-
-
-function renderExpenseSummary(){
-
- const total =
- (state.gastos||[])
- .reduce(
-  (sum,item)=>
-  sum+(Number(item.value)||0),
-  0
- );
-
-
- document
- .getElementById(
-  "expenseTotal"
- )
- .textContent =
- money(total);
-
-
- const budget =
- Number(
-  state.budget
- )||0;
-
-
- const percentage =
- budget
- ? Math.min(
-    100,
-    total/budget*100
-   )
- : 0;
-
-
- document
- .getElementById(
-  "budgetBar"
- )
- .style.width =
- percentage+"%";
-
-
- document
- .getElementById(
-  "budgetText"
- )
- .textContent =
- budget
- ? money(total)
-   +" de "
-   +money(budget)
- : "Define el presupuesto del viaje";
-
-}
-
-
-
-/* =========================================================
-   MERCADO
-========================================================= */
-
-function renderMarket(){
-
- const root =
- document.getElementById(
-  "marketCategories"
- );
-
-
- root.innerHTML =
- "";
-
-
- let pending =
- 0;
-
-
- let done =
- 0;
-
-
- state.mercado.categories
- .forEach(
-  (category,categoryIndex)=>{
-
-
-   const section =
-   document.createElement(
-    "div"
-   );
-
-
-   section.className =
-   "market-category";
-
-
-   const head =
-   document.createElement(
-    "div"
-   );
-
-
-   head.className =
-   "market-category-head";
-
-
-   const title =
-   document.createElement(
-    "input"
-   );
-
-
-   title.className =
-   "category-name";
-
-
-   title.value =
-   category.name;
-
-
-   title.oninput =
-   ()=>{
-
-    category.name =
-    title.value;
-
-
-    save();
-
-   };
-
-
-   const removeCategory =
-   document.createElement(
-    "button"
-   );
-
-
-   removeCategory.className =
-   "category-delete";
-
-
-   removeCategory.textContent =
-   "×";
-
-
-   removeCategory.title =
-   "Eliminar categoría";
-
-
-   removeCategory.onclick =
-   ()=>{
-
-    if(
-     confirm(
-      "¿Eliminar la categoría "
-      +category.name
-      +"?"
-     )
-    ){
-
-     state.mercado.categories
-     .splice(
-      categoryIndex,
-      1
-     );
-
-
-     save();
-
-
-     renderMarket();
-
-    }
-
-   };
-
-
-   head.append(
-    title,
-    removeCategory
-   );
-
-
-   section.appendChild(
-    head
-   );
-
-
-   category.items
-   .forEach(
-    (item,itemIndex)=>{
-
-
-     if(
-      item.checked
-     ){
-
-      done++;
-
-     }
-
-     else{
-
-      pending++;
-
-     }
-
-
-     const row =
-     document.createElement(
-      "div"
-     );
-
-
-     row.className =
-     "market-item"
-     +(item.checked
-       ?" checked"
-       :"");
-
-
-     const check =
-     document.createElement(
-      "input"
-     );
-
-
-     check.type =
-     "checkbox";
-
-
-     check.checked =
-     !!item.checked;
-
-
-     check.onchange =
-     ()=>{
-
-      item.checked =
-      check.checked;
-
-
-      save();
-
-
-      renderMarket();
-
-     };
-
-
-     const text =
-     document.createElement(
-      "input"
-     );
-
-
-     text.className =
-     "market-item-text";
-
-
-     text.value =
-     item.name;
-
-
-     text.oninput =
-     ()=>{
-
-      item.name =
-      text.value;
-
-
-      save();
-
-     };
-
-
-     const remove =
-     document.createElement(
-      "button"
-     );
-
-
-     remove.className =
-     "market-delete";
-
-
-     remove.textContent =
-     "×";
-
-
-     remove.onclick =
-     ()=>{
-
-      category.items
-      .splice(
-       itemIndex,
-       1
-      );
-
-
-      save();
-
-
-      renderMarket();
-
-     };
-
-
-     row.append(
-      check,
-      text,
-      remove
-     );
-
-
-     section.appendChild(
-      row
-     );
-
-    }
-   );
-
-
-   const add =
-   document.createElement(
-    "div"
-   );
-
-
-   add.className =
-   "market-add";
-
-
-   const input =
-   document.createElement(
-    "input"
-   );
-
-
-   input.placeholder =
-   "Agregar producto...";
-
-
-   const plus =
-   document.createElement(
-    "button"
-   );
-
-
-   plus.className =
-   "market-plus";
-
-
-   plus.textContent =
-   "+";
-
-
-   function addMarketItem(){
-
-    const value =
-    input.value.trim();
-
-
-    if(
-     !value
-    ){
-
-     return;
-
-    }
-
-
-    category.items.push({
-
-     name:value,
-
-     checked:false
-
-    });
-
-
-    input.value =
-    "";
-
-
-    save();
-
-
-    renderMarket();
-
-   }
-
-
-   plus.onclick =
-   addMarketItem;
-
-
-   input.onkeydown =
-   event=>{
-
-    if(
-     event.key==="Enter"
-    ){
-
-     addMarketItem();
-
-    }
-
-   };
-
-
-   add.append(
-    input,
-    plus
-   );
-
-
-   section.appendChild(
-    add
-   );
-
-
-   root.appendChild(
-    section
-   );
-
-  }
- );
-
-
- document
- .getElementById(
-  "marketPending"
- )
- .textContent =
- pending;
-
-
- document
- .getElementById(
-  "marketDone"
- )
- .textContent =
- done;
-
-}
-
-
-
-function addMarketCategory(){
-
- const input =
- document.getElementById(
-  "newCategoryName"
- );
-
-
- const name =
- input.value.trim();
-
-
- if(
-  !name
- ){
-
-  return;
-
- }
-
-
- state.mercado.categories
- .push({
-
-  id:
-  "cat_"
-  +Date.now(),
-
-  name:name,
-
-  items:[]
-
- });
-
-
- input.value =
- "";
-
-
- save();
-
-
- renderMarket();
-
-}
-
-
-
-window.clearCheckedMarketItems =
-function(){
-
- state.mercado.categories
- .forEach(
-  category=>{
-
-   category.items =
-   category.items
-   .filter(
-    item=>
-    !item.checked
-   );
-
-  }
- );
-
-
- save();
-
-
- renderMarket();
-
-};
-
-
-
-/* =========================================================
-   RENDER GENERAL
-========================================================= */
-
-function renderAll(){
-
- migrate();
-
-
- renderPayments();
-
-
- renderDays();
-
-
- [
-  "previo_familia",
-  "previo_salomon",
-  "previo_antonio",
-  "maleta_john",
-  "maleta_esposa",
-  "maleta_salomon",
-  "maleta_antonio",
-  "vuelos",
-  "hotel",
-  "traslados",
-  "contactos",
-  "documentos"
- ]
- .forEach(
-  renderList
- );
-
-
- renderExpenses();
-
-
- renderHome();
-
-
- renderToday();
-
-
- renderMarket();
-
-
- document
- .getElementById(
-  "budgetInput"
- )
- .value =
- state.budget||"";
-
-
- const notes =
- document.getElementById(
-  "notes"
- );
-
-
- if(
-  notes &&
-  document.activeElement!==notes
- ){
-
-  notes.value =
-  state.notes||"";
-
- }
-
-}
-
-
-
-/* =========================================================
-   EVENTOS BACLA
-========================================================= */
-
-document
-.getElementById(
- "addDay"
-)
-.onclick =
-()=>{
-
- state.days.push({
-
-  title:"Nuevo día",
-
-  date:"",
-
-  items:[]
-
- });
-
-
- save();
-
-
- renderDays();
-
-};
-
-
-
-document
-.querySelectorAll(
- "[data-add]"
-)
-.forEach(
- button=>{
-
-  button.onclick =
-  ()=>{
-
-   addGeneric(
-    button.dataset.add
-   );
-
-  };
-
- }
-);
-
-
-
-document
-.querySelectorAll(
- "[data-input]"
-)
-.forEach(
- input=>{
-
-  input.onkeydown =
-  event=>{
-
-   if(
-    event.key==="Enter"
-   ){
-
-    addGeneric(
-     input.dataset.input
-    );
-
-   }
-
-  };
-
- }
-);
-
-
-
-document
-.querySelectorAll(
- ".tab"
-)
-.forEach(
- button=>{
-
-  button.onclick =
-  ()=>{
-
-   document
-   .querySelectorAll(
-    ".tab"
-   )
-   .forEach(
-    tab=>
-    tab.classList.remove(
-     "active"
-    )
-   );
-
-
-   document
-   .querySelectorAll(
-    ".pane"
-   )
-   .forEach(
-    pane=>
-    pane.classList.remove(
-     "active"
-    )
-   );
-
-
-   button.classList.add(
-    "active"
-   );
-
-
-   document
-   .getElementById(
-    button.dataset.pane
-   )
-   .classList.add(
-    "active"
-   );
-
-  };
-
- }
-);
-
-
-
-document
-.querySelectorAll(
- ".subtab"
-)
-.forEach(
- button=>{
-
-  button.onclick =
-  ()=>{
-
-   document
-   .querySelectorAll(
-    ".subtab"
-   )
-   .forEach(
-    tab=>
-    tab.classList.remove(
-     "active"
-    )
-   );
-
-
-   document
-   .querySelectorAll(
-    "#previo .section"
-   )
-   .forEach(
-    section=>
-    section.classList.remove(
-     "active"
-    )
-   );
-
-
-   button.classList.add(
-    "active"
-   );
-
-
-   document
-   .getElementById(
-    button.dataset.section
-   )
-   .classList.add(
-    "active"
-   );
-
-  };
-
- }
-);
-
-
-
-const people = {
-
- john:"John",
-
- esposa:"Ani",
-
- salomon:"Salomón",
-
- antonio:"Antonio"
-
-};
-
-
-
-document
-.querySelectorAll(
- ".person"
-)
-.forEach(
- button=>{
-
-  button.onclick =
-  ()=>{
-
-   document
-   .querySelectorAll(
-    ".person"
-   )
-   .forEach(
-    item=>
-    item.classList.remove(
-     "active"
-    )
-   );
-
-
-   button.classList.add(
-    "active"
-   );
-
-
-   const key =
-   "maleta_"
-   +button.dataset.person;
-
-
-   document
-   .getElementById(
-    "packingTitle"
-   )
-   .textContent =
-   "Maleta · "
-   +people[
-    button.dataset.person
-   ];
-
-
-   const list =
-   document.querySelector(
-    "#packingCard .list"
-   );
-
-
-   const input =
-   document.querySelector(
-    "#packingCard [data-input]"
-   );
-
-
-   const add =
-   document.querySelector(
-    "#packingCard [data-add]"
-   );
-
-
-   list.dataset.list =
-   key;
-
-
-   input.dataset.input =
-   key;
-
-
-   add.dataset.add =
-   key;
-
-
-   add.onclick =
-   ()=>addGeneric(
-    key
-   );
-
-
-   renderList(
-    key
-   );
-
-  };
-
- }
-);
-
-
-
-document
-.getElementById(
- "notes"
-)
-.oninput =
-event=>{
-
- state.notes =
- event.target.value;
-
-
- save();
-
-};
-
-
-
-document
-.getElementById(
- "saveBudget"
-)
-.onclick =
-()=>{
-
- state.budget =
- Number(
-  document
-  .getElementById(
-   "budgetInput"
-  )
-  .value
- )||0;
-
-
- save();
-
-
- renderExpenseSummary();
-
-};
-
-
-
-document
-.getElementById(
- "addExpense"
-)
-.onclick =
-()=>{
-
- const description =
- document
- .getElementById(
-  "expenseDescription"
- )
- .value
- .trim();
-
-
- const value =
- Number(
-  document
-  .getElementById(
-   "expenseValue"
-  )
-  .value
- )||0;
-
-
- if(
-  !description &&
-  !value
- ){
-
-  return;
-
- }
-
-
- state.gastos.push({
-
-  description:
-  description,
-
-  value:
-  value,
-
-  category:
-  document
-  .getElementById(
-   "expenseCategory"
-  )
-  .value,
-
-  payer:
-  document
-  .getElementById(
-   "expensePayer"
-  )
-  .value
-
- });
-
-
- document
- .getElementById(
-  "expenseDescription"
- )
- .value =
- "";
-
-
- document
- .getElementById(
-  "expenseValue"
- )
- .value =
- "";
-
-
- save();
-
-
- renderExpenses();
-
-};
-
-
-
-/* =========================================================
-   EVENTOS MERCADO
-========================================================= */
-
-document
-.getElementById(
- "addMarketCategory"
-)
-.onclick =
-addMarketCategory;
-
-
-document
-.getElementById(
- "newCategoryName"
-)
-.onkeydown =
-event=>{
-
- if(
-  event.key==="Enter"
- ){
-
-  addMarketCategory();
-
- }
-
-};
-
-
-
-/* =========================================================
-   FIREBASE
-========================================================= */
-
-async function startFirebase(){
-
- try{
-
-  setSync(
-   "",
-   "Conectando..."
-  );
-
-
-  const existing =
-  await getDoc(
-   sharedRef
-  );
-
-
-  if(
-   !existing.exists()
-  ){
-
-   await setDoc(
-    sharedRef,
-    defaults
-   );
-
-  }
-
-
-  onSnapshot(
-
-   sharedRef,
-
-   snapshot=>{
-
-    if(
-     !snapshot.exists()
-    ){
-
-     return;
-
-    }
-
-
-    remoteUpdate =
-    true;
-
-
-    state = {
-
-     ...structuredClone(
-      defaults
-     ),
-
-     ...snapshot.data()
-
-    };
-
-
-    migrate();
-
-
-    renderAll();
-
-
-    remoteUpdate =
-    false;
-
-
-    firebaseReady =
-    true;
-
-
-    setSync(
-     "ok",
-     "Sincronizado"
-    );
-
-   },
-
-
-   error=>{
-
-    console.error(
-     error
-    );
-
-
-    setSync(
-     "err",
-     "Error Firebase"
-    );
-
-   }
-
-  );
-
- }
-
- catch(error){
-
-  console.error(
-   error
-  );
-
-
-  setSync(
-   "err",
-   "No se pudo conectar"
-  );
-
- }
-
-}
-
-
-
-/* =========================================================
-   INICIO
-========================================================= */
-
-renderAll();
-
+from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+
+const firebaseConfig={
+ apiKey:"AIzaSyDxmawunxCVe7KI_dS-VHSxGlJk3Td5FFg",
+ authDomain:"bacla-arh.firebaseapp.com",
+ projectId:"bacla-arh",
+ storageBucket:"bacla-arh.firebasestorage.app",
+ messagingSenderId:"874707622741",
+ appId:"1:874707622741:web:20688eea06d47751b7addc",
+ measurementId:"G-XRFQ5QN58E"
+ renderAll();
 startFirebase();
-
-
 </script>
-
-
 </body>
- </html>
+</html>
+};
