@@ -3,353 +3,890 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#0b1220">
+<meta name="theme-color" content="#07111f">
 <title>BACLA ARH</title>
+
 <style>
 :root{
-  --bg:#07111f; --card:#0f1b2d; --card2:#0b1626; --text:#f7f9fc; --muted:#9aabc1;
-  --line:#23334c; --accent:#2f80ed; --ok:#20c997; --warn:#f3c969; --danger:#ff6b76;
+ --bg:#07111f;--card:#0f1b2d;--card2:#0b1626;
+ --text:#f7f9fc;--muted:#9aabc1;--line:#23334c;
+ --accent:#2f80ed;--ok:#20c997;--danger:#ff6b76
 }
 *{box-sizing:border-box}
-body{margin:0;background:linear-gradient(180deg,#06101d,#0a1525 40%,#07111f);color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;min-height:100vh}
+body{
+ margin:0;background:linear-gradient(180deg,#06101d,#0a1525 40%,#07111f);
+ color:var(--text);
+ font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+ min-height:100vh
+}
 .app{max-width:920px;margin:auto;padding:16px 14px 42px}
 .hero{display:flex;justify-content:space-between;gap:12px;align-items:center;margin-bottom:14px}
-.title{font-size:29px;font-weight:900;letter-spacing:-.7px}
+.title{font-size:27px;font-weight:900}
 .subtitle{font-size:13px;color:var(--muted);margin-top:4px}
-.badge{padding:8px 10px;border:1px solid var(--line);border-radius:999px;background:#0b1626;font-size:12px;color:#dce6f4}
-.card{background:rgba(15,27,45,.95);border:1px solid var(--line);border-radius:18px;padding:14px;margin-bottom:13px;box-shadow:0 14px 28px rgba(0,0,0,.15)}
+.badge{
+ padding:8px 10px;border:1px solid var(--line);
+ border-radius:999px;background:#0b1626;font-size:12px
+}
+.card{
+ background:#0f1b2d;border:1px solid var(--line);
+ border-radius:18px;padding:14px;margin-bottom:13px
+}
 .card h2{font-size:16px;margin:0 0 10px}
-.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.kpi{background:#0b1626;border:1px solid var(--line);border-radius:14px;padding:12px}
-.kpi .l{font-size:11px;color:var(--muted)}
-.kpi .v{font-size:18px;font-weight:800;margin-top:4px}
-.tabs{display:flex;gap:7px;position:sticky;top:0;z-index:8;padding:7px 0 11px;background:linear-gradient(180deg,#07111f 75%,rgba(7,17,31,0))}
-.tab{flex:1;border:1px solid var(--line);background:#0b1626;color:#aebbd0;padding:10px 7px;border-radius:12px;font-weight:800;font-size:12px;cursor:pointer}
-.tab.active{background:#18365f;color:#fff;border-color:#2f80ed}
-.pane{display:none}.pane.active{display:block}
-.progress{height:10px;border-radius:999px;background:#1a2940;overflow:hidden;margin:10px 0}
-.progress>div{height:100%;background:linear-gradient(90deg,#2f80ed,#20c997);width:20%}
-.milestones{display:grid;grid-template-columns:repeat(5,1fr);gap:6px}
-.milestone{border:1px solid var(--line);background:#0b1626;border-radius:12px;padding:8px 4px;text-align:center;cursor:pointer}
+
+.tabs{
+ display:flex;gap:6px;position:sticky;top:0;z-index:8;
+ padding:7px 0 11px;background:#07111f;overflow:auto
+}
+.tab{
+ flex:1;min-width:67px;border:1px solid var(--line);
+ background:#0b1626;color:#aebbd0;padding:10px 6px;
+ border-radius:12px;font-weight:800;font-size:11px
+}
+.tab.active{background:#18365f;color:white;border-color:#2f80ed}
+.pane{display:none}
+.pane.active{display:block}
+
+.progress{
+ height:10px;border-radius:999px;background:#1a2940;
+ overflow:hidden;margin:10px 0
+}
+.progress div{
+ height:100%;background:linear-gradient(90deg,#2f80ed,#20c997)
+}
+.milestones{
+ display:grid;grid-template-columns:repeat(5,1fr);gap:6px
+}
+.milestone{
+ border:1px solid var(--line);background:#0b1626;
+ color:white;border-radius:12px;padding:8px 4px;text-align:center
+}
 .milestone.done{border-color:#239b71;background:#0d2a25}
-.circle{width:23px;height:23px;border-radius:50%;display:grid;place-items:center;border:1px solid #415069;margin:auto;font-size:12px}
-.milestone.done .circle{background:var(--ok);border-color:var(--ok);color:#062217;font-weight:900}
-.milestone small{display:block;font-size:9px;color:var(--muted);margin-top:5px}
-.timeline{display:flex;flex-direction:column;gap:10px}
-.day{border:1px solid var(--line);background:#0b1626;border-radius:14px;padding:12px}
-.dayhead{display:flex;justify-content:space-between;gap:10px;align-items:start}
-.daytitle{font-weight:900;font-size:15px}
-.daydate{font-size:11px;color:var(--muted);margin-top:2px}
-.tag{font-size:10px;padding:5px 8px;border-radius:999px;border:1px solid var(--line);color:#cbd8e8}
-.day ul{margin:10px 0 0 18px;padding:0}
-.day li{margin:5px 0;color:#dce5f0;font-size:13px}
-.subtabs{display:flex;gap:7px;overflow:auto;margin-bottom:10px}
-.subtab,.person-btn{white-space:nowrap;border:1px solid var(--line);background:#0b1626;color:#aebbd0;border-radius:999px;padding:8px 12px;cursor:pointer}
-.subtab.active,.person-btn.active{background:#213958;color:#fff;border-color:#456b94}
-.section{display:none}.section.active{display:block}
+.circle{
+ width:24px;height:24px;border-radius:50%;display:grid;
+ place-items:center;border:1px solid #415069;margin:auto
+}
+.milestone.done .circle{
+ background:var(--ok);border-color:var(--ok);color:#062217;font-weight:900
+}
+.milestone small{
+ display:block;font-size:9px;color:var(--muted);margin-top:5px
+}
+
+.day{
+ border:1px solid var(--line);background:#0b1626;
+ border-radius:15px;padding:12px;margin-bottom:10px
+}
+.dayhead{display:flex;gap:8px;align-items:center;margin-bottom:10px}
+.dayhead input{
+ background:transparent;border:none;color:white;outline:none
+}
+.day-title{font-weight:900;font-size:15px;flex:1;min-width:0}
+.day-date{font-size:12px;color:var(--muted);width:120px;text-align:right}
+
 .list{display:flex;flex-direction:column;gap:8px}
-.item{display:flex;align-items:center;gap:8px;background:#0b1626;border:1px solid var(--line);border-radius:12px;padding:9px 10px}
+.item{
+ display:flex;align-items:center;gap:8px;background:#091423;
+ border:1px solid var(--line);border-radius:12px;padding:9px 10px
+}
 .item.done .txt{text-decoration:line-through;color:#718099}
-.item input[type=checkbox]{width:20px;height:20px;accent-color:var(--ok)}
-.item .txt{flex:1;border:none;outline:none;background:transparent;color:#fff;font-size:14px;min-width:0}
-.delete{border:none;background:transparent;color:#8292a9;font-size:18px;padding:2px 5px}
+.item input[type=checkbox]{
+ width:20px;height:20px;accent-color:var(--ok)
+}
+.txt{
+ flex:1;border:none;outline:none;background:transparent;
+ color:white;font-size:14px;min-width:0
+}
+.delete{
+ border:none;background:transparent;color:#8292a9;
+ font-size:20px;padding:2px 5px
+}
+
 .addrow{display:flex;gap:8px;margin-top:9px}
-.addrow input{flex:1;background:#091423;border:1px solid var(--line);color:#fff;padding:11px;border-radius:11px;outline:none}
-.addrow button,.primary{border:none;background:var(--accent);color:white;border-radius:11px;padding:10px 13px;font-weight:800}
+.addrow input{
+ flex:1;background:#091423;border:1px solid var(--line);
+ color:white;padding:11px;border-radius:11px;outline:none
+}
+.addrow button,.primary{
+ border:none;background:var(--accent);color:white;
+ border-radius:11px;padding:10px 13px;font-weight:800
+}
+.ghost{
+ border:1px solid var(--line);background:#0c1a2c;
+ color:#ff9ba3;border-radius:10px;padding:8px 10px;
+ font-weight:700;margin-top:10px
+}
+
+.subtabs{display:flex;gap:7px;overflow:auto;margin-bottom:10px}
+.subtab,.person{
+ border:1px solid var(--line);background:#0b1626;
+ color:#aebbd0;border-radius:999px;padding:8px 12px;
+ white-space:nowrap
+}
+.subtab.active,.person.active{
+ background:#213958;color:white;border-color:#456b94
+}
+.section{display:none}
+.section.active{display:block}
+.people{display:grid;grid-template-columns:1fr 1fr;gap:8px}
 .small{font-size:12px;color:var(--muted)}
-.person-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
-.note{background:#0b1626;border:1px dashed #3d526f;border-radius:12px;padding:11px;color:#c7d4e6;font-size:13px}
-textarea{width:100%;min-height:120px;background:#091423;border:1px solid var(--line);border-radius:12px;color:#fff;padding:11px;outline:none;resize:vertical}
-.info-row{display:flex;justify-content:space-between;gap:12px;padding:9px 0;border-bottom:1px solid rgba(35,51,76,.6);font-size:13px}
-.info-row:last-child{border-bottom:none}
-.info-row span:first-child{color:var(--muted)}
+
+textarea{
+ width:100%;min-height:160px;background:#091423;
+ border:1px solid var(--line);border-radius:12px;
+ color:white;padding:11px;outline:none
+}
 .footer{text-align:center;color:#667892;font-size:11px;margin-top:18px}
-@media(max-width:560px){.title{font-size:24px}.grid2{grid-template-columns:1fr 1fr}.tab{font-size:11px;padding:10px 4px}}
+
+@media(max-width:560px){
+ .title{font-size:24px}
+ .dayhead{flex-wrap:wrap}
+ .day-date{width:100%;text-align:left}
+}
 </style>
 </head>
+
 <body>
 <div class="app">
-  <div class="hero">
-    <div>
-      <div class="title">BACLA ARH</div>
-      <div class="subtitle">Agenda especial · Barça Academy Cup Las Américas 2026</div>
-    </div>
-    <div class="badge">Cap Cana / Punta Cana 🇩🇴</div>
+
+<div class="hero">
+ <div>
+  <div class="title">BACLA ARH</div>
+  <div class="subtitle">Agenda especial · Barça Academy Cup Las Américas 2026</div>
+ </div>
+ <div class="badge">⚽ Viaje familiar</div>
+</div>
+
+<div class="card">
+ <div style="display:flex;justify-content:space-between;align-items:end">
+  <div>
+   <h2 style="margin-bottom:3px">Pagos</h2>
+   <div class="small">5 hitos × $2.500.000 COP</div>
+  </div>
+  <strong id="paySummary"></strong>
+ </div>
+
+ <div class="progress"><div id="progressBar"></div></div>
+ <div class="milestones" id="milestones"></div>
+</div>
+
+<div class="tabs">
+ <button class="tab active" data-pane="agenda">Agenda</button>
+ <button class="tab" data-pane="previo">Previo</button>
+ <button class="tab" data-pane="maleta">Maleta</button>
+ <button class="tab" data-pane="viaje">Viaje</button>
+ <button class="tab" data-pane="notas">Notas</button>
+</div>
+
+<!-- AGENDA -->
+
+<div id="agenda" class="pane active">
+ <div class="card">
+
+  <div style="display:flex;justify-content:space-between;align-items:center">
+   <h2>Agenda día por día</h2>
+   <button class="primary" id="addDay">+ Día</button>
   </div>
 
-  <div class="card">
-    <div class="grid2">
-      <div class="kpi"><div class="l">Llegada</div><div class="v">9 Dic 2026</div></div>
-      <div class="kpi"><div class="l">Regreso</div><div class="v">14 Dic 2026</div></div>
-      <div class="kpi"><div class="l">Torneo</div><div class="v">10–13 Dic</div></div>
-      <div class="kpi"><div class="l">Viajeros</div><div class="v">4</div></div>
-    </div>
+  <div class="small" style="margin-bottom:12px">
+   Todo es editable. Puedes marcar, agregar, borrar o modificar actividades.
   </div>
 
-  <div class="card">
-    <div style="display:flex;justify-content:space-between;align-items:end;gap:10px">
-      <div><h2 style="margin-bottom:3px">Pagos</h2><div class="small">5 hitos × $2.500.000 COP</div></div>
-      <strong id="paySummary">$2.500.000 / $12.500.000</strong>
-    </div>
-    <div class="progress"><div id="progressBar"></div></div>
-    <div class="milestones" id="milestones"></div>
-  </div>
+  <div id="days"></div>
 
-  <div class="tabs">
-    <button class="tab active" data-pane="agenda">Agenda</button>
-    <button class="tab" data-pane="previo">Previo</button>
-    <button class="tab" data-pane="maleta">Maleta</button>
-    <button class="tab" data-pane="viaje">Viaje</button>
-    <button class="tab" data-pane="notas">Notas</button>
-  </div>
+ </div>
+</div>
 
-  <div id="agenda" class="pane active">
-    <div class="card">
-      <h2>Itinerario día por día</h2>
-      <div class="timeline">
-        <div class="day">
-          <div class="dayhead"><div><div class="daytitle">Miércoles · Llegada</div><div class="daydate">9 de diciembre de 2026</div></div><span class="tag">Aclimatación</span></div>
-          <ul>
-            <li>Llegada a Punta Cana / Cap Cana.</li>
-            <li>Traslado al hotel y check-in.</li>
-            <li>Comida ligera, hidratación y descanso.</li>
-            <li>Preparar uniforme, documentos y equipo de Antonio.</li>
-            <li>Noche tranquila para llegar descansados al inicio oficial.</li>
-          </ul>
-        </div>
-        <div class="day">
-          <div class="dayhead"><div><div class="daytitle">Jueves · Inicio oficial</div><div class="daydate">10 de diciembre de 2026</div></div><span class="tag">Torneo</span></div>
-          <ul>
-            <li>Desayuno temprano.</li>
-            <li>Registro / actividades oficiales de la Barça Academy Cup.</li>
-            <li>Confirmar horarios definitivos de Antonio.</li>
-            <li>Bloque familiar libre alrededor de la programación del torneo.</li>
-          </ul>
-        </div>
-        <div class="day">
-          <div class="dayhead"><div><div class="daytitle">Viernes · Competencia</div><div class="daydate">11 de diciembre de 2026</div></div><span class="tag">Partidos</span></div>
-          <ul>
-            <li>Partidos y actividades según programación oficial.</li>
-            <li>Revisar transporte, hidratación, snacks y uniforme de cambio.</li>
-            <li>Actividad familiar flexible en espacios libres.</li>
-          </ul>
-        </div>
-        <div class="day">
-          <div class="dayhead"><div><div class="daytitle">Sábado · Competencia</div><div class="daydate">12 de diciembre de 2026</div></div><span class="tag">Partidos</span></div>
-          <ul>
-            <li>Continuación de partidos.</li>
-            <li>Revisión rápida de ropa deportiva y lavandería si hace falta.</li>
-            <li>Reservar un espacio familiar para disfrutar Cap Cana / Punta Cana.</li>
-          </ul>
-        </div>
-        <div class="day">
-          <div class="dayhead"><div><div class="daytitle">Domingo · Cierre</div><div class="daydate">13 de diciembre de 2026</div></div><span class="tag">Final</span></div>
-          <ul>
-            <li>Última jornada / finales / ceremonia según clasificación.</li>
-            <li>Fotos y recuerdos del torneo.</li>
-            <li>Cena familiar de cierre.</li>
-            <li>Dejar maletas parcialmente listas para el regreso.</li>
-          </ul>
-        </div>
-        <div class="day">
-          <div class="dayhead"><div><div class="daytitle">Lunes · Regreso</div><div class="daydate">14 de diciembre de 2026</div></div><span class="tag">Vuelo</span></div>
-          <ul>
-            <li>Check-out del hotel.</li>
-            <li>Validar documentos, coche, equipaje y artículos de los niños.</li>
-            <li>Traslado al aeropuerto.</li>
-            <li>Vuelo de regreso.</li>
-          </ul>
-        </div>
-      </div>
-      <div class="note" style="margin-top:10px">Los horarios exactos de partidos, vuelos, hotel y traslados se pueden ir agregando cuando estén confirmados. La agenda está pensada para crecer contigo durante el viaje.</div>
-    </div>
-  </div>
+<!-- PREVIO -->
 
-  <div id="previo" class="pane">
-    <div class="card">
-      <div class="subtabs">
-        <button class="subtab active" data-section="familia">Familia</button>
-        <button class="subtab" data-section="salomon">Salomón</button>
-        <button class="subtab" data-section="antonio">Antonio</button>
-      </div>
-      <div id="familia" class="section active">
-        <h2>Previo · Familia</h2><div class="list" data-list="previo_familia"></div>
-        <div class="addrow"><input placeholder="Agregar pendiente..." data-input="previo_familia"><button data-add="previo_familia">+</button></div>
-      </div>
-      <div id="salomon" class="section">
-        <h2>Previo · Salomón</h2><div class="list" data-list="previo_salomon"></div>
-        <div class="addrow"><input placeholder="Agregar pendiente..." data-input="previo_salomon"><button data-add="previo_salomon">+</button></div>
-      </div>
-      <div id="antonio" class="section">
-        <h2>Previo · Antonio</h2><div class="list" data-list="previo_antonio"></div>
-        <div class="addrow"><input placeholder="Agregar pendiente..." data-input="previo_antonio"><button data-add="previo_antonio">+</button></div>
-      </div>
-    </div>
-  </div>
+<div id="previo" class="pane">
+<div class="card">
 
-  <div id="maleta" class="pane">
-    <div class="card">
-      <h2>Maleta por integrante</h2>
-      <div class="person-grid">
-        <button class="person-btn active" data-person="john">John</button>
-        <button class="person-btn" data-person="ani">Ani</button>
-        <button class="person-btn" data-person="salomon">Salomón</button>
-        <button class="person-btn" data-person="antonio">Antonio</button>
-      </div>
-    </div>
-    <div class="card" id="packingCard">
-      <h2 id="packingTitle">Maleta · John</h2>
-      <div class="list" data-list="maleta_john"></div>
-      <div class="addrow"><input placeholder="Agregar artículo..." data-input="maleta_john"><button data-add="maleta_john">+</button></div>
-    </div>
-  </div>
+ <div class="subtabs">
+  <button class="subtab active" data-section="familia">Familia</button>
+  <button class="subtab" data-section="salomon">Salomón</button>
+  <button class="subtab" data-section="antonio">Antonio</button>
+ </div>
 
-  <div id="viaje" class="pane">
-    <div class="card">
-      <h2>Ficha rápida del viaje</h2>
-      <div class="info-row"><span>Destino</span><strong>Cap Cana / Punta Cana</strong></div>
-      <div class="info-row"><span>País</span><strong>República Dominicana</strong></div>
-      <div class="info-row"><span>Llegada</span><strong>9 Dic 2026</strong></div>
-      <div class="info-row"><span>Torneo</span><strong>10–13 Dic 2026</strong></div>
-      <div class="info-row"><span>Regreso</span><strong>14 Dic 2026</strong></div>
-      <div class="info-row"><span>Viajeros</span><strong>John · Ani · Salomón · Antonio</strong></div>
-    </div>
-    <div class="card">
-      <h2>Reservas y datos por completar</h2>
-      <div class="list" data-list="reservas"></div>
-      <div class="addrow"><input placeholder="Agregar reserva / dato..." data-input="reservas"><button data-add="reservas">+</button></div>
-    </div>
-    <div class="card">
-      <h2>Gastos del viaje</h2>
-      <div class="list" data-list="gastos"></div>
-      <div class="addrow"><input placeholder="Ej. Taxi aeropuerto - $..." data-input="gastos"><button data-add="gastos">+</button></div>
-      <div class="small" style="margin-top:8px">Puedes usar esta sección como registro rápido de gastos; el texto queda guardado en el dispositivo.</div>
-    </div>
+ <div id="familia" class="section active">
+  <h2>Previo · Familia</h2>
+  <div class="list" data-list="previo_familia"></div>
+  <div class="addrow">
+   <input placeholder="Agregar pendiente..." data-input="previo_familia">
+   <button data-add="previo_familia">+</button>
   </div>
+ </div>
 
-  <div id="notas" class="pane">
-    <div class="card">
-      <h2>Notas del viaje</h2>
-      <textarea id="notes" placeholder="Horarios, restaurantes, cambios de última hora, recomendaciones, contactos, etc."></textarea>
-      <div class="small" style="margin-top:8px">Se guarda automáticamente.</div>
-    </div>
-    <div class="card">
-      <h2>Ideas útiles para esta agenda</h2>
-      <div class="note">Usa esta pestaña para guardar números de reserva, dirección del hotel, contacto de la academia, recomendaciones de restaurantes, cambios de horario y cualquier dato que quieras tener a mano sin buscar en WhatsApp o correo.</div>
-    </div>
+ <div id="salomon" class="section">
+  <h2>Previo · Salomón</h2>
+  <div class="list" data-list="previo_salomon"></div>
+  <div class="addrow">
+   <input placeholder="Agregar pendiente..." data-input="previo_salomon">
+   <button data-add="previo_salomon">+</button>
   </div>
+ </div>
 
-  <div class="footer">BACLA ARH · Los cambios se guardan automáticamente en este dispositivo.</div>
+ <div id="antonio" class="section">
+  <h2>Previo · Antonio</h2>
+  <div class="list" data-list="previo_antonio"></div>
+  <div class="addrow">
+   <input placeholder="Agregar pendiente..." data-input="previo_antonio">
+   <button data-add="previo_antonio">+</button>
+  </div>
+ </div>
+
+</div>
+</div>
+
+<!-- MALETA -->
+
+<div id="maleta" class="pane">
+
+<div class="card">
+ <h2>Maleta por integrante</h2>
+
+ <div class="people">
+  <button class="person active" data-person="john">John</button>
+  <button class="person" data-person="esposa">Esposa</button>
+  <button class="person" data-person="salomon">Salomón</button>
+  <button class="person" data-person="antonio">Antonio</button>
+ </div>
+</div>
+
+<div class="card" id="packingCard">
+ <h2 id="packingTitle">Maleta · John</h2>
+
+ <div class="list" data-list="maleta_john"></div>
+
+ <div class="addrow">
+  <input placeholder="Agregar artículo..." data-input="maleta_john">
+  <button data-add="maleta_john">+</button>
+ </div>
+</div>
+
+</div>
+
+<!-- VIAJE -->
+
+<div id="viaje" class="pane">
+
+<div class="card">
+ <h2>Reservas y datos importantes</h2>
+
+ <div class="list" data-list="reservas"></div>
+
+ <div class="addrow">
+  <input placeholder="Vuelo, hotel, reserva, contacto..." data-input="reservas">
+  <button data-add="reservas">+</button>
+ </div>
+</div>
+
+<div class="card">
+ <h2>Gastos del viaje</h2>
+
+ <div class="list" data-list="gastos"></div>
+
+ <div class="addrow">
+  <input placeholder="Ej. Taxi aeropuerto - $80.000" data-input="gastos">
+  <button data-add="gastos">+</button>
+ </div>
+</div>
+
+</div>
+
+<!-- NOTAS -->
+
+<div id="notas" class="pane">
+<div class="card">
+ <h2>Notas del viaje</h2>
+
+ <textarea id="notes"
+ placeholder="Horarios, restaurantes, cambios, teléfonos, direcciones, recomendaciones..."></textarea>
+
+ <div class="small" style="margin-top:8px">
+  Se guarda automáticamente.
+ </div>
+</div>
+</div>
+
+<div class="footer">
+BACLA ARH · Agenda editable · Guardado automático
+</div>
+
 </div>
 
 <script>
+
 const defaults={
+
 payments:[true,false,false,false,false],
+
+days:[
+
+{
+ title:"Llegada / aclimatación",
+ date:"",
+ items:[
+  {t:"Llegada y traslado al alojamiento",d:false},
+  {t:"Check-in",d:false},
+  {t:"Comida e hidratación",d:false},
+  {t:"Descanso de Antonio",d:false},
+  {t:"Preparar uniforme y documentos",d:false}
+ ]
+},
+
+{
+ title:"Inicio oficial",
+ date:"",
+ items:[
+  {t:"Desayuno",d:false},
+  {t:"Registro / actividades oficiales",d:false},
+  {t:"Confirmar horarios de partidos",d:false},
+  {t:"Preparar bolso deportivo de Antonio",d:false}
+ ]
+},
+
+{
+ title:"Competencia",
+ date:"",
+ items:[
+  {t:"Partidos según programación",d:false},
+  {t:"Uniforme y guayos",d:false},
+  {t:"Agua y snacks",d:false},
+  {t:"Actividad familiar en tiempo libre",d:false}
+ ]
+},
+
+{
+ title:"Competencia",
+ date:"",
+ items:[
+  {t:"Partidos según programación",d:false},
+  {t:"Revisar ropa deportiva",d:false},
+  {t:"Lavandería si es necesaria",d:false},
+  {t:"Actividad familiar",d:false}
+ ]
+},
+
+{
+ title:"Cierre del torneo",
+ date:"",
+ items:[
+  {t:"Últimos partidos / finales",d:false},
+  {t:"Fotos del torneo",d:false},
+  {t:"Cena familiar",d:false},
+  {t:"Preparar maletas",d:false}
+ ]
+},
+
+{
+ title:"Regreso",
+ date:"",
+ items:[
+  {t:"Check-out",d:false},
+  {t:"Revisar pasaportes",d:false},
+  {t:"Revisar equipaje",d:false},
+  {t:"Coche YOYO y silla de auto",d:false},
+  {t:"Traslado al aeropuerto",d:false}
+ ]
+}
+
+],
+
 previo_familia:[
  {t:"Verificar pasaportes y vigencia",d:false},
- {t:"Confirmar vuelos de ida y regreso",d:false},
- {t:"Confirmar hotel / alojamiento",d:false},
+ {t:"Confirmar vuelos",d:false},
+ {t:"Confirmar hotel",d:false},
  {t:"Seguro de viaje",d:false},
- {t:"Traslados aeropuerto ↔ hotel",d:false},
- {t:"Guardar reservas y documentos offline",d:false},
- {t:"Revisar requisitos de entrada a República Dominicana",d:false},
- {t:"Tarjetas / efectivo / método de pago",d:false}
+ {t:"Confirmar traslados",d:false},
+ {t:"Guardar reservas offline",d:false},
+ {t:"Revisar requisitos migratorios",d:false}
 ],
+
 previo_salomon:[
- {t:"Verificar documentos de Salomón",d:false},
- {t:"Confirmar coche YOYO",d:false},
- {t:"Confirmar silla de auto",d:false},
- {t:"Medicamentos y artículos de cuidado",d:false},
- {t:"Snacks y entretenimiento para el vuelo",d:false},
- {t:"Ropa extra para traslados",d:false}
+ {t:"Documentos",d:false},
+ {t:"Coche YOYO",d:false},
+ {t:"Silla de auto",d:false},
+ {t:"Medicamentos",d:false},
+ {t:"Snacks para el vuelo",d:false},
+ {t:"Entretenimiento",d:false}
 ],
+
 previo_antonio:[
- {t:"Documentación de participación en la Barça Academy Cup",d:false},
- {t:"Confirmar cronograma oficial del torneo",d:false},
- {t:"Uniformes completos",d:false},
- {t:"Guayos y tenis",d:false},
- {t:"Canilleras y botella de agua",d:false},
- {t:"Llegar un día antes para aclimatación",d:false},
- {t:"Revisar alimentación e hidratación para días de partido",d:false}
+ {t:"Documentación del torneo",d:false},
+ {t:"Cronograma oficial",d:false},
+ {t:"Uniformes",d:false},
+ {t:"Guayos",d:false},
+ {t:"Canilleras",d:false},
+ {t:"Botella de agua",d:false},
+ {t:"Llegar un día antes para aclimatación",d:false}
 ],
+
 maleta_john:[
- {t:"Pasaporte / documentos",d:false},{t:"Ropa casual",d:false},{t:"Ropa interior",d:false},
- {t:"Zapatos / tenis",d:false},{t:"Cargadores",d:false},{t:"Power bank",d:false},
- {t:"Artículos de aseo",d:false},{t:"Protector solar",d:false}
+ {t:"Pasaporte",d:false},
+ {t:"Ropa",d:false},
+ {t:"Ropa interior",d:false},
+ {t:"Tenis / zapatos",d:false},
+ {t:"Cargadores",d:false},
+ {t:"Artículos de aseo",d:false}
 ],
-maleta_ani:[
- {t:"Pasaporte / documentos",d:false},{t:"Ropa casual",d:false},{t:"Ropa interior",d:false},
- {t:"Zapatos / sandalias",d:false},{t:"Cargadores",d:false},{t:"Artículos de aseo",d:false},
- {t:"Protector solar",d:false}
+
+maleta_esposa:[
+ {t:"Pasaporte",d:false},
+ {t:"Ropa",d:false},
+ {t:"Ropa interior",d:false},
+ {t:"Zapatos / sandalias",d:false},
+ {t:"Cargadores",d:false},
+ {t:"Artículos de aseo",d:false}
 ],
+
 maleta_salomon:[
- {t:"Documentos",d:false},{t:"Ropa por día + cambios extra",d:false},{t:"Pijama",d:false},
- {t:"Pañales / higiene",d:false},{t:"Coche YOYO",d:false},{t:"Silla de auto",d:false},
- {t:"Snacks / vaso / botella",d:false},{t:"Juguetes",d:false},{t:"Protector solar",d:false}
+ {t:"Documentos",d:false},
+ {t:"Ropa",d:false},
+ {t:"Cambios extra",d:false},
+ {t:"Pijama",d:false},
+ {t:"Pañales / higiene",d:false},
+ {t:"Coche YOYO",d:false},
+ {t:"Silla de auto",d:false},
+ {t:"Snacks",d:false},
+ {t:"Juguetes",d:false}
 ],
+
 maleta_antonio:[
- {t:"Pasaporte / documentos",d:false},{t:"Uniforme oficial",d:false},{t:"Uniforme de entrenamiento",d:false},
- {t:"Guayos",d:false},{t:"Tenis",d:false},{t:"Medias deportivas",d:false},
- {t:"Canilleras",d:false},{t:"Botella de agua",d:false},{t:"Ropa casual",d:false},
- {t:"Protector solar",d:false}
+ {t:"Pasaporte",d:false},
+ {t:"Uniforme oficial",d:false},
+ {t:"Uniforme entrenamiento",d:false},
+ {t:"Guayos",d:false},
+ {t:"Tenis",d:false},
+ {t:"Medias deportivas",d:false},
+ {t:"Canilleras",d:false},
+ {t:"Botella de agua",d:false},
+ {t:"Ropa casual",d:false}
 ],
+
 reservas:[
- {t:"Número de reserva de vuelos",d:false},
- {t:"Nombre y dirección del hotel",d:false},
- {t:"Reserva de traslados",d:false},
- {t:"Contacto Barça Academy / equipo",d:false}
+ {t:"Reserva vuelos",d:false},
+ {t:"Hotel / alojamiento",d:false},
+ {t:"Traslado aeropuerto",d:false},
+ {t:"Contacto Barça Academy",d:false}
 ],
+
 gastos:[]
+
 };
-let state=JSON.parse(localStorage.getItem("bacla_arh_state_v2")||"null")||structuredClone(defaults);
-for(const k in defaults)if(!(k in state))state[k]=structuredClone(defaults[k]);
-function save(){localStorage.setItem("bacla_arh_state_v2",JSON.stringify(state))}
-function money(n){return new Intl.NumberFormat("es-CO",{style:"currency",currency:"COP",maximumFractionDigits:0}).format(n)}
+
+let state=
+JSON.parse(localStorage.getItem("BACLA_ARH_V4")||"null")
+|| structuredClone(defaults);
+
+for(const k in defaults)
+ if(!(k in state))
+  state[k]=structuredClone(defaults[k]);
+
+function save(){
+ localStorage.setItem("BACLA_ARH_V4",JSON.stringify(state));
+}
+
+function money(n){
+ return new Intl.NumberFormat(
+  "es-CO",
+  {style:"currency",currency:"COP",maximumFractionDigits:0}
+ ).format(n);
+}
+
+/* PAGOS */
+
 function renderPayments(){
- const box=document.getElementById("milestones");box.innerHTML="";
+
+ const box=document.getElementById("milestones");
+ box.innerHTML="";
+
  state.payments.forEach((done,i)=>{
-  const b=document.createElement("button");b.className="milestone"+(done?" done":"");
-  b.innerHTML=`<div class="circle">${done?"✓":i+1}</div><small>${i===0?"Julio":"Pago "+(i+1)}</small>`;
-  b.onclick=()=>{state.payments[i]=!state.payments[i];save();renderPayments()};box.appendChild(b)
+
+  const b=document.createElement("button");
+  b.className="milestone"+(done?" done":"");
+
+  b.innerHTML=
+  `<div class="circle">${done?"✓":i+1}</div>
+   <small>${i===0?"Julio":"Pago "+(i+1)}</small>`;
+
+  b.onclick=()=>{
+   state.payments[i]=!state.payments[i];
+   save();
+   renderPayments();
+  };
+
+  box.appendChild(b);
  });
+
  const n=state.payments.filter(Boolean).length;
- document.getElementById("progressBar").style.width=(n/5*100)+"%";
- document.getElementById("paySummary").textContent=`${money(n*2500000)} / ${money(12500000)}`
+
+ document.getElementById("progressBar").style.width=(n*20)+"%";
+
+ document.getElementById("paySummary").textContent=
+ money(n*2500000)+" / "+money(12500000);
 }
+
+/* ELEMENTOS EDITABLES */
+
+function createItem(item,onChange,onDelete){
+
+ const row=document.createElement("div");
+ row.className="item"+(item.d?" done":"");
+
+ const check=document.createElement("input");
+ check.type="checkbox";
+ check.checked=item.d;
+
+ check.onchange=()=>{
+  item.d=check.checked;
+  save();
+  onChange();
+ };
+
+ const text=document.createElement("input");
+ text.className="txt";
+ text.value=item.t;
+
+ text.oninput=()=>{
+  item.t=text.value;
+  save();
+ };
+
+ const del=document.createElement("button");
+ del.className="delete";
+ del.textContent="×";
+ del.onclick=onDelete;
+
+ row.append(check,text,del);
+
+ return row;
+}
+
+/* AGENDA */
+
+function renderDays(){
+
+ const root=document.getElementById("days");
+ root.innerHTML="";
+
+ state.days.forEach((day,di)=>{
+
+  const box=document.createElement("div");
+  box.className="day";
+
+  const head=document.createElement("div");
+  head.className="dayhead";
+
+  const title=document.createElement("input");
+  title.className="day-title";
+  title.value=day.title;
+  title.placeholder="Nombre del día";
+
+  title.oninput=()=>{
+   day.title=title.value;
+   save();
+  };
+
+  const date=document.createElement("input");
+  date.className="day-date";
+  date.value=day.date||"";
+  date.placeholder="Fecha";
+
+  date.oninput=()=>{
+   day.date=date.value;
+   save();
+  };
+
+  head.append(title,date);
+  box.appendChild(head);
+
+  const list=document.createElement("div");
+  list.className="list";
+
+  day.items.forEach((item,ii)=>{
+
+   list.appendChild(
+    createItem(
+     item,
+     ()=>renderDays(),
+     ()=>{
+      day.items.splice(ii,1);
+      save();
+      renderDays();
+     }
+    )
+   );
+
+  });
+
+  box.appendChild(list);
+
+  const add=document.createElement("div");
+  add.className="addrow";
+
+  const input=document.createElement("input");
+  input.placeholder="Agregar actividad o pendiente...";
+
+  const plus=document.createElement("button");
+  plus.textContent="+";
+
+  function addActivity(){
+
+   const value=input.value.trim();
+
+   if(!value)return;
+
+   day.items.push({
+    t:value,
+    d:false
+   });
+
+   save();
+   renderDays();
+  }
+
+  plus.onclick=addActivity;
+
+  input.onkeydown=e=>{
+   if(e.key==="Enter")
+    addActivity();
+  };
+
+  add.append(input,plus);
+  box.appendChild(add);
+
+  const deleteDay=document.createElement("button");
+  deleteDay.className="ghost";
+  deleteDay.textContent="Eliminar día";
+
+  deleteDay.onclick=()=>{
+
+   if(confirm("¿Eliminar este día de la agenda?")){
+
+    state.days.splice(di,1);
+
+    save();
+    renderDays();
+   }
+  };
+
+  box.appendChild(deleteDay);
+
+  root.appendChild(box);
+
+ });
+
+}
+
+/* LISTAS */
+
 function renderList(key){
- const el=document.querySelector(`[data-list="${key}"]`);if(!el)return;el.innerHTML="";
- (state[key]||[]).forEach((it,i)=>{
-  const row=document.createElement("div");row.className="item"+(it.d?" done":"");
-  const c=document.createElement("input");c.type="checkbox";c.checked=it.d;c.onchange=()=>{it.d=c.checked;save();renderList(key)};
-  const t=document.createElement("input");t.className="txt";t.value=it.t;t.oninput=()=>{it.t=t.value;save()};
-  const d=document.createElement("button");d.className="delete";d.textContent="×";d.onclick=()=>{state[key].splice(i,1);save();renderList(key)};
-  row.append(c,t,d);el.appendChild(row)
- })
+
+ const el=document.querySelector(
+  `[data-list="${key}"]`
+ );
+
+ if(!el)return;
+
+ el.innerHTML="";
+
+ (state[key]||[]).forEach((item,i)=>{
+
+  el.appendChild(
+   createItem(
+    item,
+    ()=>renderList(key),
+    ()=>{
+     state[key].splice(i,1);
+     save();
+     renderList(key);
+    }
+   )
+  );
+
+ });
+
 }
-function renderAll(){renderPayments();Object.keys(state).filter(k=>k!=="payments").forEach(renderList)}
+
+function addGeneric(key){
+
+ const input=document.querySelector(
+  `[data-input="${key}"]`
+ );
+
+ const value=input.value.trim();
+
+ if(!value)return;
+
+ state[key].push({
+  t:value,
+  d:false
+ });
+
+ input.value="";
+
+ save();
+ renderList(key);
+}
+
+/* INICIO */
+
+function renderAll(){
+
+ renderPayments();
+ renderDays();
+
+ Object.keys(state)
+ .filter(k=>!["payments","days"].includes(k))
+ .forEach(renderList);
+}
+
 renderAll();
+
+/* AGREGAR DÍA */
+
+document.getElementById("addDay").onclick=()=>{
+
+ state.days.push({
+  title:"Nuevo día",
+  date:"",
+  items:[]
+ });
+
+ save();
+ renderDays();
+};
+
+/* BOTONES AGREGAR */
+
 document.querySelectorAll("[data-add]").forEach(btn=>{
- btn.onclick=()=>{const k=btn.dataset.add,inp=document.querySelector(`[data-input="${k}"]`),t=inp.value.trim();if(!t)return;state[k].push({t,d:false});inp.value="";save();renderList(k)}
+
+ btn.onclick=()=>{
+  addGeneric(btn.dataset.add);
+ };
+
 });
-document.querySelectorAll("[data-input]").forEach(inp=>inp.addEventListener("keydown",e=>{if(e.key==="Enter")document.querySelector(`[data-add="${inp.dataset.input}"]`).click()}));
-document.querySelectorAll(".tab").forEach(btn=>btn.onclick=()=>{
- document.querySelectorAll(".tab").forEach(x=>x.classList.remove("active"));document.querySelectorAll(".pane").forEach(x=>x.classList.remove("active"));
- btn.classList.add("active");document.getElementById(btn.dataset.pane).classList.add("active")
+
+document.querySelectorAll("[data-input]").forEach(input=>{
+
+ input.onkeydown=e=>{
+
+  if(e.key==="Enter")
+   addGeneric(input.dataset.input);
+
+ };
+
 });
-document.querySelectorAll(".subtab").forEach(btn=>btn.onclick=()=>{
- document.querySelectorAll(".subtab").forEach(x=>x.classList.remove("active"));document.querySelectorAll("#previo .section").forEach(x=>x.classList.remove("active"));
- btn.classList.add("active");document.getElementById(btn.dataset.section).classList.add("active")
+
+/* PESTAÑAS */
+
+document.querySelectorAll(".tab").forEach(btn=>{
+
+ btn.onclick=()=>{
+
+  document.querySelectorAll(".tab")
+  .forEach(x=>x.classList.remove("active"));
+
+  document.querySelectorAll(".pane")
+  .forEach(x=>x.classList.remove("active"));
+
+  btn.classList.add("active");
+
+  document
+  .getElementById(btn.dataset.pane)
+  .classList.add("active");
+
+ };
+
 });
-const people={john:"John",ani:"Ani",salomon:"Salomón",antonio:"Antonio"};
-document.querySelectorAll(".person-btn").forEach(btn=>btn.onclick=()=>{
- document.querySelectorAll(".person-btn").forEach(x=>x.classList.remove("active"));btn.classList.add("active");
- const k="maleta_"+btn.dataset.person;document.getElementById("packingTitle").textContent="Maleta · "+people[btn.dataset.person];
- const l=document.querySelector("#packingCard .list"),inp=document.querySelector("#packingCard [data-input]"),add=document.querySelector("#packingCard [data-add]");
- l.dataset.list=k;inp.dataset.input=k;add.dataset.add=k;
- add.onclick=()=>{const t=inp.value.trim();if(!t)return;state[k].push({t,d:false});inp.value="";save();renderList(k)};
- inp.onkeydown=e=>{if(e.key==="Enter")add.click()};renderList(k)
+
+/* PREVIO */
+
+document.querySelectorAll(".subtab").forEach(btn=>{
+
+ btn.onclick=()=>{
+
+  document.querySelectorAll(".subtab")
+  .forEach(x=>x.classList.remove("active"));
+
+  document.querySelectorAll("#previo .section")
+  .forEach(x=>x.classList.remove("active"));
+
+  btn.classList.add("active");
+
+  document
+  .getElementById(btn.dataset.section)
+  .classList.add("active");
+
+ };
+
 });
-const notes=document.getElementById("notes");notes.value=localStorage.getItem("bacla_arh_notes")||"";notes.oninput=()=>localStorage.setItem("bacla_arh_notes",notes.value);
+
+/* MALETA */
+
+const people={
+ john:"John",
+ esposa:"Esposa",
+ salomon:"Salomón",
+ antonio:"Antonio"
+};
+
+document.querySelectorAll(".person").forEach(btn=>{
+
+ btn.onclick=()=>{
+
+  document.querySelectorAll(".person")
+  .forEach(x=>x.classList.remove("active"));
+
+  btn.classList.add("active");
+
+  const key="maleta_"+btn.dataset.person;
+
+  document.getElementById("packingTitle")
+  .textContent="Maleta · "+people[btn.dataset.person];
+
+  const list=
+  document.querySelector("#packingCard .list");
+
+  const input=
+  document.querySelector("#packingCard [data-input]");
+
+  const add=
+  document.querySelector("#packingCard [data-add]");
+
+  list.dataset.list=key;
+  input.dataset.input=key;
+  add.dataset.add=key;
+
+  add.onclick=()=>addGeneric(key);
+
+  input.onkeydown=e=>{
+   if(e.key==="Enter")
+    addGeneric(key);
+  };
+
+  renderList(key);
+
+ };
+
+});
+
+/* NOTAS */
+
+const notes=document.getElementById("notes");
+
+notes.value=
+localStorage.getItem("BACLA_ARH_NOTES")||"";
+
+notes.oninput=()=>{
+
+ localStorage.setItem(
+  "BACLA_ARH_NOTES",
+  notes.value
+ );
+
+};
+
 </script>
 </body>
 </html>
