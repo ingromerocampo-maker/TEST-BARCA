@@ -14,7 +14,8 @@
 }
 *{box-sizing:border-box}
 body{
- margin:0;background:linear-gradient(180deg,#06101d,#0a1525 40%,#07111f);
+ margin:0;
+ background:linear-gradient(180deg,#06101d,#0a1525 40%,#07111f);
  color:var(--text);
  font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
  min-height:100vh
@@ -32,6 +33,17 @@ body{
  border-radius:18px;padding:14px;margin-bottom:13px
 }
 .card h2{font-size:16px;margin:0 0 10px}
+
+.sync{
+ display:flex;align-items:center;gap:7px;
+ font-size:11px;color:var(--muted);margin-top:5px
+}
+.dot{
+ width:8px;height:8px;border-radius:50%;
+ background:#f3c969;display:inline-block
+}
+.dot.ok{background:var(--ok)}
+.dot.err{background:var(--danger)}
 
 .tabs{
  display:flex;gap:6px;position:sticky;top:0;z-index:8;
@@ -51,7 +63,8 @@ body{
  overflow:hidden;margin:10px 0
 }
 .progress div{
- height:100%;background:linear-gradient(90deg,#2f80ed,#20c997)
+ height:100%;
+ background:linear-gradient(90deg,#2f80ed,#20c997)
 }
 .milestones{
  display:grid;grid-template-columns:repeat(5,1fr);gap:6px
@@ -62,11 +75,13 @@ body{
 }
 .milestone.done{border-color:#239b71;background:#0d2a25}
 .circle{
- width:24px;height:24px;border-radius:50%;display:grid;
- place-items:center;border:1px solid #415069;margin:auto
+ width:24px;height:24px;border-radius:50%;
+ display:grid;place-items:center;
+ border:1px solid #415069;margin:auto
 }
 .milestone.done .circle{
- background:var(--ok);border-color:var(--ok);color:#062217;font-weight:900
+ background:var(--ok);border-color:var(--ok);
+ color:#062217;font-weight:900
 }
 .milestone small{
  display:block;font-size:9px;color:var(--muted);margin-top:5px
@@ -146,12 +161,17 @@ textarea{
 </head>
 
 <body>
+
 <div class="app">
 
 <div class="hero">
  <div>
   <div class="title">BACLA ARH</div>
   <div class="subtitle">Agenda especial · Barça Academy Cup Las Américas 2026</div>
+  <div class="sync">
+   <span id="syncDot" class="dot"></span>
+   <span id="syncText">Conectando...</span>
+  </div>
  </div>
  <div class="badge">⚽ Viaje familiar</div>
 </div>
@@ -177,11 +197,8 @@ textarea{
  <button class="tab" data-pane="notas">Notas</button>
 </div>
 
-<!-- AGENDA -->
-
 <div id="agenda" class="pane active">
  <div class="card">
-
   <div style="display:flex;justify-content:space-between;align-items:center">
    <h2>Agenda día por día</h2>
    <button class="primary" id="addDay">+ Día</button>
@@ -192,11 +209,8 @@ textarea{
   </div>
 
   <div id="days"></div>
-
  </div>
 </div>
-
-<!-- PREVIO -->
 
 <div id="previo" class="pane">
 <div class="card">
@@ -237,8 +251,6 @@ textarea{
 </div>
 </div>
 
-<!-- MALETA -->
-
 <div id="maleta" class="pane">
 
 <div class="card">
@@ -264,8 +276,6 @@ textarea{
 </div>
 
 </div>
-
-<!-- VIAJE -->
 
 <div id="viaje" class="pane">
 
@@ -293,8 +303,6 @@ textarea{
 
 </div>
 
-<!-- NOTAS -->
-
 <div id="notas" class="pane">
 <div class="card">
  <h2>Notas del viaje</h2>
@@ -303,20 +311,47 @@ textarea{
  placeholder="Horarios, restaurantes, cambios, teléfonos, direcciones, recomendaciones..."></textarea>
 
  <div class="small" style="margin-top:8px">
-  Se guarda automáticamente.
+  Las notas también se sincronizan.
  </div>
 </div>
 </div>
 
 <div class="footer">
-BACLA ARH · Agenda editable · Guardado automático
+BACLA ARH · Agenda compartida · Sincronización Firebase
 </div>
 
 </div>
 
-<script>
+<script type="module">
 
-const defaults={
+import { initializeApp }
+from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
+
+import {
+ getFirestore,
+ doc,
+ getDoc,
+ setDoc,
+ onSnapshot
+}
+from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+
+const firebaseConfig = {
+ apiKey: "AIzaSyDxmawunxCVe7KI_dS-VHSxGlJk3Td5FFg",
+ authDomain: "bacla-arh.firebaseapp.com",
+ projectId: "bacla-arh",
+ storageBucket: "bacla-arh.firebasestorage.app",
+ messagingSenderId: "874707622741",
+ appId: "1:874707622741:web:20688eea06d47751b7addc",
+ measurementId: "G-XRFQ5QN58E"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+const sharedRef = doc(db,"bacla","agenda");
+
+const defaults = {
 
 payments:[true,false,false,false,false],
 
@@ -470,39 +505,82 @@ reservas:[
  {t:"Contacto Barça Academy",d:false}
 ],
 
-gastos:[]
+gastos:[],
+
+notes:""
 
 };
 
-let state=
-JSON.parse(localStorage.getItem("BACLA_ARH_V4")||"null")
-|| structuredClone(defaults);
+let state = structuredClone(defaults);
+let firebaseReady = false;
+let remoteUpdate = false;
+let saveTimer = null;
 
-for(const k in defaults)
- if(!(k in state))
-  state[k]=structuredClone(defaults[k]);
+function setSync(status,text){
 
-function save(){
- localStorage.setItem("BACLA_ARH_V4",JSON.stringify(state));
+ const dot=document.getElementById("syncDot");
+ const label=document.getElementById("syncText");
+
+ dot.className="dot";
+
+ if(status==="ok")dot.classList.add("ok");
+ if(status==="err")dot.classList.add("err");
+
+ label.textContent=text;
+
+}
+
+async function save(){
+
+ if(!firebaseReady || remoteUpdate)return;
+
+ clearTimeout(saveTimer);
+
+ setSync("","Guardando...");
+
+ saveTimer=setTimeout(async()=>{
+
+  try{
+
+   await setDoc(sharedRef,state);
+
+   setSync("ok","Sincronizado");
+
+  }catch(error){
+
+   console.error(error);
+
+   setSync("err","Error de sincronización");
+
+  }
+
+ },350);
+
 }
 
 function money(n){
+
  return new Intl.NumberFormat(
   "es-CO",
-  {style:"currency",currency:"COP",maximumFractionDigits:0}
+  {
+   style:"currency",
+   currency:"COP",
+   maximumFractionDigits:0
+  }
  ).format(n);
-}
 
-/* PAGOS */
+}
 
 function renderPayments(){
 
  const box=document.getElementById("milestones");
+
  box.innerHTML="";
 
  state.payments.forEach((done,i)=>{
 
   const b=document.createElement("button");
+
   b.className="milestone"+(done?" done":"");
 
   b.innerHTML=
@@ -510,12 +588,17 @@ function renderPayments(){
    <small>${i===0?"Julio":"Pago "+(i+1)}</small>`;
 
   b.onclick=()=>{
+
    state.payments[i]=!state.payments[i];
+
    save();
+
    renderPayments();
+
   };
 
   box.appendChild(b);
+
  });
 
  const n=state.payments.filter(Boolean).length;
@@ -524,35 +607,45 @@ function renderPayments(){
 
  document.getElementById("paySummary").textContent=
  money(n*2500000)+" / "+money(12500000);
-}
 
-/* ELEMENTOS EDITABLES */
+}
 
 function createItem(item,onChange,onDelete){
 
  const row=document.createElement("div");
+
  row.className="item"+(item.d?" done":"");
 
  const check=document.createElement("input");
+
  check.type="checkbox";
  check.checked=item.d;
 
  check.onchange=()=>{
+
   item.d=check.checked;
+
   save();
+
   onChange();
+
  };
 
  const text=document.createElement("input");
+
  text.className="txt";
  text.value=item.t;
 
  text.oninput=()=>{
+
   item.t=text.value;
+
   save();
+
  };
 
  const del=document.createElement("button");
+
  del.className="delete";
  del.textContent="×";
  del.onclick=onDelete;
@@ -560,61 +653,83 @@ function createItem(item,onChange,onDelete){
  row.append(check,text,del);
 
  return row;
-}
 
-/* AGENDA */
+}
 
 function renderDays(){
 
  const root=document.getElementById("days");
+
  root.innerHTML="";
 
  state.days.forEach((day,di)=>{
 
   const box=document.createElement("div");
+
   box.className="day";
 
   const head=document.createElement("div");
+
   head.className="dayhead";
 
   const title=document.createElement("input");
+
   title.className="day-title";
   title.value=day.title;
   title.placeholder="Nombre del día";
 
   title.oninput=()=>{
+
    day.title=title.value;
+
    save();
+
   };
 
   const date=document.createElement("input");
+
   date.className="day-date";
   date.value=day.date||"";
   date.placeholder="Fecha";
 
   date.oninput=()=>{
+
    day.date=date.value;
+
    save();
+
   };
 
   head.append(title,date);
+
   box.appendChild(head);
 
   const list=document.createElement("div");
+
   list.className="list";
 
   day.items.forEach((item,ii)=>{
 
    list.appendChild(
+
     createItem(
+
      item,
+
      ()=>renderDays(),
+
      ()=>{
+
       day.items.splice(ii,1);
+
       save();
+
       renderDays();
+
      }
+
     )
+
    );
 
   });
@@ -622,12 +737,15 @@ function renderDays(){
   box.appendChild(list);
 
   const add=document.createElement("div");
+
   add.className="addrow";
 
   const input=document.createElement("input");
+
   input.placeholder="Agregar actividad o pendiente...";
 
   const plus=document.createElement("button");
+
   plus.textContent="+";
 
   function addActivity(){
@@ -642,20 +760,25 @@ function renderDays(){
    });
 
    save();
+
    renderDays();
+
   }
 
   plus.onclick=addActivity;
 
   input.onkeydown=e=>{
-   if(e.key==="Enter")
-    addActivity();
+
+   if(e.key==="Enter")addActivity();
+
   };
 
   add.append(input,plus);
+
   box.appendChild(add);
 
   const deleteDay=document.createElement("button");
+
   deleteDay.className="ghost";
   deleteDay.textContent="Eliminar día";
 
@@ -666,8 +789,11 @@ function renderDays(){
     state.days.splice(di,1);
 
     save();
+
     renderDays();
+
    }
+
   };
 
   box.appendChild(deleteDay);
@@ -678,13 +804,9 @@ function renderDays(){
 
 }
 
-/* LISTAS */
-
 function renderList(key){
 
- const el=document.querySelector(
-  `[data-list="${key}"]`
- );
+ const el=document.querySelector(`[data-list="${key}"]`);
 
  if(!el)return;
 
@@ -693,15 +815,25 @@ function renderList(key){
  (state[key]||[]).forEach((item,i)=>{
 
   el.appendChild(
+
    createItem(
+
     item,
+
     ()=>renderList(key),
+
     ()=>{
+
      state[key].splice(i,1);
+
      save();
+
      renderList(key);
+
     }
+
    )
+
   );
 
  });
@@ -710,9 +842,9 @@ function renderList(key){
 
 function addGeneric(key){
 
- const input=document.querySelector(
-  `[data-input="${key}"]`
- );
+ const input=document.querySelector(`[data-input="${key}"]`);
+
+ if(!input)return;
 
  const value=input.value.trim();
 
@@ -726,24 +858,38 @@ function addGeneric(key){
  input.value="";
 
  save();
- renderList(key);
-}
 
-/* INICIO */
+ renderList(key);
+
+}
 
 function renderAll(){
 
  renderPayments();
+
  renderDays();
 
- Object.keys(state)
- .filter(k=>!["payments","days"].includes(k))
- .forEach(renderList);
+ [
+  "previo_familia",
+  "previo_salomon",
+  "previo_antonio",
+  "maleta_john",
+  "maleta_esposa",
+  "maleta_salomon",
+  "maleta_antonio",
+  "reservas",
+  "gastos"
+ ].forEach(renderList);
+
+ const notes=document.getElementById("notes");
+
+ if(notes && document.activeElement!==notes){
+
+  notes.value=state.notes||"";
+
+ }
+
 }
-
-renderAll();
-
-/* AGREGAR DÍA */
 
 document.getElementById("addDay").onclick=()=>{
 
@@ -754,15 +900,17 @@ document.getElementById("addDay").onclick=()=>{
  });
 
  save();
- renderDays();
-};
 
-/* BOTONES AGREGAR */
+ renderDays();
+
+};
 
 document.querySelectorAll("[data-add]").forEach(btn=>{
 
  btn.onclick=()=>{
+
   addGeneric(btn.dataset.add);
+
  };
 
 });
@@ -771,14 +919,15 @@ document.querySelectorAll("[data-input]").forEach(input=>{
 
  input.onkeydown=e=>{
 
-  if(e.key==="Enter")
+  if(e.key==="Enter"){
+
    addGeneric(input.dataset.input);
+
+  }
 
  };
 
 });
-
-/* PESTAÑAS */
 
 document.querySelectorAll(".tab").forEach(btn=>{
 
@@ -792,15 +941,12 @@ document.querySelectorAll(".tab").forEach(btn=>{
 
   btn.classList.add("active");
 
-  document
-  .getElementById(btn.dataset.pane)
+  document.getElementById(btn.dataset.pane)
   .classList.add("active");
 
  };
 
 });
-
-/* PREVIO */
 
 document.querySelectorAll(".subtab").forEach(btn=>{
 
@@ -814,15 +960,12 @@ document.querySelectorAll(".subtab").forEach(btn=>{
 
   btn.classList.add("active");
 
-  document
-  .getElementById(btn.dataset.section)
+  document.getElementById(btn.dataset.section)
   .classList.add("active");
 
  };
 
 });
-
-/* MALETA */
 
 const people={
  john:"John",
@@ -845,14 +988,9 @@ document.querySelectorAll(".person").forEach(btn=>{
   document.getElementById("packingTitle")
   .textContent="Maleta · "+people[btn.dataset.person];
 
-  const list=
-  document.querySelector("#packingCard .list");
-
-  const input=
-  document.querySelector("#packingCard [data-input]");
-
-  const add=
-  document.querySelector("#packingCard [data-add]");
+  const list=document.querySelector("#packingCard .list");
+  const input=document.querySelector("#packingCard [data-input]");
+  const add=document.querySelector("#packingCard [data-add]");
 
   list.dataset.list=key;
   input.dataset.input=key;
@@ -861,8 +999,9 @@ document.querySelectorAll(".person").forEach(btn=>{
   add.onclick=()=>addGeneric(key);
 
   input.onkeydown=e=>{
-   if(e.key==="Enter")
-    addGeneric(key);
+
+   if(e.key==="Enter")addGeneric(key);
+
   };
 
   renderList(key);
@@ -871,22 +1010,82 @@ document.querySelectorAll(".person").forEach(btn=>{
 
 });
 
-/* NOTAS */
-
 const notes=document.getElementById("notes");
-
-notes.value=
-localStorage.getItem("BACLA_ARH_NOTES")||"";
 
 notes.oninput=()=>{
 
- localStorage.setItem(
-  "BACLA_ARH_NOTES",
-  notes.value
- );
+ state.notes=notes.value;
+
+ save();
 
 };
 
+async function startFirebase(){
+
+ try{
+
+  setSync("","Conectando...");
+
+  const existing=await getDoc(sharedRef);
+
+  if(!existing.exists()){
+
+   await setDoc(sharedRef,defaults);
+
+  }
+
+  onSnapshot(
+
+   sharedRef,
+
+   snapshot=>{
+
+    if(!snapshot.exists())return;
+
+    remoteUpdate=true;
+
+    const data=snapshot.data();
+
+    state={
+     ...structuredClone(defaults),
+     ...data
+    };
+
+    renderAll();
+
+    remoteUpdate=false;
+
+    firebaseReady=true;
+
+    setSync("ok","Sincronizado");
+
+   },
+
+   error=>{
+
+    console.error(error);
+
+    setSync("err","Error de sincronización");
+
+   }
+
+  );
+
+ }catch(error){
+
+  console.error(error);
+
+  setSync("err","No se pudo conectar");
+
+ }
+
+}
+
+renderAll();
+
+startFirebase();
+
 </script>
+
 </body>
-</html>
+ </html>
