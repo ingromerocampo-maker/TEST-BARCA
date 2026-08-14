@@ -8,128 +8,710 @@
 
 <style>
 :root{
-  --navy:#07111f; --navy2:#0e1b2d; --card:#111f33; --line:#263a55;
-  --text:#f7f9fc; --muted:#9fb0c7; --blue:#3488f0; --green:#21c997;
-  --paper:#fffdf5; --paperLine:#d9e3ec; --ink:#2f2c27; --paperBorder:#d7caa9;
-  --danger:#d36d6d;
+  --navy:#07111f;
+  --card:#111f33;
+  --line:#263a55;
+  --text:#f7f9fc;
+  --muted:#9fb0c7;
+  --blue:#3488f0;
+  --green:#21c997;
+  --paper:#fffdf5;
+  --paperLine:#d9e3ec;
+  --ink:#2f2c27;
+  --paperBorder:#d7caa9;
 }
+
 *{box-sizing:border-box}
-html,body{margin:0;min-height:100%;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
+
+html,body{
+ margin:0;
+ min-height:100%;
+ font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif
+}
+
 button,input,select,textarea{font:inherit}
 button{cursor:pointer}
-.screen{display:none;min-height:100vh}
-.screen.active{display:block}
 
-/* MENU */
-#mainMenu{background:linear-gradient(180deg,#07111f,#0b1728);color:white;padding:max(24px,env(safe-area-inset-top)) 18px 40px}
-.mainWrap{max-width:760px;margin:auto}
-.brand{font-size:34px;font-weight:900;margin-top:20px}
-.brandSub{color:var(--muted);margin:5px 0 30px}
-.appGrid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-.appCard{border:1px solid var(--line);border-radius:24px;padding:22px;min-height:190px;background:linear-gradient(145deg,#10213a,#0c1727);color:white;text-align:left}
-.appCard.market{background:linear-gradient(145deg,#fffef7,#f3ecd9);color:#352f26;border-color:#d8caaa}
-.appIcon{font-size:44px;margin-bottom:22px}
-.appName{font-size:22px;font-weight:900}
-.appDesc{font-size:13px;line-height:1.45;color:var(--muted);margin-top:7px}
-.market .appDesc{color:#766b58}
-.footer{text-align:center;font-size:11px;color:#71839d;margin-top:25px}
+.screen{
+ display:none;
+ min-height:100vh
+}
+
+.screen.active{
+ display:block
+}
+
+/* MENU PRINCIPAL */
+
+#mainMenu{
+ background:linear-gradient(180deg,#07111f,#0b1728);
+ color:white;
+ padding:max(24px,env(safe-area-inset-top)) 18px 40px
+}
+
+.mainWrap{
+ max-width:760px;
+ margin:auto
+}
+
+.brand{
+ font-size:34px;
+ font-weight:900;
+ margin-top:20px
+}
+
+.brandSub{
+ color:var(--muted);
+ margin:5px 0 30px
+}
+
+.appGrid{
+ display:grid;
+ grid-template-columns:1fr 1fr;
+ gap:16px
+}
+
+.appCard{
+ border:1px solid var(--line);
+ border-radius:24px;
+ padding:22px;
+ min-height:190px;
+ background:linear-gradient(145deg,#10213a,#0c1727);
+ color:white;
+ text-align:left
+}
+
+.appCard.market{
+ background:linear-gradient(145deg,#fffef7,#f3ecd9);
+ color:#352f26;
+ border-color:#d8caaa
+}
+
+.appIcon{
+ font-size:44px;
+ margin-bottom:22px
+}
+
+.appName{
+ font-size:22px;
+ font-weight:900
+}
+
+.appDesc{
+ font-size:13px;
+ line-height:1.45;
+ color:var(--muted);
+ margin-top:7px
+}
+
+.market .appDesc{
+ color:#766b58
+}
+
+.footer{
+ text-align:center;
+ font-size:11px;
+ color:#71839d;
+ margin-top:25px
+}
 
 /* BACLA */
-#baclaApp{background:linear-gradient(180deg,#06101d,#0a1525 40%,#07111f);color:var(--text)}
-.baclaWrap{max-width:900px;margin:auto;padding:16px 14px 42px}
-.top{display:flex;gap:12px;align-items:center;margin-bottom:14px}
-.back{flex:none;width:44px;height:44px;border-radius:13px;border:1px solid var(--line);background:#0b1626;color:white;font-size:20px}
-.headTitle{font-size:26px;font-weight:900}
-.headSub{font-size:13px;color:var(--muted);margin-top:2px}
-.sync{display:flex;align-items:center;gap:6px;color:var(--muted);font-size:11px;margin-top:4px}
-.dot{width:8px;height:8px;border-radius:50%;background:#e1bf61}
+
+#baclaApp{
+ background:linear-gradient(180deg,#06101d,#0a1525 40%,#07111f);
+ color:var(--text)
+}
+
+.baclaWrap{
+ max-width:900px;
+ margin:auto;
+ padding:16px 14px 42px
+}
+
+.top{
+ display:flex;
+ gap:12px;
+ align-items:center;
+ margin-bottom:14px
+}
+
+.back{
+ flex:none;
+ width:44px;
+ height:44px;
+ border-radius:13px;
+ border:1px solid var(--line);
+ background:#0b1626;
+ color:white;
+ font-size:20px
+}
+
+.headTitle{
+ font-size:26px;
+ font-weight:900
+}
+
+.headSub{
+ font-size:13px;
+ color:var(--muted);
+ margin-top:2px
+}
+
+.sync{
+ display:flex;
+ align-items:center;
+ gap:6px;
+ color:var(--muted);
+ font-size:11px;
+ margin-top:4px
+}
+
+.dot{
+ width:8px;
+ height:8px;
+ border-radius:50%;
+ background:#e1bf61
+}
+
 .dot.ok{background:var(--green)}
 .dot.err{background:#ff6b76}
 
-.tabs{display:flex;gap:7px;overflow:auto;position:sticky;top:0;z-index:10;background:var(--navy);padding:8px 0 11px}
-.tab{flex:0 0 auto;min-width:76px;border:1px solid var(--line);border-radius:12px;background:#0b1626;color:#b4c1d3;padding:11px 12px;font-weight:800;font-size:12px}
-.tab.active{background:#1b3d68;color:white;border-color:var(--blue)}
+.tabs{
+ display:flex;
+ gap:7px;
+ overflow:auto;
+ position:sticky;
+ top:0;
+ z-index:10;
+ background:var(--navy);
+ padding:8px 0 11px
+}
+
+.tab{
+ flex:0 0 auto;
+ min-width:76px;
+ border:1px solid var(--line);
+ border-radius:12px;
+ background:#0b1626;
+ color:#b4c1d3;
+ padding:11px 12px;
+ font-weight:800;
+ font-size:12px
+}
+
+.tab.active{
+ background:#1b3d68;
+ color:white;
+ border-color:var(--blue)
+}
+
 .pane{display:none}
 .pane.active{display:block}
-.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:15px;margin-bottom:13px}
-.card h2{font-size:17px;margin:0 0 10px}
-.small{font-size:12px;color:var(--muted)}
 
-.tripFacts{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
-.fact{background:#0b1626;border:1px solid var(--line);border-radius:13px;padding:11px}
-.factLabel{font-size:10px;color:var(--muted)}
-.factValue{font-size:15px;font-weight:900;margin-top:3px}
+.card{
+ background:var(--card);
+ border:1px solid var(--line);
+ border-radius:18px;
+ padding:15px;
+ margin-bottom:13px
+}
+
+.card h2{
+ font-size:17px;
+ margin:0 0 10px
+}
+
+.small{
+ font-size:12px;
+ color:var(--muted)
+}
+
+.tripFacts{
+ display:grid;
+ grid-template-columns:repeat(3,1fr);
+ gap:8px
+}
+
+.fact{
+ background:#0b1626;
+ border:1px solid var(--line);
+ border-radius:13px;
+ padding:11px
+}
+
+.factLabel{
+ font-size:10px;
+ color:var(--muted)
+}
+
+.factValue{
+ font-size:15px;
+ font-weight:900;
+ margin-top:3px
+}
 
 /* PAGOS */
-.progress{height:10px;border-radius:999px;background:#1a2940;overflow:hidden;margin:10px 0}
-.progress>div{height:100%;background:linear-gradient(90deg,var(--blue),var(--green))}
-.milestones{display:grid;grid-template-columns:repeat(5,1fr);gap:6px}
-.milestone{border:1px solid var(--line);background:#0b1626;color:white;border-radius:11px;padding:8px 4px;text-align:center}
-.milestone.done{background:#0d2a25;border-color:#278d6b}
-.circle{width:24px;height:24px;margin:auto;border-radius:50%;border:1px solid #485a74;display:grid;place-items:center}
-.milestone.done .circle{background:var(--green);border-color:var(--green);color:#062217;font-weight:900}
-.milestone small{display:block;margin-top:4px;color:var(--muted);font-size:9px}
 
-/* AGENDA SIMPLE */
-.dayCard{background:#0b1626;border:1px solid var(--line);border-radius:16px;margin-bottom:12px;overflow:hidden}
-.dayHeader{padding:13px 14px;border-bottom:1px solid var(--line);display:flex;gap:10px;align-items:center}
-.dayDateBox{width:54px;min-width:54px;text-align:center;background:#142943;border-radius:11px;padding:7px 4px}
-.dayNum{font-size:22px;font-weight:900;line-height:1}
-.dayMon{font-size:10px;color:#b7c5d8;margin-top:3px;text-transform:uppercase}
-.dayInfo{flex:1;min-width:0}
-.dayTitleInput{width:100%;border:none;background:transparent;color:white;font-size:16px;font-weight:900;outline:none}
-.dayDateInput{border:none;background:transparent;color:var(--muted);font-size:11px;outline:none;margin-top:4px}
-.checkRows{padding:8px 10px}
-.checkRow{display:flex;align-items:center;gap:10px;min-height:48px;border-bottom:1px solid rgba(38,58,85,.65)}
-.checkRow:last-child{border-bottom:none}
-.checkRow input[type=checkbox]{width:22px;height:22px;accent-color:var(--green);flex:none}
-.checkText{flex:1;border:none;background:transparent;color:white;outline:none;font-size:15px;min-width:0}
-.checkRow.done .checkText{text-decoration:line-through;color:#718099}
-.delete{border:none;background:transparent;color:#7f91a9;font-size:21px;padding:6px}
-.dayAdd{display:flex;gap:8px;padding:10px;border-top:1px solid var(--line)}
-.dayAdd input{flex:1;min-width:0;background:#091423;border:1px solid var(--line);border-radius:10px;padding:11px;color:white;outline:none}
-.primary{border:none;border-radius:10px;background:var(--blue);color:white;font-weight:800;padding:10px 14px}
-.dangerBtn{margin:0 10px 10px;border:1px solid var(--line);background:#0c192a;color:#ff9ca4;border-radius:9px;padding:8px 10px;font-size:12px;font-weight:700}
-.addDayBtn{width:100%;padding:12px;border:1px dashed #496582;border-radius:12px;background:#0b1626;color:#bcd0e7;font-weight:800}
+.progress{
+ height:10px;
+ border-radius:999px;
+ background:#1a2940;
+ overflow:hidden;
+ margin:10px 0
+}
+
+.progress>div{
+ height:100%;
+ background:linear-gradient(90deg,var(--blue),var(--green))
+}
+
+.milestones{
+ display:grid;
+ grid-template-columns:repeat(5,1fr);
+ gap:6px
+}
+
+.milestone{
+ border:1px solid var(--line);
+ background:#0b1626;
+ color:white;
+ border-radius:11px;
+ padding:8px 4px;
+ text-align:center
+}
+
+.milestone.done{
+ background:#0d2a25;
+ border-color:#278d6b
+}
+
+.circle{
+ width:24px;
+ height:24px;
+ margin:auto;
+ border-radius:50%;
+ border:1px solid #485a74;
+ display:grid;
+ place-items:center
+}
+
+.milestone.done .circle{
+ background:var(--green);
+ border-color:var(--green);
+ color:#062217;
+ font-weight:900
+}
+
+.milestone small{
+ display:block;
+ margin-top:4px;
+ color:var(--muted);
+ font-size:9px
+}
+
+/* AGENDA */
+
+.dayCard{
+ background:#0b1626;
+ border:1px solid var(--line);
+ border-radius:16px;
+ margin-bottom:12px;
+ overflow:hidden
+}
+
+.dayHeader{
+ padding:13px 14px;
+ border-bottom:1px solid var(--line);
+ display:flex;
+ gap:10px;
+ align-items:center
+}
+
+.dayDateBox{
+ width:54px;
+ min-width:54px;
+ text-align:center;
+ background:#142943;
+ border-radius:11px;
+ padding:7px 4px
+}
+
+.dayNum{
+ font-size:22px;
+ font-weight:900;
+ line-height:1
+}
+
+.dayMon{
+ font-size:10px;
+ color:#b7c5d8;
+ margin-top:3px;
+ text-transform:uppercase
+}
+
+.dayInfo{
+ flex:1;
+ min-width:0
+}
+
+.dayTitleInput{
+ width:100%;
+ border:none;
+ background:transparent;
+ color:white;
+ font-size:16px;
+ font-weight:900;
+ outline:none
+}
+
+.dayDateInput{
+ border:none;
+ background:transparent;
+ color:var(--muted);
+ font-size:11px;
+ outline:none;
+ margin-top:4px
+}
+
+.checkRows{
+ padding:8px 10px
+}
+
+.checkRow{
+ display:flex;
+ align-items:center;
+ gap:10px;
+ min-height:48px;
+ border-bottom:1px solid rgba(38,58,85,.65)
+}
+
+.checkRow:last-child{
+ border-bottom:none
+}
+
+.checkRow input[type=checkbox]{
+ width:22px;
+ height:22px;
+ accent-color:var(--green);
+ flex:none
+}
+
+.checkText{
+ flex:1;
+ border:none;
+ background:transparent;
+ color:white;
+ outline:none;
+ font-size:15px;
+ min-width:0
+}
+
+.checkRow.done .checkText{
+ text-decoration:line-through;
+ color:#718099
+}
+
+.delete{
+ border:none;
+ background:transparent;
+ color:#7f91a9;
+ font-size:21px;
+ padding:6px
+}
+
+.dayAdd{
+ display:flex;
+ gap:8px;
+ padding:10px;
+ border-top:1px solid var(--line)
+}
+
+.dayAdd input{
+ flex:1;
+ min-width:0;
+ background:#091423;
+ border:1px solid var(--line);
+ border-radius:10px;
+ padding:11px;
+ color:white;
+ outline:none
+}
+
+.primary{
+ border:none;
+ border-radius:10px;
+ background:var(--blue);
+ color:white;
+ font-weight:800;
+ padding:10px 14px
+}
+
+.dangerBtn{
+ margin:0 10px 10px;
+ border:1px solid var(--line);
+ background:#0c192a;
+ color:#ff9ca4;
+ border-radius:9px;
+ padding:8px 10px;
+ font-size:12px;
+ font-weight:700
+}
+
+.addDayBtn{
+ width:100%;
+ padding:12px;
+ border:1px dashed #496582;
+ border-radius:12px;
+ background:#0b1626;
+ color:#bcd0e7;
+ font-weight:800
+}
 
 /* LISTAS */
-.subtabs,.people{display:flex;gap:7px;overflow:auto;margin-bottom:10px}
-.subtab,.person{border:1px solid var(--line);background:#0b1626;color:#b2c0d1;border-radius:999px;padding:8px 12px;white-space:nowrap}
-.subtab.active,.person.active{background:#213958;color:white;border-color:#4b7098}
+
+.subtabs,.people{
+ display:flex;
+ gap:7px;
+ overflow:auto;
+ margin-bottom:10px
+}
+
+.subtab,.person{
+ border:1px solid var(--line);
+ background:#0b1626;
+ color:#b2c0d1;
+ border-radius:999px;
+ padding:8px 12px;
+ white-space:nowrap
+}
+
+.subtab.active,.person.active{
+ background:#213958;
+ color:white;
+ border-color:#4b7098
+}
+
 .section{display:none}
 .section.active{display:block}
-.list{display:flex;flex-direction:column;gap:8px}
-.item{display:flex;align-items:center;gap:9px;background:#091423;border:1px solid var(--line);border-radius:11px;padding:9px 10px}
-.item input[type=checkbox]{width:21px;height:21px;accent-color:var(--green)}
-.txt{flex:1;border:none;background:transparent;color:white;outline:none;min-width:0;font-size:14px}
-.item.done .txt{text-decoration:line-through;color:#718099}
-.addrow{display:flex;gap:8px;margin-top:9px}
-.addrow input{flex:1;min-width:0;background:#091423;border:1px solid var(--line);border-radius:10px;padding:11px;color:white;outline:none}
-textarea{width:100%;min-height:150px;background:#091423;border:1px solid var(--line);border-radius:11px;color:white;padding:11px;outline:none}
+
+.list{
+ display:flex;
+ flex-direction:column;
+ gap:8px
+}
+
+.item{
+ display:flex;
+ align-items:center;
+ gap:9px;
+ background:#091423;
+ border:1px solid var(--line);
+ border-radius:11px;
+ padding:9px 10px
+}
+
+.item input[type=checkbox]{
+ width:21px;
+ height:21px;
+ accent-color:var(--green)
+}
+
+.txt{
+ flex:1;
+ border:none;
+ background:transparent;
+ color:white;
+ outline:none;
+ min-width:0;
+ font-size:14px
+}
+
+.item.done .txt{
+ text-decoration:line-through;
+ color:#718099
+}
+
+.addrow{
+ display:flex;
+ gap:8px;
+ margin-top:9px
+}
+
+.addrow input{
+ flex:1;
+ min-width:0;
+ background:#091423;
+ border:1px solid var(--line);
+ border-radius:10px;
+ padding:11px;
+ color:white;
+ outline:none
+}
+
+textarea{
+ width:100%;
+ min-height:150px;
+ background:#091423;
+ border:1px solid var(--line);
+ border-radius:11px;
+ color:white;
+ padding:11px;
+ outline:none
+}
 
 /* GASTOS */
-.expenseTotal{background:#102849;border:1px solid #2a4b73;border-radius:15px;padding:15px;margin-bottom:12px}
-.expenseTotal .v{font-size:28px;font-weight:900;margin-top:3px}
-.budgetRow{display:flex;gap:8px}
-.budgetRow input{flex:1;min-width:0;background:#091423;border:1px solid var(--line);border-radius:10px;color:white;padding:11px}
-.expenseRow{display:grid;grid-template-columns:1fr 120px 34px;gap:7px;background:#091423;border:1px solid var(--line);border-radius:11px;padding:9px;margin-bottom:8px}
-.expenseRow input{width:100%;min-width:0;background:transparent;border:none;color:white;outline:none}
-.expenseMeta{grid-column:1/3;display:flex;gap:8px}
-.expenseMeta select{flex:1;min-width:0;background:#101f33;border:1px solid var(--line);color:white;border-radius:8px;padding:8px}
-.expenseAdd{display:grid;grid-template-columns:1fr 120px 48px;gap:7px;margin-top:10px}
-.expenseAdd input{width:100%;min-width:0;background:#091423;border:1px solid var(--line);border-radius:10px;color:white;padding:10px}
-.expenseAdd select{background:#091423;border:1px solid var(--line);border-radius:10px;color:white;padding:10px}
-.expenseAdd .meta{grid-column:1/3;display:flex;gap:7px}
+
+.expenseTotal{
+ background:#102849;
+ border:1px solid #2a4b73;
+ border-radius:15px;
+ padding:15px;
+ margin-bottom:12px
+}
+
+.expenseTotal .v{
+ font-size:28px;
+ font-weight:900;
+ margin-top:3px
+}
+
+.budgetRow{
+ display:flex;
+ gap:8px
+}
+
+.budgetRow input{
+ flex:1;
+ min-width:0;
+ background:#091423;
+ border:1px solid var(--line);
+ border-radius:10px;
+ color:white;
+ padding:11px
+}
+
+.expenseRow{
+ display:grid;
+ grid-template-columns:1fr 120px 34px;
+ gap:7px;
+ background:#091423;
+ border:1px solid var(--line);
+ border-radius:11px;
+ padding:9px;
+ margin-bottom:8px
+}
+
+.expenseRow input{
+ width:100%;
+ min-width:0;
+ background:transparent;
+ border:none;
+ color:white;
+ outline:none
+}
+
+.expenseMeta{
+ grid-column:1/3;
+ display:flex;
+ gap:8px
+}
+
+.expenseMeta select{
+ flex:1;
+ min-width:0;
+ background:#101f33;
+ border:1px solid var(--line);
+ color:white;
+ border-radius:8px;
+ padding:8px
+}
+
+.expenseAdd{
+ display:grid;
+ grid-template-columns:1fr 120px 48px;
+ gap:7px;
+ margin-top:10px
+}
+
+.expenseAdd input{
+ width:100%;
+ min-width:0;
+ background:#091423;
+ border:1px solid var(--line);
+ border-radius:10px;
+ color:white;
+ padding:10px
+}
+
+.expenseAdd select{
+ background:#091423;
+ border:1px solid var(--line);
+ border-radius:10px;
+ color:white;
+ padding:10px
+}
+
+.expenseAdd .meta{
+ grid-column:1/3;
+ display:flex;
+ gap:7px
+}
 
 /* MERCADO */
-#marketApp{background:#f4eedc;color:var(--ink)}
-.marketWrap{max-width:760px;margin:auto;padding:max(15px,env(safe-area-inset-top)) 14px 36px}
-.marketTop{display:flex;align-items:center;gap:10px;margin-bottom:13px}
-.marketBack{width:44px;height:44px;border-radius:50%;border:1px solid var(--paperBorder);background:#fffdf5;color:#4f473b;font-size:20px}
-.marketHeading{flex:1;min-width:0}
-.marketTitle{font-size:27px;font-weight:900;line-height:1}
-.marketSub{font-size:12px;color:#7f735f;margin-top:4px}
-.clearBtn{border:1px solid var(--paperBorder);background:#fffaf0;color:#705f50;border-radius:10px;padding:9px 10px;font-size:12px}
+
+#marketApp{
+ background:#f4eedc;
+ color:var(--ink)
+}
+
+.marketWrap{
+ max-width:760px;
+ margin:auto;
+ padding:max(15px,env(safe-area-inset-top)) 14px 36px
+}
+
+.marketTop{
+ display:flex;
+ align-items:center;
+ gap:10px;
+ margin-bottom:13px
+}
+
+.marketBack{
+ width:44px;
+ height:44px;
+ border-radius:50%;
+ border:1px solid var(--paperBorder);
+ background:#fffdf5;
+ color:#4f473b;
+ font-size:20px
+}
+
+.marketHeading{
+ flex:1;
+ min-width:0
+}
+
+.marketTitle{
+ font-size:27px;
+ font-weight:900;
+ line-height:1
+}
+
+.marketSub{
+ font-size:12px;
+ color:#7f735f;
+ margin-top:4px
+}
+
+.clearBtn{
+ border:1px solid var(--paperBorder);
+ background:#fffaf0;
+ color:#705f50;
+ border-radius:10px;
+ padding:9px 10px;
+ font-size:12px
+}
 
 .notebook{
  position:relative;
@@ -146,6 +728,7 @@ textarea{width:100%;min-height:150px;background:#091423;border:1px solid var(--l
  overflow:hidden;
  box-shadow:0 10px 25px rgba(91,76,48,.12)
 }
+
 .notebook:before{
  content:"";
  position:absolute;
@@ -155,93 +738,276 @@ textarea{width:100%;min-height:150px;background:#091423;border:1px solid var(--l
  width:2px;
  background:rgba(214,104,104,.40)
 }
-.marketSummary{display:flex;gap:8px;margin-bottom:18px;position:relative;z-index:1}
-.summaryBox{background:#fffdf5;border:1px solid var(--paperBorder);border-radius:10px;padding:8px 11px}
-.summaryBox .l{font-size:10px;color:#837660}
-.summaryBox .v{font-size:17px;font-weight:900}
 
-.marketCategory{position:relative;z-index:1;margin-bottom:22px}
-.categoryHead{display:flex;align-items:center;gap:8px;min-height:42px}
+.marketSummary{
+ display:flex;
+ gap:8px;
+ margin-bottom:18px;
+ position:relative;
+ z-index:1
+}
+
+.summaryBox{
+ background:#fffdf5;
+ border:1px solid var(--paperBorder);
+ border-radius:10px;
+ padding:8px 11px
+}
+
+.summaryBox .l{
+ font-size:10px;
+ color:#837660
+}
+
+.summaryBox .v{
+ font-size:17px;
+ font-weight:900
+}
+
+.marketCategory{
+ position:relative;
+ z-index:1;
+ margin-bottom:22px
+}
+
+.categoryHead{
+ display:flex;
+ align-items:center;
+ gap:8px;
+ min-height:42px
+}
+
 .categoryName{
- flex:1;min-width:0;border:none;background:rgba(255,253,245,.94);
- color:#332e27;font-size:19px;font-weight:900;
- padding:5px 7px;border-radius:6px;outline:none
+ flex:1;
+ min-width:0;
+ border:none;
+ background:rgba(255,253,245,.94);
+ color:#332e27;
+ font-size:19px;
+ font-weight:900;
+ padding:5px 7px;
+ border-radius:6px;
+ outline:none
 }
-.categoryDelete{border:none;background:transparent;color:#aa7671;font-size:18px}
 
-.marketItem{display:flex;align-items:center;gap:10px;min-height:42px;padding:0 5px}
-.marketItem input[type=checkbox]{width:23px;height:23px;accent-color:#5e8869;flex:none}
+.categoryDelete{
+ border:none;
+ background:transparent;
+ color:#aa7671;
+ font-size:18px
+}
+
+.marketItem{
+ display:flex;
+ align-items:center;
+ gap:10px;
+ min-height:42px;
+ padding:0 5px
+}
+
+.marketItem input[type=checkbox]{
+ width:23px;
+ height:23px;
+ accent-color:#5e8869;
+ flex:none
+}
+
 .marketItemText{
- flex:1;min-width:0;border:none;background:rgba(255,253,245,.82);
- color:#302b25;padding:7px 5px;outline:none;
- font-size:16px;font-weight:600
+ flex:1;
+ min-width:0;
+ border:none;
+ background:rgba(255,253,245,.82);
+ color:#302b25;
+ padding:7px 5px;
+ outline:none;
+ font-size:16px;
+ font-weight:600
 }
-.marketItem.checked .marketItemText{text-decoration:line-through;color:#999286}
-.marketDelete{border:none;background:transparent;color:#ad8982;font-size:20px}
 
-.marketAdd{display:flex;gap:8px;align-items:center;min-height:42px;padding:0 5px}
+.marketItem.checked .marketItemText{
+ text-decoration:line-through;
+ color:#999286
+}
+
+.marketDelete{
+ border:none;
+ background:transparent;
+ color:#ad8982;
+ font-size:20px
+}
+
+.marketAdd{
+ display:flex;
+ gap:8px;
+ align-items:center;
+ min-height:42px;
+ padding:0 5px
+}
+
 .marketAdd input{
- flex:1;min-width:0;border:none;border-bottom:1px dashed #a99b80;
- background:rgba(255,253,245,.82);color:#3b352c;
- padding:8px 6px;outline:none;font-size:16px
+ flex:1;
+ min-width:0;
+ border:none;
+ border-bottom:1px dashed #a99b80;
+ background:rgba(255,253,245,.82);
+ color:#3b352c;
+ padding:8px 6px;
+ outline:none;
+ font-size:16px
 }
-.marketPlus{width:36px;height:36px;border:none;border-radius:50%;background:#678d6d;color:white;font-size:22px;font-weight:800}
 
-.addCategory{position:relative;z-index:1;margin-top:8px;padding-top:16px;border-top:1px dashed #b9aa8d}
-.addCategory input{width:100%;border:1px solid var(--paperBorder);background:#fffdf5;border-radius:10px;padding:12px;color:#40382d;outline:none;font-size:16px}
-.addCategory button{width:100%;margin-top:8px;border:none;border-radius:10px;background:#5f594b;color:white;font-weight:800;padding:12px;font-size:15px}
+.marketPlus{
+ width:36px;
+ height:36px;
+ border:none;
+ border-radius:50%;
+ background:#678d6d;
+ color:white;
+ font-size:22px;
+ font-weight:800
+}
+
+.addCategory{
+ position:relative;
+ z-index:1;
+ margin-top:8px;
+ padding-top:16px;
+ border-top:1px dashed #b9aa8d
+}
+
+.addCategory input{
+ width:100%;
+ border:1px solid var(--paperBorder);
+ background:#fffdf5;
+ border-radius:10px;
+ padding:12px;
+ color:#40382d;
+ outline:none;
+ font-size:16px
+}
+
+.addCategory button{
+ width:100%;
+ margin-top:8px;
+ border:none;
+ border-radius:10px;
+ background:#5f594b;
+ color:white;
+ font-weight:800;
+ padding:12px;
+ font-size:15px
+}
 
 @media(max-width:650px){
- .appGrid{grid-template-columns:1fr}
- .tripFacts{grid-template-columns:1fr 1fr}
- .milestones{grid-template-columns:repeat(5,minmax(55px,1fr));overflow:auto}
- .expenseRow{grid-template-columns:1fr 105px 32px}
- .expenseAdd{grid-template-columns:1fr 105px 46px}
+
+ .appGrid{
+  grid-template-columns:1fr
+ }
+
+ .tripFacts{
+  grid-template-columns:1fr 1fr
+ }
+
+ .milestones{
+  grid-template-columns:repeat(5,minmax(55px,1fr));
+  overflow:auto
+ }
+
+ .expenseRow{
+  grid-template-columns:1fr 105px 32px
+ }
+
+ .expenseAdd{
+  grid-template-columns:1fr 105px 46px
+ }
+
 }
 </style>
 </head>
 
 <body>
 
-<!-- MENU PRINCIPAL -->
 <div id="mainMenu" class="screen active">
+
  <div class="mainWrap">
 
-  <div class="brand">Familia ARH</div>
-  <div class="brandSub">Nuestro espacio familiar</div>
+  <div class="brand">
+   Familia ARH
+  </div>
+
+  <div class="brandSub">
+   Nuestro espacio familiar
+  </div>
 
   <div class="appGrid">
 
-   <button class="appCard" onclick="openScreen('baclaApp')">
-    <div class="appIcon">⚽</div>
-    <div class="appName">BACLA ARH</div>
-    <div class="appDesc">Viaje, torneo, pendientes, maletas, reservas y gastos.</div>
+   <button
+    class="appCard"
+    onclick="openScreen('baclaApp')">
+
+    <div class="appIcon">
+     ⚽
+    </div>
+
+    <div class="appName">
+     BACLA ARH
+    </div>
+
+    <div class="appDesc">
+     Viaje, torneo, pendientes, maletas, reservas y gastos.
+    </div>
+
    </button>
 
-   <button class="appCard market" onclick="openScreen('marketApp')">
-    <div class="appIcon">🛒</div>
-    <div class="appName">Mercado Familiar</div>
-    <div class="appDesc">Lista compartida, clara y rápida para usar mientras hacen mercado.</div>
+   <button
+    class="appCard market"
+    onclick="openScreen('marketApp')">
+
+    <div class="appIcon">
+     🛒
+    </div>
+
+    <div class="appName">
+     Mercado Familiar
+    </div>
+
+    <div class="appDesc">
+     Lista compartida, clara y rápida para usar mientras hacen mercado.
+    </div>
+
    </button>
 
   </div>
 
-  <div class="footer">Familia ARH · Datos compartidos con Firebase</div>
+  <div class="footer">
+   Familia ARH · Datos compartidos con Firebase
+  </div>
 
  </div>
+
 </div>
 
-<!-- BACLA -->
 <div id="baclaApp" class="screen">
+
  <div class="baclaWrap">
 
   <div class="top">
 
-   <button class="back" onclick="openScreen('mainMenu')">←</button>
+   <button
+    class="back"
+    onclick="openScreen('mainMenu')">
+    ←
+   </button>
 
    <div style="flex:1">
-    <div class="headTitle">BACLA ARH</div>
-    <div class="headSub">Cap Cana · República Dominicana · 2026</div>
+
+    <div class="headTitle">
+     BACLA ARH
+    </div>
+
+    <div class="headSub">
+     Cap Cana · República Dominicana · 2026
+    </div>
 
     <div class="sync">
      <span id="syncDot" class="dot"></span>
@@ -253,22 +1019,43 @@ textarea{width:100%;min-height:150px;background:#091423;border:1px solid var(--l
   </div>
 
   <div class="tabs">
-   <button class="tab active" data-pane="agenda">Agenda</button>
-   <button class="tab" data-pane="previo">Previo</button>
-   <button class="tab" data-pane="maleta">Maleta</button>
-   <button class="tab" data-pane="viaje">Viaje</button>
-   <button class="tab" data-pane="gastos">Gastos</button>
-   <button class="tab" data-pane="notas">Notas</button>
+
+   <button class="tab active" data-pane="agenda">
+    Agenda
+   </button>
+
+   <button class="tab" data-pane="previo">
+    Previo
+   </button>
+
+   <button class="tab" data-pane="maleta">
+    Maleta
+   </button>
+
+   <button class="tab" data-pane="viaje">
+    Viaje
+   </button>
+
+   <button class="tab" data-pane="gastos">
+    Gastos
+   </button>
+
+   <button class="tab" data-pane="notas">
+    Notas
+   </button>
+
   </div>
 
-  <!-- AGENDA -->
   <div id="agenda" class="pane active">
 
    <div class="card">
 
-    <h2>Información clave</h2>
+    <h2>
+     Información clave
+    </h2>
 
     <div class="tripFacts">
+
      <div class="fact">
       <div class="factLabel">LLEGADA</div>
       <div class="factValue">9 Dic</div>
@@ -283,10 +1070,12 @@ textarea{width:100%;min-height:150px;background:#091423;border:1px solid var(--l
       <div class="factLabel">SEDE</div>
       <div class="factValue">The Fields</div>
      </div>
+
     </div>
 
     <div class="small" style="margin-top:10px">
-     Partidos previstos entre 9:00 a. m. y 2:00 p. m. según programación oficial.
+     Partidos previstos entre 9:00 a. m. y 2:00 p. m.
+     según programación oficial.
     </div>
 
    </div>
@@ -296,8 +1085,15 @@ textarea{width:100%;min-height:150px;background:#091423;border:1px solid var(--l
     <div style="display:flex;justify-content:space-between;align-items:center;gap:8px">
 
      <div>
-      <h2 style="margin-bottom:3px">Pagos</h2>
-      <div class="small">5 hitos × $2.500.000 COP</div>
+
+      <h2 style="margin-bottom:3px">
+       Pagos
+      </h2>
+
+      <div class="small">
+       5 hitos × $2.500.000 COP
+      </div>
+
      </div>
 
      <strong id="paySummary"></strong>
@@ -308,21 +1104,32 @@ textarea{width:100%;min-height:150px;background:#091423;border:1px solid var(--l
      <div id="progressBar"></div>
     </div>
 
-    <div class="milestones" id="milestones"></div>
+    <div
+     class="milestones"
+     id="milestones">
+    </div>
 
    </div>
 
    <div class="card">
 
-    <h2>Itinerario</h2>
+    <h2>
+     Itinerario
+    </h2>
 
-    <div class="small" style="margin-bottom:10px">
-     Simple: marca, edita, agrega o elimina actividades.
+    <div
+     class="small"
+     style="margin-bottom:10px">
+
+     Marca, edita, agrega o elimina actividades.
+
     </div>
 
     <div id="days"></div>
 
-    <button id="addDay" class="addDayBtn">
+    <button
+     id="addDay"
+     class="addDayBtn">
      + Agregar día
     </button>
 
@@ -330,52 +1137,115 @@ textarea{width:100%;min-height:150px;background:#091423;border:1px solid var(--l
 
   </div>
 
-  <!-- PREVIO -->
   <div id="previo" class="pane">
 
    <div class="card">
 
     <div class="subtabs">
-     <button class="subtab active" data-section="familia">Familia</button>
-     <button class="subtab" data-section="salomon">Salomón</button>
-     <button class="subtab" data-section="antonio">Antonio</button>
+
+     <button
+      class="subtab active"
+      data-section="familia">
+      Familia
+     </button>
+
+     <button
+      class="subtab"
+      data-section="salomon">
+      Salomón
+     </button>
+
+     <button
+      class="subtab"
+      data-section="antonio">
+      Antonio
+     </button>
+
     </div>
 
-    <div id="familia" class="section active">
+    <div
+     id="familia"
+     class="section active">
 
-     <h2>Previo · Familia</h2>
+     <h2>
+      Previo · Familia
+     </h2>
 
-     <div class="list" data-list="previo_familia"></div>
+     <div
+      class="list"
+      data-list="previo_familia">
+     </div>
 
      <div class="addrow">
-      <input data-input="previo_familia" placeholder="Agregar pendiente...">
-      <button class="primary" data-add="previo_familia">+</button>
+
+      <input
+       data-input="previo_familia"
+       placeholder="Agregar pendiente...">
+
+      <button
+       class="primary"
+       data-add="previo_familia">
+       +
+      </button>
+
      </div>
 
     </div>
 
-    <div id="salomon" class="section">
+    <div
+     id="salomon"
+     class="section">
 
-     <h2>Previo · Salomón</h2>
+     <h2>
+      Previo · Salomón
+     </h2>
 
-     <div class="list" data-list="previo_salomon"></div>
+     <div
+      class="list"
+      data-list="previo_salomon">
+     </div>
 
      <div class="addrow">
-      <input data-input="previo_salomon" placeholder="Agregar pendiente...">
-      <button class="primary" data-add="previo_salomon">+</button>
+
+      <input
+       data-input="previo_salomon"
+       placeholder="Agregar pendiente...">
+
+      <button
+       class="primary"
+       data-add="previo_salomon">
+       +
+      </button>
+
      </div>
 
     </div>
 
-    <div id="antonio" class="section">
+    <div
+     id="antonio"
+     class="section">
 
-     <h2>Previo · Antonio</h2>
+     <h2>
+      Previo · Antonio
+     </h2>
 
-     <div class="list" data-list="previo_antonio"></div>
+     <div
+      class="list"
+      data-list="previo_antonio">
+     </div>
 
      <div class="addrow">
-      <input data-input="previo_antonio" placeholder="Agregar pendiente...">
-      <button class="primary" data-add="previo_antonio">+</button>
+
+      <input
+       data-input="previo_antonio"
+       placeholder="Agregar pendiente...">
+
+      <button
+       class="primary"
+       data-add="previo_antonio">
+       +
+      </button>
+
      </div>
 
     </div>
@@ -384,119 +1254,261 @@ textarea{width:100%;min-height:150px;background:#091423;border:1px solid var(--l
 
   </div>
 
-  <!-- MALETA -->
   <div id="maleta" class="pane">
 
    <div class="card">
 
-    <h2>Maleta</h2>
+    <h2>
+     Maleta
+    </h2>
 
     <div class="people">
-     <button class="person active" data-person="john">John</button>
-     <button class="person" data-person="esposa">Ani</button>
-     <button class="person" data-person="salomon">Salomón</button>
-     <button class="person" data-person="antonio">Antonio</button>
+
+     <button
+      class="person active"
+      data-person="john">
+      John
+     </button>
+
+     <button
+      class="person"
+      data-person="esposa">
+      Ani
+     </button>
+
+     <button
+      class="person"
+      data-person="salomon">
+      Salomón
+     </button>
+
+     <button
+      class="person"
+      data-person="antonio">
+      Antonio
+     </button>
+
     </div>
 
    </div>
 
-   <div class="card" id="packingCard">
+   <div
+    class="card"
+    id="packingCard">
 
-    <h2 id="packingTitle">Maleta · John</h2>
+    <h2 id="packingTitle">
+     Maleta · John
+    </h2>
 
-    <div class="list" data-list="maleta_john"></div>
+    <div
+     class="list"
+     data-list="maleta_john">
+    </div>
 
     <div class="addrow">
-     <input data-input="maleta_john" placeholder="Agregar artículo...">
-     <button class="primary" data-add="maleta_john">+</button>
+
+     <input
+      data-input="maleta_john"
+      placeholder="Agregar artículo...">
+
+     <button
+      class="primary"
+      data-add="maleta_john">
+      +
+     </button>
+
     </div>
 
    </div>
 
   </div>
 
-  <!-- VIAJE -->
   <div id="viaje" class="pane">
 
    <div class="card">
+
     <h2>✈️ Vuelos</h2>
-    <div class="list" data-list="vuelos"></div>
-    <div class="addrow">
-     <input data-input="vuelos" placeholder="Vuelo, horario, reserva...">
-     <button class="primary" data-add="vuelos">+</button>
+
+    <div
+     class="list"
+     data-list="vuelos">
     </div>
+
+    <div class="addrow">
+
+     <input
+      data-input="vuelos"
+      placeholder="Vuelo, horario, reserva...">
+
+     <button
+      class="primary"
+      data-add="vuelos">
+      +
+     </button>
+
+    </div>
+
    </div>
 
    <div class="card">
+
     <h2>🏨 Hotel</h2>
-    <div class="list" data-list="hotel"></div>
-    <div class="addrow">
-     <input data-input="hotel" placeholder="Hotel, dirección, reserva...">
-     <button class="primary" data-add="hotel">+</button>
+
+    <div
+     class="list"
+     data-list="hotel">
     </div>
+
+    <div class="addrow">
+
+     <input
+      data-input="hotel"
+      placeholder="Hotel, dirección, reserva...">
+
+     <button
+      class="primary"
+      data-add="hotel">
+      +
+     </button>
+
+    </div>
+
    </div>
 
    <div class="card">
+
     <h2>🚐 Traslados</h2>
-    <div class="list" data-list="traslados"></div>
-    <div class="addrow">
-     <input data-input="traslados" placeholder="Traslado, horario, contacto...">
-     <button class="primary" data-add="traslados">+</button>
+
+    <div
+     class="list"
+     data-list="traslados">
     </div>
+
+    <div class="addrow">
+
+     <input
+      data-input="traslados"
+      placeholder="Traslado, horario, contacto...">
+
+     <button
+      class="primary"
+      data-add="traslados">
+      +
+     </button>
+
+    </div>
+
    </div>
 
    <div class="card">
+
     <h2>☎️ Contactos</h2>
-    <div class="list" data-list="contactos"></div>
-    <div class="addrow">
-     <input data-input="contactos" placeholder="Nombre, teléfono...">
-     <button class="primary" data-add="contactos">+</button>
+
+    <div
+     class="list"
+     data-list="contactos">
     </div>
+
+    <div class="addrow">
+
+     <input
+      data-input="contactos"
+      placeholder="Nombre, teléfono...">
+
+     <button
+      class="primary"
+      data-add="contactos">
+      +
+     </button>
+
+    </div>
+
    </div>
 
    <div class="card">
+
     <h2>📄 Documentos</h2>
-    <div class="list" data-list="documentos"></div>
-    <div class="addrow">
-     <input data-input="documentos" placeholder="Documento o reserva...">
-     <button class="primary" data-add="documentos">+</button>
+
+    <div
+     class="list"
+     data-list="documentos">
     </div>
+
+    <div class="addrow">
+
+     <input
+      data-input="documentos"
+      placeholder="Documento o reserva...">
+
+     <button
+      class="primary"
+      data-add="documentos">
+      +
+     </button>
+
+    </div>
+
    </div>
 
   </div>
 
-  <!-- GASTOS -->
   <div id="gastos" class="pane">
 
    <div class="card">
 
     <div class="expenseTotal">
-     <div class="small">Total de gastos del viaje</div>
-     <div class="v" id="expenseTotal">$0</div>
+
+     <div class="small">
+      Total de gastos del viaje
+     </div>
+
+     <div
+      class="v"
+      id="expenseTotal">
+      $0
+     </div>
+
     </div>
 
     <div class="budgetRow">
-     <input id="budgetInput" type="number" placeholder="Presupuesto total">
-     <button id="saveBudget" class="primary">Guardar</button>
+
+     <input
+      id="budgetInput"
+      type="number"
+      placeholder="Presupuesto total">
+
+     <button
+      id="saveBudget"
+      class="primary">
+      Guardar
+     </button>
+
     </div>
 
     <div class="progress">
      <div id="budgetBar"></div>
     </div>
 
-    <div class="small" id="budgetText"></div>
+    <div
+     class="small"
+     id="budgetText">
+    </div>
 
    </div>
 
    <div class="card">
 
-    <h2>Control de gastos</h2>
+    <h2>
+     Control de gastos
+    </h2>
 
     <div id="expenseList"></div>
 
     <div class="expenseAdd">
 
-     <input id="expenseDescription" placeholder="Descripción">
+     <input
+      id="expenseDescription"
+      placeholder="Descripción">
 
      <input
       id="expenseValue"
@@ -504,7 +1516,11 @@ textarea{width:100%;min-height:150px;background:#091423;border:1px solid var(--l
       inputmode="numeric"
       placeholder="Valor">
 
-     <button id="addExpense" class="primary">+</button>
+     <button
+      id="addExpense"
+      class="primary">
+      +
+     </button>
 
      <div class="meta">
 
@@ -531,11 +1547,13 @@ textarea{width:100%;min-height:150px;background:#091423;border:1px solid var(--l
 
   </div>
 
-  <!-- NOTAS -->
   <div id="notas" class="pane">
 
    <div class="card">
-    <h2>Notas</h2>
+
+    <h2>
+     Notas
+    </h2>
 
     <textarea
      id="notes"
@@ -546,9 +1564,9 @@ textarea{width:100%;min-height:150px;background:#091423;border:1px solid var(--l
   </div>
 
  </div>
+
 </div>
 
-<!-- MERCADO -->
 <div id="marketApp" class="screen">
 
  <div class="marketWrap">
@@ -557,11 +1575,20 @@ textarea{width:100%;min-height:150px;background:#091423;border:1px solid var(--l
 
    <button
     class="marketBack"
-    onclick="openScreen('mainMenu')">←</button>
+    onclick="openScreen('mainMenu')">
+    ←
+   </button>
 
    <div class="marketHeading">
-    <div class="marketTitle">Mercado Familiar</div>
-    <div class="marketSub">Lista compartida de la casa 🏡</div>
+
+    <div class="marketTitle">
+     Mercado Familiar
+    </div>
+
+    <div class="marketSub">
+     Lista compartida de la casa 🏡
+    </div>
+
    </div>
 
    <button
@@ -577,13 +1604,31 @@ textarea{width:100%;min-height:150px;background:#091423;border:1px solid var(--l
    <div class="marketSummary">
 
     <div class="summaryBox">
-     <div class="l">Pendientes</div>
-     <div class="v" id="marketPending">0</div>
+
+     <div class="l">
+      Pendientes
+     </div>
+
+     <div
+      class="v"
+      id="marketPending">
+      0
+     </div>
+
     </div>
 
     <div class="summaryBox">
-     <div class="l">Comprados</div>
-     <div class="v" id="marketDone">0</div>
+
+     <div class="l">
+      Comprados
+     </div>
+
+     <div
+      class="v"
+      id="marketDone">
+      0
+     </div>
+
     </div>
 
    </div>
@@ -605,6 +1650,7 @@ textarea{width:100%;min-height:150px;background:#091423;border:1px solid var(--l
   </div>
 
  </div>
+
 </div>
 
 <script type="module">
@@ -621,20 +1667,53 @@ import {
 }
 from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
 
-const firebaseConfig={
- apiKey:"AIzaSyDxmawunxCVe7KI_dS-VHSxGlJk3Td5FFg",
- authDomain:"bacla-arh.firebaseapp.com",
- projectId:"bacla-arh",
- storageBucket:"bacla-arh.firebasestorage.app",
- messagingSenderId:"874707622741",
- appId:"1:874707622741:web:20688eea06d47751b7addc",
- measurementId:"G-XRFQ5QN58E"
-  const app=initializeApp(firebaseConfig);
-const db=getFirestore(app);
-const sharedRef=doc(db,"bacla","agenda");
+const firebaseConfig = {
 
-const defaults={
- payments:[true,false,false,false,false],
+ apiKey:
+ "AIzaSyDxmawunxCVe7KI_dS-VHSxGlJk3Td5FFg",
+
+ authDomain:
+ "bacla-arh.firebaseapp.com",
+
+ projectId:
+ "bacla-arh",
+
+ storageBucket:
+ "bacla-arh.firebasestorage.app",
+
+ messagingSenderId:
+ "874707622741",
+
+ appId:
+ "1:874707622741:web:20688eea06d47751b7addc",
+
+ measurementId:
+ "G-XRFQ5QN58E"
+
+};
+
+const app =
+initializeApp(firebaseConfig);
+
+const db =
+getFirestore(app);
+
+const sharedRef =
+doc(
+ db,
+ "bacla",
+ "agenda"
+);
+
+const defaults = {
+
+ payments:[
+  true,
+  false,
+  false,
+  false,
+  false
+ ],
 
  days:[
 
@@ -865,24 +1944,46 @@ const defaults={
 
 };
 
-let state=structuredClone(defaults);
-let firebaseReady=false;
-let remoteUpdate=false;
-let saveTimer=null;
+let state =
+structuredClone(defaults);
 
-window.openScreen=id=>{
+let firebaseReady =
+false;
+
+let remoteUpdate =
+false;
+
+let saveTimer =
+null;
+
+
+/* NAVEGACIÓN PRINCIPAL */
+
+window.openScreen =
+function(id){
 
  document
  .querySelectorAll(".screen")
- .forEach(x=>x.classList.remove("active"));
+ .forEach(
+  screen=>
+  screen.classList.remove("active")
+ );
 
- document
- .getElementById(id)
- .classList.add("active");
+ const target =
+ document.getElementById(id);
+
+ if(target){
+
+  target.classList.add("active");
+
+ }
 
  window.scrollTo(0,0);
 
 };
+
+
+/* MIGRACIÓN */
 
 function migrate(){
 
@@ -891,7 +1992,7 @@ function migrate(){
   !Array.isArray(state.mercado.categories)
  ){
 
-  state.mercado=
+  state.mercado =
   structuredClone(defaults.mercado);
 
  }
@@ -904,18 +2005,26 @@ function migrate(){
   "documentos",
   "gastos"
  ]
- .forEach(k=>{
+ .forEach(
+  key=>{
 
-  if(!Array.isArray(state[k])){
+   if(
+    !Array.isArray(state[key])
+   ){
 
-   state[k]=
-   structuredClone(defaults[k]||[]);
+    state[key] =
+    structuredClone(
+     defaults[key]||[]
+    );
+
+   }
 
   }
+ );
 
- });
-
- if(state.budget==null){
+ if(
+  state.budget==null
+ ){
 
   state.budget=0;
 
@@ -923,31 +2032,46 @@ function migrate(){
 
 }
 
-function setSync(status,text){
 
- const dot=
+/* FIREBASE STATUS */
+
+function setSync(
+ status,
+ text
+){
+
+ const dot =
  document.getElementById("syncDot");
 
- const label=
+ const label =
  document.getElementById("syncText");
 
- dot.className="dot";
+ dot.className =
+ "dot";
 
- if(status==="ok"){
+ if(
+  status==="ok"
+ ){
 
   dot.classList.add("ok");
 
  }
 
- if(status==="err"){
+ if(
+  status==="err"
+ ){
 
   dot.classList.add("err");
 
  }
 
- label.textContent=text;
+ label.textContent =
+ text;
 
 }
+
+
+/* GUARDADO */
 
 async function save(){
 
@@ -962,9 +2086,13 @@ async function save(){
 
  clearTimeout(saveTimer);
 
- setSync("","Guardando...");
+ setSync(
+  "",
+  "Guardando..."
+ );
 
- saveTimer=setTimeout(
+ saveTimer =
+ setTimeout(
 
   async()=>{
 
@@ -982,9 +2110,9 @@ async function save(){
 
    }
 
-   catch(e){
+   catch(error){
 
-    console.error(e);
+    console.error(error);
 
     setSync(
      "err",
@@ -1001,7 +2129,10 @@ async function save(){
 
 }
 
-function money(n){
+
+/* MONEDA */
+
+function money(value){
 
  return new Intl.NumberFormat(
 
@@ -1014,21 +2145,24 @@ function money(n){
   }
 
  ).format(
-  Number(n)||0
+  Number(value)||0
  );
 
 }
 
-function dateParts(s){
 
- const d=
- s
- ?new Date(s+"T00:00:00")
+/* FECHAS */
+
+function dateParts(value){
+
+ const date =
+ value
+ ?new Date(value+"T00:00:00")
  :null;
 
  if(
-  !d ||
-  isNaN(d)
+  !date ||
+  isNaN(date)
  ){
 
   return{
@@ -1041,10 +2175,10 @@ function dateParts(s){
  return{
 
   num:
-  String(d.getDate()),
+  String(date.getDate()),
 
   mon:
-  d
+  date
   .toLocaleDateString(
    "es-CO",
    {month:"short"}
@@ -1055,39 +2189,43 @@ function dateParts(s){
 
 }
 
+
 /* PAGOS */
 
 function renderPayments(){
 
- const box=
+ const box =
  document.getElementById("milestones");
 
- box.innerHTML="";
+ box.innerHTML =
+ "";
 
- state.payments.forEach(
-  (done,i)=>{
+ state.payments
+ .forEach(
+  (done,index)=>{
 
-   const b=
+   const button =
    document.createElement("button");
 
-   b.className=
+   button.className =
    "milestone"
    +(done?" done":"");
 
-   b.innerHTML=
+   button.innerHTML =
    `
    <div class="circle">
-    ${done?"✓":i+1}
+    ${done?"✓":index+1}
    </div>
    <small>
-    ${i===0?"Julio":"Pago "+(i+1)}
+    ${index===0?"Julio":"Pago "+(index+1)}
    </small>
    `;
 
-   b.onclick=()=>{
+   button.onclick =
+   ()=>{
 
-    state.payments[i]=
-    !state.payments[i];
+    state.payments[index] =
+    !state.payments[index];
 
     save();
 
@@ -1095,29 +2233,30 @@ function renderPayments(){
 
    };
 
-   box.appendChild(b);
+   box.appendChild(button);
 
   }
  );
 
- const n=
+ const completed =
  state.payments
  .filter(Boolean)
  .length;
 
  document
  .getElementById("progressBar")
- .style.width=
- (n*20)+"%";
+ .style.width =
+ (completed*20)+"%";
 
  document
  .getElementById("paySummary")
- .textContent=
- money(n*2500000)
+ .textContent =
+ money(completed*2500000)
  +" / "
  +money(12500000);
 
 }
+
 
 /* ITEMS */
 
@@ -1127,25 +2266,27 @@ function createItem(
  onDelete
 ){
 
- const row=
+ const row =
  document.createElement("div");
 
- row.className=
+ row.className =
  "item"
  +(item.d?" done":"");
 
- const c=
+ const check =
  document.createElement("input");
 
- c.type="checkbox";
+ check.type =
+ "checkbox";
 
- c.checked=
+ check.checked =
  !!item.d;
 
- c.onchange=()=>{
+ check.onchange =
+ ()=>{
 
-  item.d=
-  c.checked;
+  item.d =
+  check.checked;
 
   save();
 
@@ -1153,63 +2294,71 @@ function createItem(
 
  };
 
- const t=
+ const text =
  document.createElement("input");
 
- t.className="txt";
+ text.className =
+ "txt";
 
- t.value=
+ text.value =
  item.t||"";
 
- t.oninput=()=>{
+ text.oninput =
+ ()=>{
 
-  item.t=
-  t.value;
+  item.t =
+  text.value;
 
   save();
 
  };
 
- const del=
+ const remove =
  document.createElement("button");
 
- del.className="delete";
+ remove.className =
+ "delete";
 
- del.textContent="×";
+ remove.textContent =
+ "×";
 
- del.onclick=
+ remove.onclick =
  onDelete;
 
  row.append(
-  c,
-  t,
-  del
+  check,
+  text,
+  remove
  );
 
  return row;
 
 }
 
+
+/* LISTAS */
+
 function renderList(key){
 
- const el=
+ const container =
  document.querySelector(
   `[data-list="${key}"]`
  );
 
- if(!el){
+ if(!container){
 
   return;
 
  }
 
- el.innerHTML="";
+ container.innerHTML =
+ "";
 
  (state[key]||[])
  .forEach(
-  (item,i)=>{
+  (item,index)=>{
 
-   el.appendChild(
+   container.appendChild(
 
     createItem(
 
@@ -1220,7 +2369,7 @@ function renderList(key){
      ()=>{
 
       state[key].splice(
-       i,
+       index,
        1
       );
 
@@ -1241,7 +2390,7 @@ function renderList(key){
 
 function addGeneric(key){
 
- const input=
+ const input =
  document.querySelector(
   `[data-input="${key}"]`
  );
@@ -1252,16 +2401,18 @@ function addGeneric(key){
 
  }
 
- const v=
+ const value =
  input.value.trim();
 
- if(!v){
+ if(!value){
 
   return;
 
  }
 
- if(!Array.isArray(state[key])){
+ if(
+  !Array.isArray(state[key])
+ ){
 
   state[key]=[];
 
@@ -1269,13 +2420,14 @@ function addGeneric(key){
 
  state[key].push({
 
-  t:v,
+  t:value,
 
   d:false
 
  });
 
- input.value="";
+ input.value =
+ "";
 
  save();
 
@@ -1283,88 +2435,93 @@ function addGeneric(key){
 
 }
 
+
 /* AGENDA */
 
 function renderDays(){
 
- const root=
+ const root =
  document.getElementById("days");
 
- root.innerHTML="";
+ root.innerHTML =
+ "";
 
  (state.days||[])
  .forEach(
-  (day,di)=>{
+  (day,dayIndex)=>{
 
-   const card=
+   const card =
    document.createElement("div");
 
-   card.className=
+   card.className =
    "dayCard";
 
-   const p=
+   const parts =
    dateParts(day.date);
 
-   const header=
+   const header =
    document.createElement("div");
 
-   header.className=
+   header.className =
    "dayHeader";
 
-   const dateBox=
+   const dateBox =
    document.createElement("div");
 
-   dateBox.className=
+   dateBox.className =
    "dayDateBox";
 
-   dateBox.innerHTML=
+   dateBox.innerHTML =
    `
    <div class="dayNum">
-    ${p.num}
+    ${parts.num}
    </div>
    <div class="dayMon">
-    ${p.mon}
+    ${parts.mon}
    </div>
    `;
 
-   const info=
+   const info =
    document.createElement("div");
 
-   info.className=
+   info.className =
    "dayInfo";
 
-   const title=
+   const title =
    document.createElement("input");
 
-   title.className=
+   title.className =
    "dayTitleInput";
 
-   title.value=
+   title.value =
    day.title||"";
 
-   title.oninput=()=>{
+   title.oninput =
+   ()=>{
 
-    day.title=
+    day.title =
     title.value;
 
     save();
 
    };
 
-   const date=
+   const date =
    document.createElement("input");
 
-   date.className=
+   date.className =
    "dayDateInput";
 
-   date.type="date";
+   date.type =
+   "date";
 
-   date.value=
+   date.value =
    day.date||"";
 
-   date.onchange=()=>{
+   date.onchange =
+   ()=>{
 
-    day.date=
+    day.date =
     date.value;
 
     save();
@@ -1383,40 +2540,39 @@ function renderDays(){
     info
    );
 
-   card.appendChild(
-    header
-   );
+   card.appendChild(header);
 
-   const rows=
+   const rows =
    document.createElement("div");
 
-   rows.className=
+   rows.className =
    "checkRows";
 
    (day.items||[])
    .forEach(
-    (item,ii)=>{
+    (item,itemIndex)=>{
 
-     const r=
+     const row =
      document.createElement("div");
 
-     r.className=
+     row.className =
      "checkRow"
      +(item.d?" done":"");
 
-     const c=
+     const check =
      document.createElement("input");
 
-     c.type=
+     check.type =
      "checkbox";
 
-     c.checked=
+     check.checked =
      !!item.d;
 
-     c.onchange=()=>{
+     check.onchange =
+     ()=>{
 
-      item.d=
-      c.checked;
+      item.d =
+      check.checked;
 
       save();
 
@@ -1424,37 +2580,39 @@ function renderDays(){
 
      };
 
-     const t=
+     const text =
      document.createElement("input");
 
-     t.className=
+     text.className =
      "checkText";
 
-     t.value=
+     text.value =
      item.t||"";
 
-     t.oninput=()=>{
+     text.oninput =
+     ()=>{
 
-      item.t=
-      t.value;
+      item.t =
+      text.value;
 
       save();
 
      };
 
-     const del=
+     const remove =
      document.createElement("button");
 
-     del.className=
+     remove.className =
      "delete";
 
-     del.textContent=
+     remove.textContent =
      "×";
 
-     del.onclick=()=>{
+     remove.onclick =
+     ()=>{
 
       day.items.splice(
-       ii,
+       itemIndex,
        1
       );
 
@@ -1464,46 +2622,46 @@ function renderDays(){
 
      };
 
-     r.append(
-      c,
-      t,
-      del
+     row.append(
+      check,
+      text,
+      remove
      );
 
-     rows.appendChild(r);
+     rows.appendChild(row);
 
     }
    );
 
    card.appendChild(rows);
 
-   const add=
+   const addRow =
    document.createElement("div");
 
-   add.className=
+   addRow.className =
    "dayAdd";
 
-   const input=
+   const input =
    document.createElement("input");
 
-   input.placeholder=
+   input.placeholder =
    "Agregar actividad...";
 
-   const plus=
+   const addButton =
    document.createElement("button");
 
-   plus.className=
+   addButton.className =
    "primary";
 
-   plus.textContent=
+   addButton.textContent =
    "+";
 
-   const doAdd=()=>{
+   function addActivity(){
 
-    const v=
+    const value =
     input.value.trim();
 
-    if(!v){
+    if(!value){
 
      return;
 
@@ -1511,7 +2669,7 @@ function renderDays(){
 
     day.items.push({
 
-     t:v,
+     t:value,
 
      d:false
 
@@ -1521,39 +2679,42 @@ function renderDays(){
 
     renderDays();
 
-   };
+   }
 
-   plus.onclick=
-   doAdd;
+   addButton.onclick =
+   addActivity;
 
-   input.onkeydown=
-   e=>{
+   input.onkeydown =
+   event=>{
 
-    if(e.key==="Enter"){
+    if(
+     event.key==="Enter"
+    ){
 
-     doAdd();
+     addActivity();
 
     }
 
    };
 
-   add.append(
+   addRow.append(
     input,
-    plus
+    addButton
    );
 
-   card.appendChild(add);
+   card.appendChild(addRow);
 
-   const delDay=
+   const deleteDay =
    document.createElement("button");
 
-   delDay.className=
+   deleteDay.className =
    "dangerBtn";
 
-   delDay.textContent=
+   deleteDay.textContent =
    "Eliminar día";
 
-   delDay.onclick=()=>{
+   deleteDay.onclick =
+   ()=>{
 
     if(
      confirm(
@@ -1562,7 +2723,7 @@ function renderDays(){
     ){
 
      state.days.splice(
-      di,
+      dayIndex,
       1
      );
 
@@ -1574,85 +2735,86 @@ function renderDays(){
 
    };
 
-   card.appendChild(
-    delDay
-   );
+   card.appendChild(deleteDay);
 
-   root.appendChild(
-    card
-   );
+   root.appendChild(card);
 
   }
  );
 
 }
+
 
 /* GASTOS */
 
 function normalizeExpenses(){
 
- state.gastos=
+ state.gastos =
  (state.gastos||[])
- .map(g=>{
+ .map(
+  expense=>{
 
-  if(typeof g==="string"){
+   if(
+    typeof expense==="string"
+   ){
+
+    return{
+     description:expense,
+     value:0,
+     category:"Otros",
+     payer:"John"
+    };
+
+   }
+
+   if(
+    expense &&
+    "t" in expense
+   ){
+
+    return{
+     description:expense.t||"",
+     value:0,
+     category:"Otros",
+     payer:"John"
+    };
+
+   }
 
    return{
-    description:g,
+
+    description:"",
     value:0,
     category:"Otros",
-    payer:"John"
+    payer:"John",
+    ...expense
+
    };
 
   }
-
-  if(
-   g &&
-   "t" in g
-  ){
-
-   return{
-    description:g.t||"",
-    value:0,
-    category:"Otros",
-    payer:"John"
-   };
-
-  }
-
-  return{
-
-   description:"",
-   value:0,
-   category:"Otros",
-   payer:"John",
-   ...g
-
-  };
-
- });
+ );
 
 }
 
 function renderExpenseSummary(){
 
- const total=
+ const total =
  (state.gastos||[])
  .reduce(
-  (s,g)=>
-  s+(Number(g.value)||0),
+  (sum,item)=>
+  sum+(Number(item.value)||0),
   0
  );
 
- const budget=
+ const budget =
  Number(state.budget)||0;
 
  document
  .getElementById("expenseTotal")
- .textContent=
+ .textContent =
  money(total);
 
- const pct=
+ const percentage =
  budget
  ?Math.min(
    100,
@@ -1662,14 +2824,14 @@ function renderExpenseSummary(){
 
  document
  .getElementById("budgetBar")
- .style.width=
- pct+"%";
+ .style.width =
+ percentage+"%";
 
  document
  .getElementById("budgetText")
- .textContent=
+ .textContent =
  budget
- ?`${money(total)} de ${money(budget)} · ${pct.toFixed(0)}%`
+ ?`${money(total)} de ${money(budget)} · ${percentage.toFixed(0)}%`
  :"Define el presupuesto del viaje";
 
 }
@@ -1678,57 +2840,61 @@ function renderExpenses(){
 
  normalizeExpenses();
 
- const root=
+ const root =
  document.getElementById("expenseList");
 
- root.innerHTML="";
+ root.innerHTML =
+ "";
 
- state.gastos.forEach(
-  (g,i)=>{
+ state.gastos
+ .forEach(
+  (expense,index)=>{
 
-   const r=
+   const row =
    document.createElement("div");
 
-   r.className=
+   row.className =
    "expenseRow";
 
-   const d=
+   const description =
    document.createElement("input");
 
-   d.value=
-   g.description||"";
+   description.value =
+   expense.description||"";
 
-   d.placeholder=
+   description.placeholder =
    "Descripción";
 
-   d.oninput=()=>{
+   description.oninput =
+   ()=>{
 
-    g.description=
-    d.value;
+    expense.description =
+    description.value;
 
     save();
 
    };
 
-   const v=
+   const value =
    document.createElement("input");
 
-   v.type=
+   value.type =
    "number";
 
-   v.inputMode=
+   value.inputMode =
    "numeric";
 
-   v.value=
-   g.value||"";
+   value.value =
+   expense.value||"";
 
-   v.placeholder=
+   value.placeholder =
    "Valor";
 
-   v.oninput=()=>{
+   value.oninput =
+   ()=>{
 
-    g.value=
-    Number(v.value)||0;
+    expense.value =
+    Number(value.value)||0;
 
     save();
 
@@ -1736,19 +2902,20 @@ function renderExpenses(){
 
    };
 
-   const del=
+   const remove =
    document.createElement("button");
 
-   del.className=
+   remove.className =
    "delete";
 
-   del.textContent=
+   remove.textContent =
    "×";
 
-   del.onclick=()=>{
+   remove.onclick =
+   ()=>{
 
     state.gastos.splice(
-     i,
+     index,
      1
     );
 
@@ -1758,13 +2925,13 @@ function renderExpenses(){
 
    };
 
-   const meta=
+   const meta =
    document.createElement("div");
 
-   meta.className=
+   meta.className =
    "expenseMeta";
 
-   const c=
+   const category =
    document.createElement("select");
 
    [
@@ -1777,35 +2944,39 @@ function renderExpenses(){
     "Otros"
    ]
    .forEach(
-    x=>{
+    optionValue=>{
 
-     const o=
+     const option =
      document.createElement("option");
 
-     o.textContent=
-     x;
+     option.textContent =
+     optionValue;
 
-     if(x===g.category){
+     if(
+      optionValue===expense.category
+     ){
 
-      o.selected=true;
+      option.selected =
+      true;
 
      }
 
-     c.appendChild(o);
+     category.appendChild(option);
 
     }
    );
 
-   c.onchange=()=>{
+   category.onchange =
+   ()=>{
 
-    g.category=
-    c.value;
+    expense.category =
+    category.value;
 
     save();
 
    };
 
-   const p=
+   const payer =
    document.createElement("select");
 
    [
@@ -1813,47 +2984,51 @@ function renderExpenses(){
     "Ani"
    ]
    .forEach(
-    x=>{
+    optionValue=>{
 
-     const o=
+     const option =
      document.createElement("option");
 
-     o.textContent=
-     x;
+     option.textContent =
+     optionValue;
 
-     if(x===g.payer){
+     if(
+      optionValue===expense.payer
+     ){
 
-      o.selected=true;
+      option.selected =
+      true;
 
      }
 
-     p.appendChild(o);
+     payer.appendChild(option);
 
     }
    );
 
-   p.onchange=()=>{
+   payer.onchange =
+   ()=>{
 
-    g.payer=
-    p.value;
+    expense.payer =
+    payer.value;
 
     save();
 
    };
 
    meta.append(
-    c,
-    p
+    category,
+    payer
    );
 
-   r.append(
-    d,
-    v,
-    del,
+   row.append(
+    description,
+    value,
+    remove,
     meta
    );
 
-   root.appendChild(r);
+   root.appendChild(row);
 
   }
  );
@@ -1864,21 +3039,29 @@ function renderExpenses(){
 
 function addExpense(){
 
- const d=
- document.getElementById("expenseDescription");
+ const description =
+ document.getElementById(
+  "expenseDescription"
+ );
 
- const v=
- document.getElementById("expenseValue");
+ const value =
+ document.getElementById(
+  "expenseValue"
+ );
 
- const c=
- document.getElementById("expenseCategory");
+ const category =
+ document.getElementById(
+  "expenseCategory"
+ );
 
- const p=
- document.getElementById("expensePayer");
+ const payer =
+ document.getElementById(
+  "expensePayer"
+ );
 
  if(
-  !d.value.trim() &&
-  !v.value
+  !description.value.trim() &&
+  !value.value
  ){
 
   return;
@@ -1888,21 +3071,24 @@ function addExpense(){
  state.gastos.push({
 
   description:
-  d.value.trim(),
+  description.value.trim(),
 
   value:
-  Number(v.value)||0,
+  Number(value.value)||0,
 
   category:
-  c.value,
+  category.value,
 
   payer:
-  p.value
+  payer.value
 
  });
 
- d.value="";
- v.value="";
+ description.value =
+ "";
+
+ value.value =
+ "";
 
  save();
 
@@ -1910,66 +3096,72 @@ function addExpense(){
 
 }
 
+
 /* MERCADO */
 
 function renderMarket(){
 
- const root=
- document.getElementById("marketCategories");
+ const root =
+ document.getElementById(
+  "marketCategories"
+ );
 
- root.innerHTML="";
+ root.innerHTML =
+ "";
 
  let pending=0;
  let done=0;
 
  state.mercado.categories
  .forEach(
-  (cat,ci)=>{
+  (category,categoryIndex)=>{
 
-   const sec=
+   const section =
    document.createElement("div");
 
-   sec.className=
+   section.className =
    "marketCategory";
 
-   const head=
+   const header =
    document.createElement("div");
 
-   head.className=
+   header.className =
    "categoryHead";
 
-   const title=
+   const title =
    document.createElement("input");
 
-   title.className=
+   title.className =
    "categoryName";
 
-   title.value=
-   cat.name;
+   title.value =
+   category.name;
 
-   title.oninput=()=>{
+   title.oninput =
+   ()=>{
 
-    cat.name=
+    category.name =
     title.value;
 
     save();
 
    };
 
-   const delCat=
+   const deleteCategory =
    document.createElement("button");
 
-   delCat.className=
+   deleteCategory.className =
    "categoryDelete";
 
-   delCat.textContent=
+   deleteCategory.textContent =
    "×";
 
-   delCat.onclick=()=>{
+   deleteCategory.onclick =
+   ()=>{
 
     if(
      confirm(
-      `¿Eliminar la categoría ${cat.name}?`
+      `¿Eliminar la categoría ${category.name}?`
      )
     ){
 
@@ -1977,7 +3169,7 @@ function renderMarket(){
      .mercado
      .categories
      .splice(
-      ci,
+      categoryIndex,
       1
      );
 
@@ -1989,19 +3181,20 @@ function renderMarket(){
 
    };
 
-   head.append(
+   header.append(
     title,
-    delCat
+    deleteCategory
    );
 
-   sec.appendChild(
-    head
-   );
+   section.appendChild(header);
 
-   cat.items.forEach(
-    (item,ii)=>{
+   category.items
+   .forEach(
+    (item,itemIndex)=>{
 
-     if(item.checked){
+     if(
+      item.checked
+     ){
 
       done++;
 
@@ -2013,26 +3206,27 @@ function renderMarket(){
 
      }
 
-     const row=
+     const row =
      document.createElement("div");
 
-     row.className=
+     row.className =
      "marketItem"
      +(item.checked?" checked":"");
 
-     const c=
+     const check =
      document.createElement("input");
 
-     c.type=
+     check.type =
      "checkbox";
 
-     c.checked=
+     check.checked =
      !!item.checked;
 
-     c.onchange=()=>{
+     check.onchange =
+     ()=>{
 
-      item.checked=
-      c.checked;
+      item.checked =
+      check.checked;
 
       save();
 
@@ -2040,37 +3234,39 @@ function renderMarket(){
 
      };
 
-     const t=
+     const text =
      document.createElement("input");
 
-     t.className=
+     text.className =
      "marketItemText";
 
-     t.value=
+     text.value =
      item.name;
 
-     t.oninput=()=>{
+     text.oninput =
+     ()=>{
 
-      item.name=
-      t.value;
+      item.name =
+      text.value;
 
       save();
 
      };
 
-     const del=
+     const remove =
      document.createElement("button");
 
-     del.className=
+     remove.className =
      "marketDelete";
 
-     del.textContent=
+     remove.textContent =
      "×";
 
-     del.onclick=()=>{
+     remove.onclick =
+     ()=>{
 
-      cat.items.splice(
-       ii,
+      category.items.splice(
+       itemIndex,
        1
       );
 
@@ -2081,110 +3277,113 @@ function renderMarket(){
      };
 
      row.append(
-      c,
-      t,
-      del
+      check,
+      text,
+      remove
      );
 
-     sec.appendChild(
-      row
-     );
+     section.appendChild(row);
 
     }
    );
 
-   const add=
+   const addRow =
    document.createElement("div");
 
-   add.className=
+   addRow.className =
    "marketAdd";
 
-   const input=
+   const input =
    document.createElement("input");
 
-   input.placeholder=
+   input.placeholder =
    "Agregar producto...";
 
-   const plus=
+   const addButton =
    document.createElement("button");
 
-   plus.className=
+   addButton.className =
    "marketPlus";
 
-   plus.textContent=
+   addButton.textContent =
    "+";
 
-   const doAdd=()=>{
+   function addMarketItem(){
 
-    const v=
+    const value =
     input.value.trim();
 
-    if(!v){
+    if(!value){
 
      return;
 
     }
 
-    cat.items.push({
+    category.items.push({
 
-     name:v,
+     name:value,
 
      checked:false
 
     });
 
-    input.value="";
+    input.value =
+    "";
 
     save();
 
     renderMarket();
 
-   };
+   }
 
-   plus.onclick=
-   doAdd;
+   addButton.onclick =
+   addMarketItem;
 
-   input.onkeydown=
-   e=>{
+   input.onkeydown =
+   event=>{
 
-    if(e.key==="Enter"){
+    if(
+     event.key==="Enter"
+    ){
 
-     doAdd();
+     addMarketItem();
 
     }
 
    };
 
-   add.append(
+   addRow.append(
     input,
-    plus
+    addButton
    );
 
-   sec.appendChild(add);
+   section.appendChild(addRow);
 
-   root.appendChild(sec);
+   root.appendChild(section);
 
   }
  );
 
  document
  .getElementById("marketPending")
- .textContent=
+ .textContent =
  pending;
 
  document
  .getElementById("marketDone")
- .textContent=
+ .textContent =
  done;
 
 }
 
 function addMarketCategory(){
 
- const input=
- document.getElementById("newCategoryName");
+ const input =
+ document.getElementById(
+  "newCategoryName"
+ );
 
- const name=
+ const name =
  input.value.trim();
 
  if(!name){
@@ -2193,10 +3392,7 @@ function addMarketCategory(){
 
  }
 
- state
- .mercado
- .categories
- .push({
+ state.mercado.categories.push({
 
   id:
   "cat_"+Date.now(),
@@ -2207,7 +3403,8 @@ function addMarketCategory(){
 
  });
 
- input.value="";
+ input.value =
+ "";
 
  save();
 
@@ -2215,15 +3412,18 @@ function addMarketCategory(){
 
 }
 
-window.clearCheckedMarketItems=()=>{
+window.clearCheckedMarketItems =
+function(){
 
  state.mercado.categories
  .forEach(
-  c=>{
+  category=>{
 
-   c.items=
-   c.items.filter(
-    i=>!i.checked
+   category.items =
+   category.items
+   .filter(
+    item=>
+    !item.checked
    );
 
   }
@@ -2234,6 +3434,7 @@ window.clearCheckedMarketItems=()=>{
  renderMarket();
 
 };
+
 
 /* RENDER GENERAL */
 
@@ -2259,15 +3460,13 @@ function renderAll(){
   "contactos",
   "documentos"
  ]
- .forEach(
-  renderList
- );
+ .forEach(renderList);
 
  renderExpenses();
 
  renderMarket();
 
- const notes=
+ const notes =
  document.getElementById("notes");
 
  if(
@@ -2275,23 +3474,25 @@ function renderAll(){
   document.activeElement!==notes
  ){
 
-  notes.value=
+  notes.value =
   state.notes||"";
 
  }
 
  document
  .getElementById("budgetInput")
- .value=
+ .value =
  state.budget||"";
 
 }
+
 
 /* EVENTOS */
 
 document
 .getElementById("addDay")
-.onclick=()=>{
+.onclick =
+()=>{
 
  state.days.push({
 
@@ -2312,27 +3513,39 @@ document
 document
 .querySelectorAll("[data-add]")
 .forEach(
- b=>
- b.onclick=
- ()=>addGeneric(
-  b.dataset.add
- )
+ button=>{
+
+  button.onclick =
+  ()=>{
+
+   addGeneric(
+    button.dataset.add
+   );
+
+  };
+
+ }
 );
 
 document
 .querySelectorAll("[data-input]")
 .forEach(
- i=>
- i.onkeydown=
- e=>{
+ input=>{
 
-  if(e.key==="Enter"){
+  input.onkeydown =
+  event=>{
 
-   addGeneric(
-    i.dataset.input
-   );
+   if(
+    event.key==="Enter"
+   ){
 
-  }
+    addGeneric(
+     input.dataset.input
+    );
+
+   }
+
+  };
 
  }
 );
@@ -2340,31 +3553,34 @@ document
 document
 .querySelectorAll(".tab")
 .forEach(
- b=>
- b.onclick=
- ()=>{
+ button=>{
 
-  document
-  .querySelectorAll(".tab")
-  .forEach(
-   x=>
-   x.classList.remove("active")
-  );
+  button.onclick =
+  ()=>{
 
-  document
-  .querySelectorAll(".pane")
-  .forEach(
-   x=>
-   x.classList.remove("active")
-  );
+   document
+   .querySelectorAll(".tab")
+   .forEach(
+    tab=>
+    tab.classList.remove("active")
+   );
 
-  b.classList.add("active");
+   document
+   .querySelectorAll(".pane")
+   .forEach(
+    pane=>
+    pane.classList.remove("active")
+   );
 
-  document
-  .getElementById(
-   b.dataset.pane
-  )
-  .classList.add("active");
+   button.classList.add("active");
+
+   document
+   .getElementById(
+    button.dataset.pane
+   )
+   .classList.add("active");
+
+  };
 
  }
 );
@@ -2372,107 +3588,133 @@ document
 document
 .querySelectorAll(".subtab")
 .forEach(
- b=>
- b.onclick=
- ()=>{
+ button=>{
 
-  document
-  .querySelectorAll(".subtab")
-  .forEach(
-   x=>
-   x.classList.remove("active")
-  );
+  button.onclick =
+  ()=>{
 
-  document
-  .querySelectorAll("#previo .section")
-  .forEach(
-   x=>
-   x.classList.remove("active")
-  );
+   document
+   .querySelectorAll(".subtab")
+   .forEach(
+    tab=>
+    tab.classList.remove("active")
+   );
 
-  b.classList.add("active");
+   document
+   .querySelectorAll("#previo .section")
+   .forEach(
+    section=>
+    section.classList.remove("active")
+   );
 
-  document
-  .getElementById(
-   b.dataset.section
-  )
-  .classList.add("active");
+   button.classList.add("active");
+
+   document
+   .getElementById(
+    button.dataset.section
+   )
+   .classList.add("active");
+
+  };
 
  }
 );
 
-const people={
+const people = {
+
  john:"John",
+
  esposa:"Ani",
+
  salomon:"Salomón",
+
  antonio:"Antonio"
+
 };
 
 document
 .querySelectorAll(".person")
 .forEach(
- b=>
- b.onclick=
- ()=>{
+ button=>{
 
-  document
-  .querySelectorAll(".person")
-  .forEach(
-   x=>
-   x.classList.remove("active")
-  );
+  button.onclick =
+  ()=>{
 
-  b.classList.add("active");
+   document
+   .querySelectorAll(".person")
+   .forEach(
+    person=>
+    person.classList.remove("active")
+   );
 
-  const k=
-  "maleta_"
-  +b.dataset.person;
+   button.classList.add("active");
 
-  document
-  .getElementById("packingTitle")
-  .textContent=
-  "Maleta · "
-  +people[b.dataset.person];
+   const key =
+   "maleta_"
+   +button.dataset.person;
 
-  const l=
-  document.querySelector("#packingCard .list");
+   document
+   .getElementById("packingTitle")
+   .textContent =
+   "Maleta · "
+   +people[
+    button.dataset.person
+   ];
 
-  const i=
-  document.querySelector("#packingCard [data-input]");
+   const list =
+   document.querySelector(
+    "#packingCard .list"
+   );
 
-  const a=
-  document.querySelector("#packingCard [data-add]");
+   const input =
+   document.querySelector(
+    "#packingCard [data-input]"
+   );
 
-  l.dataset.list=k;
-  i.dataset.input=k;
-  a.dataset.add=k;
+   const add =
+   document.querySelector(
+    "#packingCard [data-add]"
+   );
 
-  a.onclick=
-  ()=>addGeneric(k);
+   list.dataset.list =
+   key;
 
-  i.onkeydown=
-  e=>{
+   input.dataset.input =
+   key;
 
-   if(e.key==="Enter"){
+   add.dataset.add =
+   key;
 
-    addGeneric(k);
+   add.onclick =
+   ()=>addGeneric(key);
 
-   }
+   input.onkeydown =
+   event=>{
+
+    if(
+     event.key==="Enter"
+    ){
+
+     addGeneric(key);
+
+    }
+
+   };
+
+   renderList(key);
 
   };
-
-  renderList(k);
 
  }
 );
 
 document
 .getElementById("notes")
-.oninput=
-e=>{
+.oninput =
+event=>{
 
- state.notes=
- e.target.value;
+ state.notes =
+ event.target.value;
 
  save();
 
@@ -2480,9 +3722,10 @@ e=>{
 
 document
 .getElementById("saveBudget")
-.onclick=()=>{
+.onclick =
+()=>{
 
- state.budget=
+ state.budget =
  Number(
   document
   .getElementById("budgetInput")
@@ -2497,26 +3740,29 @@ document
 
 document
 .getElementById("addExpense")
-.onclick=
+.onclick =
 addExpense;
 
 document
 .getElementById("addMarketCategory")
-.onclick=
+.onclick =
 addMarketCategory;
 
 document
 .getElementById("newCategoryName")
-.onkeydown=
-e=>{
+.onkeydown =
+event=>{
 
- if(e.key==="Enter"){
+ if(
+  event.key==="Enter"
+ ){
 
   addMarketCategory();
 
  }
 
 };
+
 
 /* FIREBASE */
 
@@ -2529,12 +3775,14 @@ async function startFirebase(){
    "Conectando..."
   );
 
-  const existing=
+  const existing =
   await getDoc(
    sharedRef
   );
 
-  if(!existing.exists()){
+  if(
+   !existing.exists()
+  ){
 
    await setDoc(
     sharedRef,
@@ -2547,21 +3795,24 @@ async function startFirebase(){
 
    sharedRef,
 
-   snap=>{
+   snapshot=>{
 
-    if(!snap.exists()){
+    if(
+     !snapshot.exists()
+    ){
 
      return;
 
     }
 
-    remoteUpdate=true;
+    remoteUpdate =
+    true;
 
-    state={
+    state = {
 
      ...structuredClone(defaults),
 
-     ...snap.data()
+     ...snapshot.data()
 
     };
 
@@ -2569,9 +3820,11 @@ async function startFirebase(){
 
     renderAll();
 
-    remoteUpdate=false;
+    remoteUpdate =
+    false;
 
-    firebaseReady=true;
+    firebaseReady =
+    true;
 
     setSync(
      "ok",
@@ -2580,9 +3833,9 @@ async function startFirebase(){
 
    },
 
-   err=>{
+   error=>{
 
-    console.error(err);
+    console.error(error);
 
     setSync(
      "err",
@@ -2595,9 +3848,9 @@ async function startFirebase(){
 
  }
 
- catch(e){
+ catch(error){
 
-  console.error(e);
+  console.error(error);
 
   setSync(
    "err",
@@ -2615,4 +3868,3 @@ startFirebase();
 </script>
 </body>
 </html>
-};
