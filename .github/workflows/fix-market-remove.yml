@@ -1,0 +1,32 @@
+name: Fix market remove refresh
+on:
+  push:
+    paths:
+      - '.github/workflows/fix-market-remove.yml'
+permissions:
+  contents: write
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Patch index
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p = Path('index.html')
+          s = p.read_text()
+          old = 'save();row.remove();refreshRowMoveButtons(row.closest(".marketCategory"))'
+          new = 'save();renderMarket()'
+          count = s.count(old)
+          if count != 2:
+              raise SystemExit(f'Expected 2 occurrences, found {count}')
+          p.write_text(s.replace(old, new))
+          PY
+      - name: Commit fix
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html
+          git commit -m "Fix market item removal refresh"
+          git push
