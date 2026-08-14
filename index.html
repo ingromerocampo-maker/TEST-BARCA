@@ -21,24 +21,13 @@ button{cursor:pointer}
 .screen.active{display:block}
 
 /* MENU */
-#mainMenu{
- background:linear-gradient(180deg,#07111f,#0b1728);
- color:white;
- padding:max(24px,env(safe-area-inset-top)) 18px 40px
-}
+#mainMenu{background:linear-gradient(180deg,#07111f,#0b1728);color:white;padding:max(24px,env(safe-area-inset-top)) 18px 40px}
 .mainWrap{max-width:760px;margin:auto}
 .brand{font-size:34px;font-weight:900;margin-top:20px}
 .brandSub{color:var(--muted);margin:5px 0 30px}
 .appGrid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-.appCard{
- border:1px solid var(--line);border-radius:24px;padding:22px;
- min-height:190px;background:linear-gradient(145deg,#10213a,#0c1727);
- color:white;text-align:left
-}
-.appCard.market{
- background:linear-gradient(145deg,#fffef7,#f3ecd9);
- color:#352f26;border-color:#d8caaa
-}
+.appCard{border:1px solid var(--line);border-radius:24px;padding:22px;min-height:190px;background:linear-gradient(145deg,#10213a,#0c1727);color:white;text-align:left}
+.appCard.market{background:linear-gradient(145deg,#fffef7,#f3ecd9);color:#352f26;border-color:#d8caaa}
 .appIcon{font-size:44px;margin-bottom:22px}
 .appName{font-size:22px;font-weight:900}
 .appDesc{font-size:13px;line-height:1.45;color:var(--muted);margin-top:7px}
@@ -46,346 +35,166 @@ button{cursor:pointer}
 .footer{text-align:center;font-size:11px;color:#71839d;margin-top:25px}
 
 /* BACLA */
-#baclaApp{
- background:linear-gradient(180deg,#06101d,#0a1525 40%,#07111f);
- color:var(--text)
-}
+#baclaApp{background:linear-gradient(180deg,#06101d,#0a1525 40%,#07111f);color:var(--text)}
 .baclaWrap{max-width:900px;margin:auto;padding:16px 14px 42px}
 .top{display:flex;gap:12px;align-items:center;margin-bottom:14px}
-.back{
- flex:none;width:44px;height:44px;border-radius:13px;
- border:1px solid var(--line);background:#0b1626;color:white;font-size:20px
-}
+.back{flex:none;width:44px;height:44px;border-radius:13px;border:1px solid var(--line);background:#0b1626;color:white;font-size:20px}
 .headTitle{font-size:26px;font-weight:900}
 .headSub{font-size:13px;color:var(--muted);margin-top:2px}
-.sync{
- display:flex;align-items:center;gap:6px;color:var(--muted);
- font-size:11px;margin-top:4px
-}
+.sync{display:flex;align-items:center;gap:6px;color:var(--muted);font-size:11px;margin-top:4px}
 .dot{width:8px;height:8px;border-radius:50%;background:#e1bf61}
 .dot.ok{background:var(--green)}
 .dot.err{background:#ff6b76}
 
-.tabs{
- display:flex;gap:7px;overflow:auto;position:sticky;top:0;
- z-index:10;background:var(--navy);padding:8px 0 11px
-}
-.tab{
- flex:0 0 auto;min-width:76px;border:1px solid var(--line);
- border-radius:12px;background:#0b1626;color:#b4c1d3;
- padding:11px 12px;font-weight:800;font-size:12px
-}
+.tabs{display:flex;gap:7px;overflow:auto;position:sticky;top:0;z-index:10;background:var(--navy);padding:8px 0 11px}
+.tab{flex:0 0 auto;min-width:76px;border:1px solid var(--line);border-radius:12px;background:#0b1626;color:#b4c1d3;padding:11px 12px;font-weight:800;font-size:12px}
 .tab.active{background:#1b3d68;color:white;border-color:var(--blue)}
 .pane{display:none}
 .pane.active{display:block}
-
-.card{
- background:var(--card);border:1px solid var(--line);
- border-radius:18px;padding:15px;margin-bottom:13px
-}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:15px;margin-bottom:13px}
 .card h2{font-size:17px;margin:0 0 10px}
 .small{font-size:12px;color:var(--muted)}
 
-.tripFacts{
- display:grid;grid-template-columns:repeat(3,1fr);gap:8px
-}
-.fact{
- background:#0b1626;border:1px solid var(--line);
- border-radius:13px;padding:11px
-}
+.tripFacts{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.fact{background:#0b1626;border:1px solid var(--line);border-radius:13px;padding:11px}
 .factLabel{font-size:10px;color:var(--muted)}
 .factValue{font-size:15px;font-weight:900;margin-top:3px}
 
 /* PAGOS */
-.progress{
- height:10px;border-radius:999px;background:#1a2940;
- overflow:hidden;margin:10px 0
-}
-.progress>div{
- height:100%;
- background:linear-gradient(90deg,var(--blue),var(--green))
-}
-.milestones{
- display:grid;grid-template-columns:repeat(5,1fr);gap:6px
-}
-.milestone{
- border:1px solid var(--line);background:#0b1626;color:white;
- border-radius:11px;padding:8px 4px;text-align:center
-}
+.progress{height:10px;border-radius:999px;background:#1a2940;overflow:hidden;margin:10px 0}
+.progress>div{height:100%;background:linear-gradient(90deg,var(--blue),var(--green))}
+.milestones{display:grid;grid-template-columns:repeat(5,1fr);gap:6px}
+.milestone{border:1px solid var(--line);background:#0b1626;color:white;border-radius:11px;padding:8px 4px;text-align:center}
 .milestone.done{background:#0d2a25;border-color:#278d6b}
-.circle{
- width:24px;height:24px;margin:auto;border-radius:50%;
- border:1px solid #485a74;display:grid;place-items:center
-}
-.milestone.done .circle{
- background:var(--green);border-color:var(--green);
- color:#062217;font-weight:900
-}
-.milestone small{
- display:block;margin-top:4px;color:var(--muted);font-size:9px
-}
+.circle{width:24px;height:24px;margin:auto;border-radius:50%;border:1px solid #485a74;display:grid;place-items:center}
+.milestone.done .circle{background:var(--green);border-color:var(--green);color:#062217;font-weight:900}
+.milestone small{display:block;margin-top:4px;color:var(--muted);font-size:9px}
 
 /* AGENDA SIMPLE */
-.dayCard{
- background:#0b1626;border:1px solid var(--line);
- border-radius:16px;margin-bottom:12px;overflow:hidden
-}
-.dayHeader{
- padding:13px 14px;border-bottom:1px solid var(--line);
- display:flex;gap:10px;align-items:center
-}
-.dayDateBox{
- width:54px;min-width:54px;text-align:center;
- background:#142943;border-radius:11px;padding:7px 4px
-}
+.dayCard{background:#0b1626;border:1px solid var(--line);border-radius:16px;margin-bottom:12px;overflow:hidden}
+.dayHeader{padding:13px 14px;border-bottom:1px solid var(--line);display:flex;gap:10px;align-items:center}
+.dayDateBox{width:54px;min-width:54px;text-align:center;background:#142943;border-radius:11px;padding:7px 4px}
 .dayNum{font-size:22px;font-weight:900;line-height:1}
-.dayMon{
- font-size:10px;color:#b7c5d8;margin-top:3px;text-transform:uppercase
-}
+.dayMon{font-size:10px;color:#b7c5d8;margin-top:3px;text-transform:uppercase}
 .dayInfo{flex:1;min-width:0}
-.dayTitleInput{
- width:100%;border:none;background:transparent;color:white;
- font-size:16px;font-weight:900;outline:none
-}
-.dayDateInput{
- border:none;background:transparent;color:var(--muted);
- font-size:11px;outline:none;margin-top:4px
-}
+.dayTitleInput{width:100%;border:none;background:transparent;color:white;font-size:16px;font-weight:900;outline:none}
+.dayDateInput{border:none;background:transparent;color:var(--muted);font-size:11px;outline:none;margin-top:4px}
 .checkRows{padding:8px 10px}
-.checkRow{
- display:flex;align-items:center;gap:10px;min-height:48px;
- border-bottom:1px solid rgba(38,58,85,.65)
-}
+.checkRow{display:flex;align-items:center;gap:10px;min-height:48px;border-bottom:1px solid rgba(38,58,85,.65)}
 .checkRow:last-child{border-bottom:none}
-.checkRow input[type=checkbox]{
- width:22px;height:22px;accent-color:var(--green);flex:none
-}
-.checkText{
- flex:1;border:none;background:transparent;color:white;
- outline:none;font-size:15px;min-width:0
-}
-.checkRow.done .checkText{
- text-decoration:line-through;color:#718099
-}
-.delete{
- border:none;background:transparent;color:#7f91a9;
- font-size:21px;padding:6px
-}
-.dayAdd{
- display:flex;gap:8px;padding:10px;border-top:1px solid var(--line)
-}
-.dayAdd input{
- flex:1;min-width:0;background:#091423;border:1px solid var(--line);
- border-radius:10px;padding:11px;color:white;outline:none
-}
-.primary{
- border:none;border-radius:10px;background:var(--blue);
- color:white;font-weight:800;padding:10px 14px
-}
-.dangerBtn{
- margin:0 10px 10px;border:1px solid var(--line);
- background:#0c192a;color:#ff9ca4;border-radius:9px;
- padding:8px 10px;font-size:12px;font-weight:700
-}
-.addDayBtn{
- width:100%;padding:12px;border:1px dashed #496582;
- border-radius:12px;background:#0b1626;color:#bcd0e7;font-weight:800
-}
+.checkRow input[type=checkbox]{width:22px;height:22px;accent-color:var(--green);flex:none}
+.checkText{flex:1;border:none;background:transparent;color:white;outline:none;font-size:15px;min-width:0}
+.checkRow.done .checkText{text-decoration:line-through;color:#718099}
+.delete{border:none;background:transparent;color:#7f91a9;font-size:21px;padding:6px}
+.dayAdd{display:flex;gap:8px;padding:10px;border-top:1px solid var(--line)}
+.dayAdd input{flex:1;min-width:0;background:#091423;border:1px solid var(--line);border-radius:10px;padding:11px;color:white;outline:none}
+.primary{border:none;border-radius:10px;background:var(--blue);color:white;font-weight:800;padding:10px 14px}
+.dangerBtn{margin:0 10px 10px;border:1px solid var(--line);background:#0c192a;color:#ff9ca4;border-radius:9px;padding:8px 10px;font-size:12px;font-weight:700}
+.addDayBtn{width:100%;padding:12px;border:1px dashed #496582;border-radius:12px;background:#0b1626;color:#bcd0e7;font-weight:800}
 
 /* LISTAS */
-.subtabs,.people{
- display:flex;gap:7px;overflow:auto;margin-bottom:10px
-}
-.subtab,.person{
- border:1px solid var(--line);background:#0b1626;
- color:#b2c0d1;border-radius:999px;padding:8px 12px;white-space:nowrap
-}
-.subtab.active,.person.active{
- background:#213958;color:white;border-color:#4b7098
-}
+.subtabs,.people{display:flex;gap:7px;overflow:auto;margin-bottom:10px}
+.subtab,.person{border:1px solid var(--line);background:#0b1626;color:#b2c0d1;border-radius:999px;padding:8px 12px;white-space:nowrap}
+.subtab.active,.person.active{background:#213958;color:white;border-color:#4b7098}
 .section{display:none}
 .section.active{display:block}
 .list{display:flex;flex-direction:column;gap:8px}
-.item{
- display:flex;align-items:center;gap:9px;background:#091423;
- border:1px solid var(--line);border-radius:11px;padding:9px 10px
-}
-.item input[type=checkbox]{
- width:21px;height:21px;accent-color:var(--green)
-}
-.txt{
- flex:1;border:none;background:transparent;color:white;
- outline:none;min-width:0;font-size:14px
-}
+.item{display:flex;align-items:center;gap:9px;background:#091423;border:1px solid var(--line);border-radius:11px;padding:9px 10px}
+.item input[type=checkbox]{width:21px;height:21px;accent-color:var(--green)}
+.txt{flex:1;border:none;background:transparent;color:white;outline:none;min-width:0;font-size:14px}
 .item.done .txt{text-decoration:line-through;color:#718099}
 .addrow{display:flex;gap:8px;margin-top:9px}
-.addrow input{
- flex:1;min-width:0;background:#091423;border:1px solid var(--line);
- border-radius:10px;padding:11px;color:white;outline:none
-}
-textarea{
- width:100%;min-height:150px;background:#091423;
- border:1px solid var(--line);border-radius:11px;
- color:white;padding:11px;outline:none
-}
+.addrow input{flex:1;min-width:0;background:#091423;border:1px solid var(--line);border-radius:10px;padding:11px;color:white;outline:none}
+textarea{width:100%;min-height:150px;background:#091423;border:1px solid var(--line);border-radius:11px;color:white;padding:11px;outline:none}
 
 /* GASTOS */
-.expenseTotal{
- background:#102849;border:1px solid #2a4b73;
- border-radius:15px;padding:15px;margin-bottom:12px
-}
+.expenseTotal{background:#102849;border:1px solid #2a4b73;border-radius:15px;padding:15px;margin-bottom:12px}
 .expenseTotal .v{font-size:28px;font-weight:900;margin-top:3px}
 .budgetRow{display:flex;gap:8px}
-.budgetRow input{
- flex:1;min-width:0;background:#091423;border:1px solid var(--line);
- border-radius:10px;color:white;padding:11px
-}
-.expenseRow{
- display:grid;grid-template-columns:1fr 120px 34px;gap:7px;
- background:#091423;border:1px solid var(--line);
- border-radius:11px;padding:9px;margin-bottom:8px
-}
-.expenseRow input{
- width:100%;min-width:0;background:transparent;
- border:none;color:white;outline:none
-}
-.expenseMeta{
- grid-column:1/3;display:flex;gap:8px
-}
-.expenseMeta select{
- flex:1;min-width:0;background:#101f33;border:1px solid var(--line);
- color:white;border-radius:8px;padding:8px
-}
-.expenseAdd{
- display:grid;grid-template-columns:1fr 120px 48px;
- gap:7px;margin-top:10px
-}
-.expenseAdd input{
- width:100%;min-width:0;background:#091423;border:1px solid var(--line);
- border-radius:10px;color:white;padding:10px
-}
-.expenseAdd select{
- background:#091423;border:1px solid var(--line);
- border-radius:10px;color:white;padding:10px
-}
-.expenseAdd .meta{
- grid-column:1/3;display:flex;gap:7px
-}
+.budgetRow input{flex:1;min-width:0;background:#091423;border:1px solid var(--line);border-radius:10px;color:white;padding:11px}
+.expenseRow{display:grid;grid-template-columns:1fr 120px 34px;gap:7px;background:#091423;border:1px solid var(--line);border-radius:11px;padding:9px;margin-bottom:8px}
+.expenseRow input{width:100%;min-width:0;background:transparent;border:none;color:white;outline:none}
+.expenseMeta{grid-column:1/3;display:flex;gap:8px}
+.expenseMeta select{flex:1;min-width:0;background:#101f33;border:1px solid var(--line);color:white;border-radius:8px;padding:8px}
+.expenseAdd{display:grid;grid-template-columns:1fr 120px 48px;gap:7px;margin-top:10px}
+.expenseAdd input{width:100%;min-width:0;background:#091423;border:1px solid var(--line);border-radius:10px;color:white;padding:10px}
+.expenseAdd select{background:#091423;border:1px solid var(--line);border-radius:10px;color:white;padding:10px}
+.expenseAdd .meta{grid-column:1/3;display:flex;gap:7px}
 
 /* MERCADO */
 #marketApp{background:#f4eedc;color:var(--ink)}
-.marketWrap{
- max-width:760px;margin:auto;
- padding:max(15px,env(safe-area-inset-top)) 14px 36px
-}
-.marketTop{
- display:flex;align-items:center;gap:10px;margin-bottom:13px
-}
-.marketBack{
- width:44px;height:44px;border-radius:50%;
- border:1px solid var(--paperBorder);background:#fffdf5;
- color:#4f473b;font-size:20px
-}
+.marketWrap{max-width:760px;margin:auto;padding:max(15px,env(safe-area-inset-top)) 14px 36px}
+.marketTop{display:flex;align-items:center;gap:10px;margin-bottom:13px}
+.marketBack{width:44px;height:44px;border-radius:50%;border:1px solid var(--paperBorder);background:#fffdf5;color:#4f473b;font-size:20px}
 .marketHeading{flex:1;min-width:0}
 .marketTitle{font-size:27px;font-weight:900;line-height:1}
 .marketSub{font-size:12px;color:#7f735f;margin-top:4px}
-.clearBtn{
- border:1px solid var(--paperBorder);background:#fffaf0;
- color:#705f50;border-radius:10px;padding:9px 10px;font-size:12px
-}
+.clearBtn{border:1px solid var(--paperBorder);background:#fffaf0;color:#705f50;border-radius:10px;padding:9px 10px;font-size:12px}
+
 .notebook{
- position:relative;background-color:var(--paper);
+ position:relative;
+ background-color:var(--paper);
  background-image:repeating-linear-gradient(
   to bottom,
   transparent 0,
   transparent 41px,
   var(--paperLine) 42px
  );
- border:1px solid var(--paperBorder);border-radius:18px;
- padding:20px 14px 26px 42px;overflow:hidden;
+ border:1px solid var(--paperBorder);
+ border-radius:18px;
+ padding:20px 14px 26px 42px;
+ overflow:hidden;
  box-shadow:0 10px 25px rgba(91,76,48,.12)
 }
 .notebook:before{
- content:"";position:absolute;left:28px;top:0;bottom:0;
- width:2px;background:rgba(214,104,104,.40)
+ content:"";
+ position:absolute;
+ left:28px;
+ top:0;
+ bottom:0;
+ width:2px;
+ background:rgba(214,104,104,.40)
 }
-.marketSummary{
- display:flex;gap:8px;margin-bottom:18px;position:relative;z-index:1
-}
-.summaryBox{
- background:#fffdf5;border:1px solid var(--paperBorder);
- border-radius:10px;padding:8px 11px
-}
+.marketSummary{display:flex;gap:8px;margin-bottom:18px;position:relative;z-index:1}
+.summaryBox{background:#fffdf5;border:1px solid var(--paperBorder);border-radius:10px;padding:8px 11px}
 .summaryBox .l{font-size:10px;color:#837660}
 .summaryBox .v{font-size:17px;font-weight:900}
 
-.marketCategory{
- position:relative;z-index:1;margin-bottom:22px
-}
-.categoryHead{
- display:flex;align-items:center;gap:8px;min-height:42px
-}
+.marketCategory{position:relative;z-index:1;margin-bottom:22px}
+.categoryHead{display:flex;align-items:center;gap:8px;min-height:42px}
 .categoryName{
  flex:1;min-width:0;border:none;background:rgba(255,253,245,.94);
  color:#332e27;font-size:19px;font-weight:900;
  padding:5px 7px;border-radius:6px;outline:none
 }
-.categoryDelete{
- border:none;background:transparent;color:#aa7671;font-size:18px
-}
-.marketItem{
- display:flex;align-items:center;gap:10px;
- min-height:42px;padding:0 5px
-}
-.marketItem input[type=checkbox]{
- width:23px;height:23px;accent-color:#5e8869;flex:none
-}
+.categoryDelete{border:none;background:transparent;color:#aa7671;font-size:18px}
+
+.marketItem{display:flex;align-items:center;gap:10px;min-height:42px;padding:0 5px}
+.marketItem input[type=checkbox]{width:23px;height:23px;accent-color:#5e8869;flex:none}
 .marketItemText{
  flex:1;min-width:0;border:none;background:rgba(255,253,245,.82);
  color:#302b25;padding:7px 5px;outline:none;
  font-size:16px;font-weight:600
 }
-.marketItem.checked .marketItemText{
- text-decoration:line-through;color:#999286
-}
-.marketDelete{
- border:none;background:transparent;color:#ad8982;font-size:20px
-}
-.marketAdd{
- display:flex;gap:8px;align-items:center;
- min-height:42px;padding:0 5px
-}
+.marketItem.checked .marketItemText{text-decoration:line-through;color:#999286}
+.marketDelete{border:none;background:transparent;color:#ad8982;font-size:20px}
+
+.marketAdd{display:flex;gap:8px;align-items:center;min-height:42px;padding:0 5px}
 .marketAdd input{
  flex:1;min-width:0;border:none;border-bottom:1px dashed #a99b80;
  background:rgba(255,253,245,.82);color:#3b352c;
  padding:8px 6px;outline:none;font-size:16px
 }
-.marketPlus{
- width:36px;height:36px;border:none;border-radius:50%;
- background:#678d6d;color:white;font-size:22px;font-weight:800
-}
-.addCategory{
- position:relative;z-index:1;margin-top:8px;
- padding-top:16px;border-top:1px dashed #b9aa8d
-}
-.addCategory input{
- width:100%;border:1px solid var(--paperBorder);
- background:#fffdf5;border-radius:10px;
- padding:12px;color:#40382d;outline:none;font-size:16px
-}
-.addCategory button{
- width:100%;margin-top:8px;border:none;border-radius:10px;
- background:#5f594b;color:white;font-weight:800;
- padding:12px;font-size:15px
-}
+.marketPlus{width:36px;height:36px;border:none;border-radius:50%;background:#678d6d;color:white;font-size:22px;font-weight:800}
+
+.addCategory{position:relative;z-index:1;margin-top:8px;padding-top:16px;border-top:1px dashed #b9aa8d}
+.addCategory input{width:100%;border:1px solid var(--paperBorder);background:#fffdf5;border-radius:10px;padding:12px;color:#40382d;outline:none;font-size:16px}
+.addCategory button{width:100%;margin-top:8px;border:none;border-radius:10px;background:#5f594b;color:white;font-weight:800;padding:12px;font-size:15px}
 
 @media(max-width:650px){
  .appGrid{grid-template-columns:1fr}
  .tripFacts{grid-template-columns:1fr 1fr}
- .milestones{
-  grid-template-columns:repeat(5,minmax(55px,1fr));
-  overflow:auto
- }
+ .milestones{grid-template-columns:repeat(5,minmax(55px,1fr));overflow:auto}
  .expenseRow{grid-template-columns:1fr 105px 32px}
  .expenseAdd{grid-template-columns:1fr 105px 46px}
 }
@@ -406,31 +215,24 @@ textarea{
    <button class="appCard" onclick="openScreen('baclaApp')">
     <div class="appIcon">⚽</div>
     <div class="appName">BACLA ARH</div>
-    <div class="appDesc">
-     Viaje, torneo, pendientes, maletas, reservas y gastos.
-    </div>
+    <div class="appDesc">Viaje, torneo, pendientes, maletas, reservas y gastos.</div>
    </button>
 
    <button class="appCard market" onclick="openScreen('marketApp')">
     <div class="appIcon">🛒</div>
     <div class="appName">Mercado Familiar</div>
-    <div class="appDesc">
-     Lista compartida, clara y rápida para usar mientras hacen mercado.
-    </div>
+    <div class="appDesc">Lista compartida, clara y rápida para usar mientras hacen mercado.</div>
    </button>
 
   </div>
 
-  <div class="footer">
-   Familia ARH · Datos compartidos con Firebase
-  </div>
+  <div class="footer">Familia ARH · Datos compartidos con Firebase</div>
 
  </div>
 </div>
 
 <!-- BACLA -->
 <div id="baclaApp" class="screen">
-
  <div class="baclaWrap">
 
   <div class="top">
@@ -439,14 +241,13 @@ textarea{
 
    <div style="flex:1">
     <div class="headTitle">BACLA ARH</div>
-    <div class="headSub">
-     Cap Cana · República Dominicana · 2026
-    </div>
+    <div class="headSub">Cap Cana · República Dominicana · 2026</div>
 
     <div class="sync">
      <span id="syncDot" class="dot"></span>
      <span id="syncText">Conectando...</span>
     </div>
+
    </div>
 
   </div>
@@ -468,7 +269,6 @@ textarea{
     <h2>Información clave</h2>
 
     <div class="tripFacts">
-
      <div class="fact">
       <div class="factLabel">LLEGADA</div>
       <div class="factValue">9 Dic</div>
@@ -483,12 +283,10 @@ textarea{
       <div class="factLabel">SEDE</div>
       <div class="factValue">The Fields</div>
      </div>
-
     </div>
 
     <div class="small" style="margin-top:10px">
-     Partidos previstos entre 9:00 a. m. y 2:00 p. m.
-     según programación oficial.
+     Partidos previstos entre 9:00 a. m. y 2:00 p. m. según programación oficial.
     </div>
 
    </div>
@@ -519,7 +317,7 @@ textarea{
     <h2>Itinerario</h2>
 
     <div class="small" style="margin-bottom:10px">
-     Marca, edita, agrega o elimina actividades.
+     Simple: marca, edita, agrega o elimina actividades.
     </div>
 
     <div id="days"></div>
@@ -737,7 +535,6 @@ textarea{
   <div id="notas" class="pane">
 
    <div class="card">
-
     <h2>Notas</h2>
 
     <textarea
@@ -832,9 +629,1989 @@ const firebaseConfig={
  messagingSenderId:"874707622741",
  appId:"1:874707622741:web:20688eea06d47751b7addc",
  measurementId:"G-XRFQ5QN58E"
-const app=initializeApp(firebaseConfig);
- renderAll();
+  const app=initializeApp(firebaseConfig);
+const db=getFirestore(app);
+const sharedRef=doc(db,"bacla","agenda");
+
+const defaults={
+ payments:[true,false,false,false,false],
+
+ days:[
+
+  {
+   title:"Miércoles · Llegada",
+   date:"2026-12-09",
+   items:[
+    {t:"Llegada a Punta Cana / Cap Cana",d:false},
+    {t:"Traslado al hotel y check-in",d:false},
+    {t:"Comida ligera, hidratación y descanso",d:false},
+    {t:"Preparar uniforme, documentos y equipo de Antonio",d:false},
+    {t:"Noche tranquila para llegar descansados",d:false}
+   ]
+  },
+
+  {
+   title:"Jueves · Inicio oficial",
+   date:"2026-12-10",
+   items:[
+    {t:"Desayuno temprano",d:false},
+    {t:"Registro / actividades oficiales BACLA",d:false},
+    {t:"Confirmar horarios definitivos de Antonio",d:false},
+    {t:"Bloque familiar libre según programación",d:false}
+   ]
+  },
+
+  {
+   title:"Viernes · Competencia",
+   date:"2026-12-11",
+   items:[
+    {t:"Partidos y actividades según programación oficial",d:false},
+    {t:"Revisar transporte, hidratación, snacks y uniforme",d:false},
+    {t:"Actividad familiar flexible en espacios libres",d:false}
+   ]
+  },
+
+  {
+   title:"Sábado · Competencia",
+   date:"2026-12-12",
+   items:[
+    {t:"Continuación de partidos",d:false},
+    {t:"Revisar ropa deportiva / lavandería si hace falta",d:false},
+    {t:"Espacio familiar en Cap Cana / Punta Cana",d:false}
+   ]
+  },
+
+  {
+   title:"Domingo · Cierre",
+   date:"2026-12-13",
+   items:[
+    {t:"Última jornada / finales / ceremonia según clasificación",d:false},
+    {t:"Fotos y recuerdos del torneo",d:false},
+    {t:"Cena familiar de cierre",d:false},
+    {t:"Dejar maletas parcialmente listas",d:false}
+   ]
+  },
+
+  {
+   title:"Lunes · Regreso",
+   date:"2026-12-14",
+   items:[
+    {t:"Check-out",d:false},
+    {t:"Revisar pasaportes y equipaje",d:false},
+    {t:"Coche YOYO y silla de auto",d:false},
+    {t:"Traslado al aeropuerto",d:false}
+   ]
+  }
+
+ ],
+
+ previo_familia:[
+  {t:"Verificar pasaportes y vigencia",d:false},
+  {t:"Confirmar vuelos",d:false},
+  {t:"Confirmar hotel",d:false},
+  {t:"Seguro de viaje",d:false},
+  {t:"Confirmar traslados",d:false},
+  {t:"Guardar reservas offline",d:false},
+  {t:"Revisar registro y acceso a Cap Cana",d:false}
+ ],
+
+ previo_salomon:[
+  {t:"Documentos",d:false},
+  {t:"Coche YOYO",d:false},
+  {t:"Silla de auto",d:false},
+  {t:"Medicamentos",d:false},
+  {t:"Snacks para el vuelo",d:false},
+  {t:"Entretenimiento",d:false}
+ ],
+
+ previo_antonio:[
+  {t:"Documentación del torneo",d:false},
+  {t:"Cronograma oficial",d:false},
+  {t:"Uniformes",d:false},
+  {t:"Guayos",d:false},
+  {t:"Canilleras",d:false},
+  {t:"Botella de agua",d:false}
+ ],
+
+ maleta_john:[
+  {t:"Pasaporte",d:false},
+  {t:"Ropa",d:false},
+  {t:"Ropa interior",d:false},
+  {t:"Tenis / zapatos",d:false},
+  {t:"Cargadores",d:false},
+  {t:"Artículos de aseo",d:false}
+ ],
+
+ maleta_esposa:[
+  {t:"Pasaporte",d:false},
+  {t:"Ropa",d:false},
+  {t:"Ropa interior",d:false},
+  {t:"Zapatos / sandalias",d:false},
+  {t:"Cargadores",d:false},
+  {t:"Artículos de aseo",d:false}
+ ],
+
+ maleta_salomon:[
+  {t:"Documentos",d:false},
+  {t:"Ropa",d:false},
+  {t:"Cambios extra",d:false},
+  {t:"Pijama",d:false},
+  {t:"Pañales / higiene",d:false},
+  {t:"Coche YOYO",d:false},
+  {t:"Silla de auto",d:false},
+  {t:"Snacks",d:false},
+  {t:"Juguetes",d:false}
+ ],
+
+ maleta_antonio:[
+  {t:"Pasaporte",d:false},
+  {t:"Uniforme oficial",d:false},
+  {t:"Uniforme entrenamiento",d:false},
+  {t:"Guayos",d:false},
+  {t:"Tenis",d:false},
+  {t:"Medias deportivas",d:false},
+  {t:"Canilleras",d:false},
+  {t:"Botella de agua",d:false},
+  {t:"Ropa casual",d:false}
+ ],
+
+ vuelos:[
+  {t:"Reserva de vuelos",d:false}
+ ],
+
+ hotel:[
+  {t:"Hotel / alojamiento",d:false}
+ ],
+
+ traslados:[
+  {t:"Traslado aeropuerto",d:false}
+ ],
+
+ contactos:[
+  {t:"Contacto Barça Academy",d:false}
+ ],
+
+ documentos:[
+  {t:"Pasaportes",d:false},
+  {t:"Reserva hotel",d:false},
+  {t:"Reserva vuelos",d:false}
+ ],
+
+ gastos:[],
+
+ budget:0,
+
+ notes:"",
+
+ mercado:{
+
+  categories:[
+
+   {
+    id:"aseo",
+    name:"Aseo",
+    items:[]
+   },
+
+   {
+    id:"aseo_personal",
+    name:"Aseo personal",
+    items:[
+     {name:"Shampoo",checked:false},
+     {name:"Crema dental",checked:false}
+    ]
+   },
+
+   {
+    id:"vegetales_frutas",
+    name:"Vegetales y frutas",
+    items:[
+     {name:"Tomate",checked:false},
+     {name:"Cebolla",checked:false},
+     {name:"Banano",checked:false}
+    ]
+   },
+
+   {
+    id:"carnes",
+    name:"Carnes",
+    items:[
+     {name:"Pollo",checked:false},
+     {name:"Carne",checked:false}
+    ]
+   },
+
+   {
+    id:"despensa",
+    name:"Despensa",
+    items:[
+     {name:"Arroz",checked:false},
+     {name:"Pasta",checked:false},
+     {name:"Aceite",checked:false}
+    ]
+   },
+
+   {
+    id:"snacks",
+    name:"Snacks",
+    items:[
+     {name:"Galletas",checked:false}
+    ]
+   }
+
+  ]
+
+ }
+
+};
+
+let state=structuredClone(defaults);
+let firebaseReady=false;
+let remoteUpdate=false;
+let saveTimer=null;
+
+window.openScreen=id=>{
+
+ document
+ .querySelectorAll(".screen")
+ .forEach(x=>x.classList.remove("active"));
+
+ document
+ .getElementById(id)
+ .classList.add("active");
+
+ window.scrollTo(0,0);
+
+};
+
+function migrate(){
+
+ if(
+  !state.mercado ||
+  !Array.isArray(state.mercado.categories)
+ ){
+
+  state.mercado=
+  structuredClone(defaults.mercado);
+
+ }
+
+ [
+  "vuelos",
+  "hotel",
+  "traslados",
+  "contactos",
+  "documentos",
+  "gastos"
+ ]
+ .forEach(k=>{
+
+  if(!Array.isArray(state[k])){
+
+   state[k]=
+   structuredClone(defaults[k]||[]);
+
+  }
+
+ });
+
+ if(state.budget==null){
+
+  state.budget=0;
+
+ }
+
+}
+
+function setSync(status,text){
+
+ const dot=
+ document.getElementById("syncDot");
+
+ const label=
+ document.getElementById("syncText");
+
+ dot.className="dot";
+
+ if(status==="ok"){
+
+  dot.classList.add("ok");
+
+ }
+
+ if(status==="err"){
+
+  dot.classList.add("err");
+
+ }
+
+ label.textContent=text;
+
+}
+
+async function save(){
+
+ if(
+  !firebaseReady ||
+  remoteUpdate
+ ){
+
+  return;
+
+ }
+
+ clearTimeout(saveTimer);
+
+ setSync("","Guardando...");
+
+ saveTimer=setTimeout(
+
+  async()=>{
+
+   try{
+
+    await setDoc(
+     sharedRef,
+     state
+    );
+
+    setSync(
+     "ok",
+     "Sincronizado"
+    );
+
+   }
+
+   catch(e){
+
+    console.error(e);
+
+    setSync(
+     "err",
+     "Error Firebase"
+    );
+
+   }
+
+  },
+
+  300
+
+ );
+
+}
+
+function money(n){
+
+ return new Intl.NumberFormat(
+
+  "es-CO",
+
+  {
+   style:"currency",
+   currency:"COP",
+   maximumFractionDigits:0
+  }
+
+ ).format(
+  Number(n)||0
+ );
+
+}
+
+function dateParts(s){
+
+ const d=
+ s
+ ?new Date(s+"T00:00:00")
+ :null;
+
+ if(
+  !d ||
+  isNaN(d)
+ ){
+
+  return{
+   num:"—",
+   mon:""
+  };
+
+ }
+
+ return{
+
+  num:
+  String(d.getDate()),
+
+  mon:
+  d
+  .toLocaleDateString(
+   "es-CO",
+   {month:"short"}
+  )
+  .replace(".","")
+
+ };
+
+}
+
+/* PAGOS */
+
+function renderPayments(){
+
+ const box=
+ document.getElementById("milestones");
+
+ box.innerHTML="";
+
+ state.payments.forEach(
+  (done,i)=>{
+
+   const b=
+   document.createElement("button");
+
+   b.className=
+   "milestone"
+   +(done?" done":"");
+
+   b.innerHTML=
+   `
+   <div class="circle">
+    ${done?"✓":i+1}
+   </div>
+   <small>
+    ${i===0?"Julio":"Pago "+(i+1)}
+   </small>
+   `;
+
+   b.onclick=()=>{
+
+    state.payments[i]=
+    !state.payments[i];
+
+    save();
+
+    renderPayments();
+
+   };
+
+   box.appendChild(b);
+
+  }
+ );
+
+ const n=
+ state.payments
+ .filter(Boolean)
+ .length;
+
+ document
+ .getElementById("progressBar")
+ .style.width=
+ (n*20)+"%";
+
+ document
+ .getElementById("paySummary")
+ .textContent=
+ money(n*2500000)
+ +" / "
+ +money(12500000);
+
+}
+
+/* ITEMS */
+
+function createItem(
+ item,
+ onRender,
+ onDelete
+){
+
+ const row=
+ document.createElement("div");
+
+ row.className=
+ "item"
+ +(item.d?" done":"");
+
+ const c=
+ document.createElement("input");
+
+ c.type="checkbox";
+
+ c.checked=
+ !!item.d;
+
+ c.onchange=()=>{
+
+  item.d=
+  c.checked;
+
+  save();
+
+  onRender();
+
+ };
+
+ const t=
+ document.createElement("input");
+
+ t.className="txt";
+
+ t.value=
+ item.t||"";
+
+ t.oninput=()=>{
+
+  item.t=
+  t.value;
+
+  save();
+
+ };
+
+ const del=
+ document.createElement("button");
+
+ del.className="delete";
+
+ del.textContent="×";
+
+ del.onclick=
+ onDelete;
+
+ row.append(
+  c,
+  t,
+  del
+ );
+
+ return row;
+
+}
+
+function renderList(key){
+
+ const el=
+ document.querySelector(
+  `[data-list="${key}"]`
+ );
+
+ if(!el){
+
+  return;
+
+ }
+
+ el.innerHTML="";
+
+ (state[key]||[])
+ .forEach(
+  (item,i)=>{
+
+   el.appendChild(
+
+    createItem(
+
+     item,
+
+     ()=>renderList(key),
+
+     ()=>{
+
+      state[key].splice(
+       i,
+       1
+      );
+
+      save();
+
+      renderList(key);
+
+     }
+
+    )
+
+   );
+
+  }
+ );
+
+}
+
+function addGeneric(key){
+
+ const input=
+ document.querySelector(
+  `[data-input="${key}"]`
+ );
+
+ if(!input){
+
+  return;
+
+ }
+
+ const v=
+ input.value.trim();
+
+ if(!v){
+
+  return;
+
+ }
+
+ if(!Array.isArray(state[key])){
+
+  state[key]=[];
+
+ }
+
+ state[key].push({
+
+  t:v,
+
+  d:false
+
+ });
+
+ input.value="";
+
+ save();
+
+ renderList(key);
+
+}
+
+/* AGENDA */
+
+function renderDays(){
+
+ const root=
+ document.getElementById("days");
+
+ root.innerHTML="";
+
+ (state.days||[])
+ .forEach(
+  (day,di)=>{
+
+   const card=
+   document.createElement("div");
+
+   card.className=
+   "dayCard";
+
+   const p=
+   dateParts(day.date);
+
+   const header=
+   document.createElement("div");
+
+   header.className=
+   "dayHeader";
+
+   const dateBox=
+   document.createElement("div");
+
+   dateBox.className=
+   "dayDateBox";
+
+   dateBox.innerHTML=
+   `
+   <div class="dayNum">
+    ${p.num}
+   </div>
+   <div class="dayMon">
+    ${p.mon}
+   </div>
+   `;
+
+   const info=
+   document.createElement("div");
+
+   info.className=
+   "dayInfo";
+
+   const title=
+   document.createElement("input");
+
+   title.className=
+   "dayTitleInput";
+
+   title.value=
+   day.title||"";
+
+   title.oninput=()=>{
+
+    day.title=
+    title.value;
+
+    save();
+
+   };
+
+   const date=
+   document.createElement("input");
+
+   date.className=
+   "dayDateInput";
+
+   date.type="date";
+
+   date.value=
+   day.date||"";
+
+   date.onchange=()=>{
+
+    day.date=
+    date.value;
+
+    save();
+
+    renderDays();
+
+   };
+
+   info.append(
+    title,
+    date
+   );
+
+   header.append(
+    dateBox,
+    info
+   );
+
+   card.appendChild(
+    header
+   );
+
+   const rows=
+   document.createElement("div");
+
+   rows.className=
+   "checkRows";
+
+   (day.items||[])
+   .forEach(
+    (item,ii)=>{
+
+     const r=
+     document.createElement("div");
+
+     r.className=
+     "checkRow"
+     +(item.d?" done":"");
+
+     const c=
+     document.createElement("input");
+
+     c.type=
+     "checkbox";
+
+     c.checked=
+     !!item.d;
+
+     c.onchange=()=>{
+
+      item.d=
+      c.checked;
+
+      save();
+
+      renderDays();
+
+     };
+
+     const t=
+     document.createElement("input");
+
+     t.className=
+     "checkText";
+
+     t.value=
+     item.t||"";
+
+     t.oninput=()=>{
+
+      item.t=
+      t.value;
+
+      save();
+
+     };
+
+     const del=
+     document.createElement("button");
+
+     del.className=
+     "delete";
+
+     del.textContent=
+     "×";
+
+     del.onclick=()=>{
+
+      day.items.splice(
+       ii,
+       1
+      );
+
+      save();
+
+      renderDays();
+
+     };
+
+     r.append(
+      c,
+      t,
+      del
+     );
+
+     rows.appendChild(r);
+
+    }
+   );
+
+   card.appendChild(rows);
+
+   const add=
+   document.createElement("div");
+
+   add.className=
+   "dayAdd";
+
+   const input=
+   document.createElement("input");
+
+   input.placeholder=
+   "Agregar actividad...";
+
+   const plus=
+   document.createElement("button");
+
+   plus.className=
+   "primary";
+
+   plus.textContent=
+   "+";
+
+   const doAdd=()=>{
+
+    const v=
+    input.value.trim();
+
+    if(!v){
+
+     return;
+
+    }
+
+    day.items.push({
+
+     t:v,
+
+     d:false
+
+    });
+
+    save();
+
+    renderDays();
+
+   };
+
+   plus.onclick=
+   doAdd;
+
+   input.onkeydown=
+   e=>{
+
+    if(e.key==="Enter"){
+
+     doAdd();
+
+    }
+
+   };
+
+   add.append(
+    input,
+    plus
+   );
+
+   card.appendChild(add);
+
+   const delDay=
+   document.createElement("button");
+
+   delDay.className=
+   "dangerBtn";
+
+   delDay.textContent=
+   "Eliminar día";
+
+   delDay.onclick=()=>{
+
+    if(
+     confirm(
+      "¿Eliminar este día?"
+     )
+    ){
+
+     state.days.splice(
+      di,
+      1
+     );
+
+     save();
+
+     renderDays();
+
+    }
+
+   };
+
+   card.appendChild(
+    delDay
+   );
+
+   root.appendChild(
+    card
+   );
+
+  }
+ );
+
+}
+
+/* GASTOS */
+
+function normalizeExpenses(){
+
+ state.gastos=
+ (state.gastos||[])
+ .map(g=>{
+
+  if(typeof g==="string"){
+
+   return{
+    description:g,
+    value:0,
+    category:"Otros",
+    payer:"John"
+   };
+
+  }
+
+  if(
+   g &&
+   "t" in g
+  ){
+
+   return{
+    description:g.t||"",
+    value:0,
+    category:"Otros",
+    payer:"John"
+   };
+
+  }
+
+  return{
+
+   description:"",
+   value:0,
+   category:"Otros",
+   payer:"John",
+   ...g
+
+  };
+
+ });
+
+}
+
+function renderExpenseSummary(){
+
+ const total=
+ (state.gastos||[])
+ .reduce(
+  (s,g)=>
+  s+(Number(g.value)||0),
+  0
+ );
+
+ const budget=
+ Number(state.budget)||0;
+
+ document
+ .getElementById("expenseTotal")
+ .textContent=
+ money(total);
+
+ const pct=
+ budget
+ ?Math.min(
+   100,
+   total/budget*100
+  )
+ :0;
+
+ document
+ .getElementById("budgetBar")
+ .style.width=
+ pct+"%";
+
+ document
+ .getElementById("budgetText")
+ .textContent=
+ budget
+ ?`${money(total)} de ${money(budget)} · ${pct.toFixed(0)}%`
+ :"Define el presupuesto del viaje";
+
+}
+
+function renderExpenses(){
+
+ normalizeExpenses();
+
+ const root=
+ document.getElementById("expenseList");
+
+ root.innerHTML="";
+
+ state.gastos.forEach(
+  (g,i)=>{
+
+   const r=
+   document.createElement("div");
+
+   r.className=
+   "expenseRow";
+
+   const d=
+   document.createElement("input");
+
+   d.value=
+   g.description||"";
+
+   d.placeholder=
+   "Descripción";
+
+   d.oninput=()=>{
+
+    g.description=
+    d.value;
+
+    save();
+
+   };
+
+   const v=
+   document.createElement("input");
+
+   v.type=
+   "number";
+
+   v.inputMode=
+   "numeric";
+
+   v.value=
+   g.value||"";
+
+   v.placeholder=
+   "Valor";
+
+   v.oninput=()=>{
+
+    g.value=
+    Number(v.value)||0;
+
+    save();
+
+    renderExpenseSummary();
+
+   };
+
+   const del=
+   document.createElement("button");
+
+   del.className=
+   "delete";
+
+   del.textContent=
+   "×";
+
+   del.onclick=()=>{
+
+    state.gastos.splice(
+     i,
+     1
+    );
+
+    save();
+
+    renderExpenses();
+
+   };
+
+   const meta=
+   document.createElement("div");
+
+   meta.className=
+   "expenseMeta";
+
+   const c=
+   document.createElement("select");
+
+   [
+    "Comida",
+    "Transporte",
+    "Hotel",
+    "Torneo",
+    "Compras",
+    "Niños",
+    "Otros"
+   ]
+   .forEach(
+    x=>{
+
+     const o=
+     document.createElement("option");
+
+     o.textContent=
+     x;
+
+     if(x===g.category){
+
+      o.selected=true;
+
+     }
+
+     c.appendChild(o);
+
+    }
+   );
+
+   c.onchange=()=>{
+
+    g.category=
+    c.value;
+
+    save();
+
+   };
+
+   const p=
+   document.createElement("select");
+
+   [
+    "John",
+    "Ani"
+   ]
+   .forEach(
+    x=>{
+
+     const o=
+     document.createElement("option");
+
+     o.textContent=
+     x;
+
+     if(x===g.payer){
+
+      o.selected=true;
+
+     }
+
+     p.appendChild(o);
+
+    }
+   );
+
+   p.onchange=()=>{
+
+    g.payer=
+    p.value;
+
+    save();
+
+   };
+
+   meta.append(
+    c,
+    p
+   );
+
+   r.append(
+    d,
+    v,
+    del,
+    meta
+   );
+
+   root.appendChild(r);
+
+  }
+ );
+
+ renderExpenseSummary();
+
+}
+
+function addExpense(){
+
+ const d=
+ document.getElementById("expenseDescription");
+
+ const v=
+ document.getElementById("expenseValue");
+
+ const c=
+ document.getElementById("expenseCategory");
+
+ const p=
+ document.getElementById("expensePayer");
+
+ if(
+  !d.value.trim() &&
+  !v.value
+ ){
+
+  return;
+
+ }
+
+ state.gastos.push({
+
+  description:
+  d.value.trim(),
+
+  value:
+  Number(v.value)||0,
+
+  category:
+  c.value,
+
+  payer:
+  p.value
+
+ });
+
+ d.value="";
+ v.value="";
+
+ save();
+
+ renderExpenses();
+
+}
+
+/* MERCADO */
+
+function renderMarket(){
+
+ const root=
+ document.getElementById("marketCategories");
+
+ root.innerHTML="";
+
+ let pending=0;
+ let done=0;
+
+ state.mercado.categories
+ .forEach(
+  (cat,ci)=>{
+
+   const sec=
+   document.createElement("div");
+
+   sec.className=
+   "marketCategory";
+
+   const head=
+   document.createElement("div");
+
+   head.className=
+   "categoryHead";
+
+   const title=
+   document.createElement("input");
+
+   title.className=
+   "categoryName";
+
+   title.value=
+   cat.name;
+
+   title.oninput=()=>{
+
+    cat.name=
+    title.value;
+
+    save();
+
+   };
+
+   const delCat=
+   document.createElement("button");
+
+   delCat.className=
+   "categoryDelete";
+
+   delCat.textContent=
+   "×";
+
+   delCat.onclick=()=>{
+
+    if(
+     confirm(
+      `¿Eliminar la categoría ${cat.name}?`
+     )
+    ){
+
+     state
+     .mercado
+     .categories
+     .splice(
+      ci,
+      1
+     );
+
+     save();
+
+     renderMarket();
+
+    }
+
+   };
+
+   head.append(
+    title,
+    delCat
+   );
+
+   sec.appendChild(
+    head
+   );
+
+   cat.items.forEach(
+    (item,ii)=>{
+
+     if(item.checked){
+
+      done++;
+
+     }
+
+     else{
+
+      pending++;
+
+     }
+
+     const row=
+     document.createElement("div");
+
+     row.className=
+     "marketItem"
+     +(item.checked?" checked":"");
+
+     const c=
+     document.createElement("input");
+
+     c.type=
+     "checkbox";
+
+     c.checked=
+     !!item.checked;
+
+     c.onchange=()=>{
+
+      item.checked=
+      c.checked;
+
+      save();
+
+      renderMarket();
+
+     };
+
+     const t=
+     document.createElement("input");
+
+     t.className=
+     "marketItemText";
+
+     t.value=
+     item.name;
+
+     t.oninput=()=>{
+
+      item.name=
+      t.value;
+
+      save();
+
+     };
+
+     const del=
+     document.createElement("button");
+
+     del.className=
+     "marketDelete";
+
+     del.textContent=
+     "×";
+
+     del.onclick=()=>{
+
+      cat.items.splice(
+       ii,
+       1
+      );
+
+      save();
+
+      renderMarket();
+
+     };
+
+     row.append(
+      c,
+      t,
+      del
+     );
+
+     sec.appendChild(
+      row
+     );
+
+    }
+   );
+
+   const add=
+   document.createElement("div");
+
+   add.className=
+   "marketAdd";
+
+   const input=
+   document.createElement("input");
+
+   input.placeholder=
+   "Agregar producto...";
+
+   const plus=
+   document.createElement("button");
+
+   plus.className=
+   "marketPlus";
+
+   plus.textContent=
+   "+";
+
+   const doAdd=()=>{
+
+    const v=
+    input.value.trim();
+
+    if(!v){
+
+     return;
+
+    }
+
+    cat.items.push({
+
+     name:v,
+
+     checked:false
+
+    });
+
+    input.value="";
+
+    save();
+
+    renderMarket();
+
+   };
+
+   plus.onclick=
+   doAdd;
+
+   input.onkeydown=
+   e=>{
+
+    if(e.key==="Enter"){
+
+     doAdd();
+
+    }
+
+   };
+
+   add.append(
+    input,
+    plus
+   );
+
+   sec.appendChild(add);
+
+   root.appendChild(sec);
+
+  }
+ );
+
+ document
+ .getElementById("marketPending")
+ .textContent=
+ pending;
+
+ document
+ .getElementById("marketDone")
+ .textContent=
+ done;
+
+}
+
+function addMarketCategory(){
+
+ const input=
+ document.getElementById("newCategoryName");
+
+ const name=
+ input.value.trim();
+
+ if(!name){
+
+  return;
+
+ }
+
+ state
+ .mercado
+ .categories
+ .push({
+
+  id:
+  "cat_"+Date.now(),
+
+  name:name,
+
+  items:[]
+
+ });
+
+ input.value="";
+
+ save();
+
+ renderMarket();
+
+}
+
+window.clearCheckedMarketItems=()=>{
+
+ state.mercado.categories
+ .forEach(
+  c=>{
+
+   c.items=
+   c.items.filter(
+    i=>!i.checked
+   );
+
+  }
+ );
+
+ save();
+
+ renderMarket();
+
+};
+
+/* RENDER GENERAL */
+
+function renderAll(){
+
+ migrate();
+
+ renderPayments();
+
+ renderDays();
+
+ [
+  "previo_familia",
+  "previo_salomon",
+  "previo_antonio",
+  "maleta_john",
+  "maleta_esposa",
+  "maleta_salomon",
+  "maleta_antonio",
+  "vuelos",
+  "hotel",
+  "traslados",
+  "contactos",
+  "documentos"
+ ]
+ .forEach(
+  renderList
+ );
+
+ renderExpenses();
+
+ renderMarket();
+
+ const notes=
+ document.getElementById("notes");
+
+ if(
+  notes &&
+  document.activeElement!==notes
+ ){
+
+  notes.value=
+  state.notes||"";
+
+ }
+
+ document
+ .getElementById("budgetInput")
+ .value=
+ state.budget||"";
+
+}
+
+/* EVENTOS */
+
+document
+.getElementById("addDay")
+.onclick=()=>{
+
+ state.days.push({
+
+  title:"Nuevo día",
+
+  date:"",
+
+  items:[]
+
+ });
+
+ save();
+
+ renderDays();
+
+};
+
+document
+.querySelectorAll("[data-add]")
+.forEach(
+ b=>
+ b.onclick=
+ ()=>addGeneric(
+  b.dataset.add
+ )
+);
+
+document
+.querySelectorAll("[data-input]")
+.forEach(
+ i=>
+ i.onkeydown=
+ e=>{
+
+  if(e.key==="Enter"){
+
+   addGeneric(
+    i.dataset.input
+   );
+
+  }
+
+ }
+);
+
+document
+.querySelectorAll(".tab")
+.forEach(
+ b=>
+ b.onclick=
+ ()=>{
+
+  document
+  .querySelectorAll(".tab")
+  .forEach(
+   x=>
+   x.classList.remove("active")
+  );
+
+  document
+  .querySelectorAll(".pane")
+  .forEach(
+   x=>
+   x.classList.remove("active")
+  );
+
+  b.classList.add("active");
+
+  document
+  .getElementById(
+   b.dataset.pane
+  )
+  .classList.add("active");
+
+ }
+);
+
+document
+.querySelectorAll(".subtab")
+.forEach(
+ b=>
+ b.onclick=
+ ()=>{
+
+  document
+  .querySelectorAll(".subtab")
+  .forEach(
+   x=>
+   x.classList.remove("active")
+  );
+
+  document
+  .querySelectorAll("#previo .section")
+  .forEach(
+   x=>
+   x.classList.remove("active")
+  );
+
+  b.classList.add("active");
+
+  document
+  .getElementById(
+   b.dataset.section
+  )
+  .classList.add("active");
+
+ }
+);
+
+const people={
+ john:"John",
+ esposa:"Ani",
+ salomon:"Salomón",
+ antonio:"Antonio"
+};
+
+document
+.querySelectorAll(".person")
+.forEach(
+ b=>
+ b.onclick=
+ ()=>{
+
+  document
+  .querySelectorAll(".person")
+  .forEach(
+   x=>
+   x.classList.remove("active")
+  );
+
+  b.classList.add("active");
+
+  const k=
+  "maleta_"
+  +b.dataset.person;
+
+  document
+  .getElementById("packingTitle")
+  .textContent=
+  "Maleta · "
+  +people[b.dataset.person];
+
+  const l=
+  document.querySelector("#packingCard .list");
+
+  const i=
+  document.querySelector("#packingCard [data-input]");
+
+  const a=
+  document.querySelector("#packingCard [data-add]");
+
+  l.dataset.list=k;
+  i.dataset.input=k;
+  a.dataset.add=k;
+
+  a.onclick=
+  ()=>addGeneric(k);
+
+  i.onkeydown=
+  e=>{
+
+   if(e.key==="Enter"){
+
+    addGeneric(k);
+
+   }
+
+  };
+
+  renderList(k);
+
+ }
+);
+
+document
+.getElementById("notes")
+.oninput=
+e=>{
+
+ state.notes=
+ e.target.value;
+
+ save();
+
+};
+
+document
+.getElementById("saveBudget")
+.onclick=()=>{
+
+ state.budget=
+ Number(
+  document
+  .getElementById("budgetInput")
+  .value
+ )||0;
+
+ save();
+
+ renderExpenseSummary();
+
+};
+
+document
+.getElementById("addExpense")
+.onclick=
+addExpense;
+
+document
+.getElementById("addMarketCategory")
+.onclick=
+addMarketCategory;
+
+document
+.getElementById("newCategoryName")
+.onkeydown=
+e=>{
+
+ if(e.key==="Enter"){
+
+  addMarketCategory();
+
+ }
+
+};
+
+/* FIREBASE */
+
+async function startFirebase(){
+
+ try{
+
+  setSync(
+   "",
+   "Conectando..."
+  );
+
+  const existing=
+  await getDoc(
+   sharedRef
+  );
+
+  if(!existing.exists()){
+
+   await setDoc(
+    sharedRef,
+    defaults
+   );
+
+  }
+
+  onSnapshot(
+
+   sharedRef,
+
+   snap=>{
+
+    if(!snap.exists()){
+
+     return;
+
+    }
+
+    remoteUpdate=true;
+
+    state={
+
+     ...structuredClone(defaults),
+
+     ...snap.data()
+
+    };
+
+    migrate();
+
+    renderAll();
+
+    remoteUpdate=false;
+
+    firebaseReady=true;
+
+    setSync(
+     "ok",
+     "Sincronizado"
+    );
+
+   },
+
+   err=>{
+
+    console.error(err);
+
+    setSync(
+     "err",
+     "Error Firebase"
+    );
+
+   }
+
+  );
+
+ }
+
+ catch(e){
+
+  console.error(e);
+
+  setSync(
+   "err",
+   "No se pudo conectar"
+  );
+
+ }
+
+}
+
+renderAll();
+
 startFirebase();
+
 </script>
 </body>
 </html>
