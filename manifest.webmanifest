@@ -1,0 +1,24 @@
+{
+  "name": "Familia ARH",
+  "short_name": "Familia ARH",
+  "description": "Todo tu mundo familiar en un solo lugar",
+  "start_url": "/TEST-BARCA/",
+  "scope": "/TEST-BARCA/",
+  "display": "standalone",
+  "background_color": "#07111f",
+  "theme_color": "#07111f",
+  "icons": [
+    {
+      "src": "familia-arh-192.png?v=20260816pwa1",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "familia-arh-512.png?v=20260816pwa1",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
