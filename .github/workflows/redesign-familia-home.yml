@@ -1,0 +1,61 @@
+name: Redesign Familia ARH Home
+
+on:
+  push:
+    paths:
+      - '.github/workflows/redesign-familia-home.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  redesign:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Apply Idea B home redesign
+        shell: python
+        run: |
+          from pathlib import Path
+          import re
+
+          path = Path('index.html')
+          html = path.read_text(encoding='utf-8')
+
+          # Add installed-app icon metadata if it is not present yet.
+          if 'rel="apple-touch-icon"' not in html:
+              html = html.replace(
+                  '<meta name="theme-color" content="#07111f">',
+                  '<meta name="theme-color" content="#07111f">\n<link rel="icon" href="favicon.ico?v=20260816b">\n<link rel="apple-touch-icon" href="favicon.ico?v=20260816b">'
+              )
+
+          new_css = r'''#mainMenu{background:radial-gradient(circle at 50% -10%,#102847 0,#07111f 42%,#06101d 100%);color:white;padding:max(28px,env(safe-area-inset-top)) 18px 40px}.mainWrap{max-width:760px;margin:auto;min-height:calc(100vh - 68px);display:flex;flex-direction:column}.homeBrand{text-align:center;padding:12px 0 22px}.homeLogo{width:74px;height:74px;border-radius:22px;object-fit:cover;box-shadow:0 10px 28px rgba(0,0,0,.28);border:1px solid rgba(255,255,255,.16)}.brand{font-size:34px;font-weight:900;margin:13px 0 0;letter-spacing:-.7px}.brandSub{font-size:13px;color:#8fa4bf;margin-top:6px}.homeDivider{height:1px;background:linear-gradient(90deg,transparent,#244b79,transparent);margin:2px auto 30px;width:min(420px,82%)}.appGrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px 14px;align-items:start}.appCard{border:0;background:transparent;color:white;text-align:center;padding:0;min-width:0}.appCard:active{transform:scale(.96)}.appIconTile{width:min(118px,25vw);aspect-ratio:1;margin:0 auto 11px;border-radius:27%;display:grid;place-items:center;overflow:hidden;box-shadow:0 13px 26px rgba(0,0,0,.28),inset 0 0 0 1px rgba(255,255,255,.10)}.appIconTile.bacla{background:linear-gradient(145deg,#174b95,#082655)}.appIconTile.market{background:linear-gradient(145deg,#fff8df,#eadfbd)}.appIconTile svg{width:82%;height:82%;display:block}.appName{font-size:15px;font-weight:850;line-height:1.2;max-width:126px;margin:auto}.appDesc{display:none}.futureSlot{opacity:.58;pointer-events:none}.futureTile{width:min(118px,25vw);aspect-ratio:1;margin:0 auto 11px;border-radius:27%;display:grid;place-items:center;border:1px dashed #45617f;background:rgba(13,31,53,.48);font-size:41px;color:#7890ab}.futureName{font-size:13px;color:#8a9db4}.footer{text-align:center;font-size:11px;color:#647992;margin-top:auto;padding-top:42px}'''
+
+          css_pattern = re.compile(r'#mainMenu\{.*?\.footer\{[^}]*\}', re.S)
+          if not css_pattern.search(html):
+              raise SystemExit('Home CSS block not found')
+          html = css_pattern.sub(new_css, html, count=1)
+
+          new_home = r'''<div id="mainMenu" class="screen active"><div class="mainWrap"><div class="homeBrand"><img class="homeLogo" src="favicon.ico?v=20260816b" alt="Familia ARH"><div class="brand">Familia ARH</div><div class="brandSub">Todo tu mundo familiar en un solo lugar</div></div><div class="homeDivider"></div><div class="appGrid"><button class="appCard" onclick="openScreen('baclaApp')" aria-label="Abrir BACLA ARH"><div class="appIconTile bacla"><svg viewBox="0 0 100 100" aria-hidden="true"><path d="M64 20c10 3 18 9 23 17l-10 6c-4-6-9-10-16-12z" fill="#fff" opacity=".95"/><path d="M75 28l13-7-5 14z" fill="#d9ecff"/><rect x="66" y="54" width="24" height="28" rx="5" fill="#2f7de1"/><path d="M72 51v-4c0-3 2-5 5-5h3c3 0 5 2 5 5v4" fill="none" stroke="#a9d1ff" stroke-width="3"/><circle cx="39" cy="60" r="25" fill="#fff"/><path d="M39 41l9 7-4 11H33l-4-11zM19 55l10-7 4 11-7 9-10-3zm46 0l-10-7-4 11 7 9 10-3zM27 76l-1-8 7-9h11l7 9-1 8-11 7z" fill="#0d2d60"/><path d="M29 48l-8-6M49 48l8-6M33 59l-7 9M44 59l7 9" stroke="#0d2d60" stroke-width="3"/></svg></div><div class="appName">BACLA ARH</div></button><button class="appCard" onclick="openScreen('marketApp')" aria-label="Abrir Mercado Familiar"><div class="appIconTile market"><svg viewBox="0 0 100 100" aria-hidden="true"><path d="M17 27h9l7 35h42l8-25H31" fill="none" stroke="#47743f" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="40" cy="75" r="5" fill="#344b32"/><circle cx="70" cy="75" r="5" fill="#344b32"/><path d="M46 29c2-9 11-13 18-9-2 8-9 13-18 9z" fill="#7eaa4e"/><path d="M60 34c1-8 8-12 15-10-1 7-7 12-15 10z" fill="#4d913f"/><path d="M38 39c6-8 15-8 21-2-3 8-13 11-21 2z" fill="#f49b28"/><rect x="57" y="35" width="25" height="31" rx="4" fill="#fffaf0" stroke="#cbbf9c" stroke-width="2"/><path d="M63 44l3 3 5-6M63 53l3 3 5-6" fill="none" stroke="#5f8d45" stroke-width="3" stroke-linecap="round"/><path d="M73 45h5M73 54h5" stroke="#8d8268" stroke-width="2" stroke-linecap="round"/></svg></div><div class="appName">Mercado Familiar</div></button><div class="futureSlot"><div class="futureTile">＋</div><div class="futureName">Próximamente</div></div></div><div class="footer">Familia ARH · Datos compartidos con Firebase</div></div></div>'''
+
+          home_pattern = re.compile(r'<div id="mainMenu" class="screen active">.*?<div class="footer">Familia ARH · Datos compartidos con Firebase</div></div></div>', re.S)
+          if not home_pattern.search(html):
+              raise SystemExit('Home markup not found')
+          html = home_pattern.sub(new_home, html, count=1)
+
+          # Keep three columns on phones for an app-launcher feel.
+          html = html.replace('@media(max-width:650px){.appGrid{grid-template-columns:1fr}', '@media(max-width:650px){.appGrid{grid-template-columns:repeat(3,minmax(0,1fr));gap:22px 10px}')
+
+          path.write_text(html, encoding='utf-8')
+      - name: Commit redesign
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "Redesign Familia ARH home as app icons [skip ci]"
+            git push
+          fi
