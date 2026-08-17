@@ -1,0 +1,47 @@
+name: Add Cashy to Familia ARH portal
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/add-cashy-to-portal.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update-portal:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Replace future slot with Cashy access
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p = Path('index.html')
+          s = p.read_text(encoding='utf-8')
+          old = '<div class="futureSlot"><div class="futureTile">＋</div><div class="futureName">Próximamente</div></div>'
+          new = '''<button class="appCard" onclick="window.location.href='cashy-public/'" aria-label="Abrir Cashy"><div class="appIconTile" style="background:linear-gradient(145deg,#26c281,#0f8f63);color:white"><svg viewBox="0 0 100 100" aria-hidden="true"><rect x="20" y="24" width="60" height="52" rx="14" fill="rgba(255,255,255,.18)"/><path d="M50 32v36M62 40c-3-5-8-7-14-7-8 0-14 4-14 10 0 7 7 9 16 11 9 2 16 5 16 12 0 6-6 10-15 10-7 0-13-3-17-8" fill="none" stroke="#fff" stroke-width="7" stroke-linecap="round"/></svg></div><div class="appName">Cashy</div></button>'''
+          if old in s:
+              p.write_text(s.replace(old, new, 1), encoding='utf-8')
+              print('Cashy access added')
+          elif 'aria-label="Abrir Cashy"' in s:
+              print('Cashy access already present')
+          else:
+              raise SystemExit('Expected future slot was not found; portal was not changed')
+          PY
+
+      - name: Commit portal update
+        run: |
+          if git diff --quiet; then
+            echo "No changes needed"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html
+          git commit -m "Add Cashy access to Familia ARH portal"
+          git push
