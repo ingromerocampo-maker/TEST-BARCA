@@ -1,0 +1,68 @@
+name: Import real Cashy into Familia RH
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/import-real-cashy.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  import-cashy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Download known-good Cashy build
+        shell: bash
+        run: |
+          set -euo pipefail
+          BASE="https://legalizacion-facturas-d0216h7iv-ingromerocampo-1756s-projects.vercel.app"
+          rm -rf cashy-public
+          mkdir -p cashy-public/assets
+
+          curl -fL "$BASE/" -o cashy-public/index.html
+          curl -fL "$BASE/assets/index-B5Qt9EMX.js" -o cashy-public/assets/index-B5Qt9EMX.js
+          curl -fL "$BASE/assets/cashy.js" -o cashy-public/assets/cashy.js
+          curl -fL "$BASE/assets/cashy.css" -o cashy-public/assets/cashy.css
+          curl -fL "$BASE/icon.svg" -o cashy-public/icon.svg
+          curl -fL "$BASE/manifest.webmanifest" -o cashy-public/manifest.webmanifest
+
+          python3 - <<'PY'
+          from pathlib import Path
+          p=Path('cashy-public/index.html')
+          s=p.read_text()
+          for old,new in [
+              ('href="/icon.svg"','href="./icon.svg"'),
+              ('src="/icon.svg"','src="./icon.svg"'),
+              ('href="/manifest.webmanifest"','href="./manifest.webmanifest"'),
+              ('href="/assets/','href="./assets/'),
+              ('src="/assets/','src="./assets/'),
+          ]:
+              s=s.replace(old,new)
+          p.write_text(s)
+          PY
+
+          # Make icon references inside helper JS work under the subfolder too.
+          sed -i 's#src="/icon.svg"#src="./icon.svg"#g' cashy-public/index.html || true
+
+          echo "Cashy files imported:"
+          find cashy-public -maxdepth 2 -type f -printf '%p %s bytes\n'
+
+      - name: Commit imported Cashy
+        shell: bash
+        run: |
+          set -e
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add cashy-public
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "Import working Cashy build into Familia RH [skip ci]"
+            git push
+          fi
