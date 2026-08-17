@@ -1,0 +1,39 @@
+name: Set Cashy direct shortcut
+
+on:
+  push:
+    paths:
+      - '.github/workflows/set-cashy-shortcut.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  set-shortcut:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Point Familia RH Cashy button to external Cashy
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+          p=Path('index.html')
+          s=p.read_text()
+          old="window.location.href='cashy-public/'"
+          new="window.location.href='https://legalizacion-facturas-ingromerocampo-1756s-projects.vercel.app/'"
+          if old not in s:
+              raise SystemExit('Cashy shortcut target not found; no other content changed')
+          s=s.replace(old,new,1)
+          p.write_text(s)
+          PY
+      - name: Commit only shortcut change
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html
+          git commit -m "Point Familia RH Cashy shortcut to Cashy app"
+          git push
