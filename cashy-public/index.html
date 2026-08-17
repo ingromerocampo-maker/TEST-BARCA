@@ -1,1 +1,26 @@
-<!doctype html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#386bd0"><title>CASHY</title><script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script><script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script><script src="https://unpkg.com/@babel/standalone/babel.min.js"></script><style>body{margin:0;background:#f6f8fc;color:#172033;font-family:Inter,system-ui,-apple-system,Segoe UI,sans-serif}.boot{max-width:760px;margin:auto;padding:44px 20px}.boot h1{margin:0 0 6px}.boot p{color:#7e8798}.boot.error{color:#b42318}</style></head><body><div id="root"><div class="boot"><h1>CASHY</h1><p>Cargando finanzas familiares…</p></div></div><script>(async()=>{const get=async p=>{const r=await fetch('./'+p+'?v=20260817-1',{cache:'no-store'});if(!r.ok)throw new Error(p+' '+r.status);return r.text()};try{const [p0,p1,p2,p3,css1,css2,css3,css4]=await Promise.all(['app-00.txt','app-01.txt','app-02.txt','app-03.txt','styles.css','plan.css','annual-fix.css','reorder-blocks.css'].map(get));const style=document.createElement('style');style.textContent=[css1,css2,css3,css4].join('\n');document.head.appendChild(style);let src=p0+p1+p2+p3;src=src.replace(/import\s+[\s\S]*?\s+from\s+['\"][^'\"]+['\"]\s*;?/g,'').replace(/import\s*['\"][^'\"]+['\"]\s*;?/g,'').replace(/export\s+default\s+/g,'').replace(/export\s+/g,'');if(/(^|\n)\s*import\s/m.test(src))throw new Error('Quedó un import sin procesar');if(!/const\s*\{\s*useEffect/.test(src))src='const {useEffect,useMemo,useState}=React;\n'+src;const compiled=Babel.transform(src,{presets:['react']}).code;const App=new Function('React',compiled+';return App;')(React);ReactDOM.createRoot(document.getElementById('root')).render(React.createElement(App));setTimeout(async()=>{for(const f of ['annual-fix.js','reorder-blocks.js']){try{const addon=await get(f);new Function(addon)()}catch(e){console.error('addon',f,e)}}},200)}catch(e){console.error(e);document.getElementById('root').innerHTML='<div class="boot error"><h1>CASHY</h1><p>No fue posible cargar la aplicación. '+String(e.message||e)+'</p></div>'}})();</script></body></html>
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#386bd0">
+  <title>CASHY</title>
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <link rel="stylesheet" href="styles.css?v=20260817-static1">
+  <link rel="stylesheet" href="plan.css?v=20260817-static1">
+  <link rel="stylesheet" href="annual-fix.css?v=20260817-static1">
+  <link rel="stylesheet" href="reorder-blocks.css?v=20260817-static1">
+  <style>body{margin:0;background:#f6f8fc;color:#172033;font-family:Inter,system-ui,-apple-system,Segoe UI,sans-serif}</style>
+</head>
+<body>
+  <div id="root"></div>
+  <script type="text/babel" data-presets="react" src="app.jsx?v=20260817-static1"></script>
+  <script type="text/babel">
+    ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+  </script>
+  <script src="annual-fix.js?v=20260817-static1"></script>
+  <script src="reorder-blocks.js?v=20260817-static1"></script>
+</body>
+</html>
